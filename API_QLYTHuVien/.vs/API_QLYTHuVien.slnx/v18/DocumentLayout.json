@@ -3,7 +3,7 @@
   "WorkspaceRootPath": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\api_qlythuvien\\models\\thuvien.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "AbsoluteMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|c:\\users\\legion\\documents\\code\\btl_hdv\\api_qlythuvien\\api_qlythuvien\\models\\thuvien.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
       "RelativeMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|solutionrelative:api_qlythuvien\\models\\thuvien.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
     },
     {
@@ -11,7 +11,7 @@
       "RelativeMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|solutionrelative:api_qlythuvien\\controllers\\taikhoancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|c:\\users\\legion\\documents\\code\\btl_hdv\\api_qlythuvien\\api_qlythuvien\\controllers\\lisugiaodichcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\api_qlythuvien\\controllers\\lisugiaodichcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|solutionrelative:api_qlythuvien\\controllers\\lisugiaodichcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -46,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -55,19 +55,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:1:0:{e8b06f53-6d01-11d2-aa7d-00c04f990343}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "TaiKhoanController.cs",
-              "DocumentMoniker": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Controllers\\TaiKhoanController.cs",
-              "RelativeDocumentMoniker": "API_QLYTHuVien\\Controllers\\TaiKhoanController.cs",
-              "ToolTip": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Controllers\\TaiKhoanController.cs",
-              "RelativeToolTip": "API_QLYTHuVien\\Controllers\\TaiKhoanController.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAQwCMAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-05T04:25:58.743Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -83,6 +70,18 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TaiKhoanController.cs",
+              "DocumentMoniker": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Controllers\\TaiKhoanController.cs",
+              "RelativeDocumentMoniker": "API_QLYTHuVien\\Controllers\\TaiKhoanController.cs",
+              "ToolTip": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Controllers\\TaiKhoanController.cs",
+              "RelativeToolTip": "API_QLYTHuVien\\Controllers\\TaiKhoanController.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwCMAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-05T04:25:58.743Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
               "Title": "LiSuGiaoDichController.cs",
               "DocumentMoniker": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Controllers\\LiSuGiaoDichController.cs",
@@ -91,8 +90,7 @@
               "RelativeToolTip": "API_QLYTHuVien\\Controllers\\LiSuGiaoDichController.cs",
               "ViewState": "AgIAAEgAAAAAAAAAAAAwwFgAAABiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-05T16:54:11.382Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-05T16:54:11.382Z"
             },
             {
               "$type": "Document",
