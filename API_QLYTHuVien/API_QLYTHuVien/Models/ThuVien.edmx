@@ -1,0 +1,437 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="API_ThuVienModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="KhachHang">
+          <Key>
+            <PropertyRef Name="MaKH" />
+          </Key>
+          <Property Name="MaKH" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenKH" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SdtKH" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LiSuGiaoDich">
+          <Key>
+            <PropertyRef Name="MaGD" />
+          </Key>
+          <Property Name="MaGD" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Username" Type="nchar" MaxLength="50" />
+          <Property Name="NgayGD" Type="date" />
+          <Property Name="MaSach" Type="nchar" MaxLength="10" />
+          <Property Name="SoLuong" Type="nchar" MaxLength="10" />
+          <Property Name="TrangThai" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Muon">
+          <Key>
+            <PropertyRef Name="MaMuon" />
+          </Key>
+          <Property Name="MaMuon" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaKH" Type="nchar" MaxLength="10" />
+          <Property Name="MaSach" Type="nchar" MaxLength="10" />
+          <Property Name="SoLuong" Type="int" />
+          <Property Name="NgayMuon" Type="date" />
+          <Property Name="NgayTra" Type="date" />
+        </EntityType>
+        <EntityType Name="Sach">
+          <Key>
+            <PropertyRef Name="MaSach" />
+          </Key>
+          <Property Name="MaSach" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenSach" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SoLuong" Type="int" Nullable="false" />
+          <Property Name="TacGia" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MaTheLoai" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TaiKhoan">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Pass" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="TenTK" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SdtTK" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Role" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="TheLoai">
+          <Key>
+            <PropertyRef Name="MaTheLoai" />
+          </Key>
+          <Property Name="MaTheLoai" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenTheLoai" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_LiSuGiaoDich_Sach">
+          <End Role="Sach" Type="Self.Sach" Multiplicity="0..1" />
+          <End Role="LiSuGiaoDich" Type="Self.LiSuGiaoDich" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sach">
+              <PropertyRef Name="MaSach" />
+            </Principal>
+            <Dependent Role="LiSuGiaoDich">
+              <PropertyRef Name="MaSach" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LiSuGiaoDich_TaiKhoan">
+          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1" />
+          <End Role="LiSuGiaoDich" Type="Self.LiSuGiaoDich" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaiKhoan">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="LiSuGiaoDich">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Muon_KhachHang">
+          <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
+          <End Role="Muon" Type="Self.Muon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KhachHang">
+              <PropertyRef Name="MaKH" />
+            </Principal>
+            <Dependent Role="Muon">
+              <PropertyRef Name="MaKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Muon_Sach">
+          <End Role="Sach" Type="Self.Sach" Multiplicity="0..1" />
+          <End Role="Muon" Type="Self.Muon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sach">
+              <PropertyRef Name="MaSach" />
+            </Principal>
+            <Dependent Role="Muon">
+              <PropertyRef Name="MaSach" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sach_TheLoai">
+          <End Role="TheLoai" Type="Self.TheLoai" Multiplicity="0..1" />
+          <End Role="Sach" Type="Self.Sach" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TheLoai">
+              <PropertyRef Name="MaTheLoai" />
+            </Principal>
+            <Dependent Role="Sach">
+              <PropertyRef Name="MaTheLoai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="API_ThuVienModelStoreContainer">
+          <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LiSuGiaoDich" EntityType="Self.LiSuGiaoDich" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Muon" EntityType="Self.Muon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sach" EntityType="Self.Sach" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TheLoai" EntityType="Self.TheLoai" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_LiSuGiaoDich_Sach" Association="Self.FK_LiSuGiaoDich_Sach">
+            <End Role="Sach" EntitySet="Sach" />
+            <End Role="LiSuGiaoDich" EntitySet="LiSuGiaoDich" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LiSuGiaoDich_TaiKhoan" Association="Self.FK_LiSuGiaoDich_TaiKhoan">
+            <End Role="TaiKhoan" EntitySet="TaiKhoan" />
+            <End Role="LiSuGiaoDich" EntitySet="LiSuGiaoDich" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Muon_KhachHang" Association="Self.FK_Muon_KhachHang">
+            <End Role="KhachHang" EntitySet="KhachHang" />
+            <End Role="Muon" EntitySet="Muon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Muon_Sach" Association="Self.FK_Muon_Sach">
+            <End Role="Sach" EntitySet="Sach" />
+            <End Role="Muon" EntitySet="Muon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sach_TheLoai" Association="Self.FK_Sach_TheLoai">
+            <End Role="TheLoai" EntitySet="TheLoai" />
+            <End Role="Sach" EntitySet="Sach" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="API_ThuVienModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="KhachHang">
+          <Key>
+            <PropertyRef Name="MaKH" />
+          </Key>
+          <Property Name="MaKH" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="TenKH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SdtKH" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Muons" Relationship="Self.FK_Muon_KhachHang" FromRole="KhachHang" ToRole="Muon" />
+        </EntityType>
+        <EntityType Name="Muon">
+          <Key>
+            <PropertyRef Name="MaMuon" />
+          </Key>
+          <Property Name="MaMuon" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="MaKH" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="MaSach" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="SoLuong" Type="Int32" />
+          <Property Name="NgayMuon" Type="DateTime" Precision="0" />
+          <Property Name="NgayTra" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="KhachHang" Relationship="Self.FK_Muon_KhachHang" FromRole="Muon" ToRole="KhachHang" />
+          <NavigationProperty Name="Sach" Relationship="Self.FK_Muon_Sach" FromRole="Muon" ToRole="Sach" />
+        </EntityType>
+        <EntityType Name="Sach">
+          <Key>
+            <PropertyRef Name="MaSach" />
+          </Key>
+          <Property Name="MaSach" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="TenSach" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SoLuong" Type="Int32" Nullable="false" />
+          <Property Name="TacGia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaTheLoai" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Muons" Relationship="Self.FK_Muon_Sach" FromRole="Sach" ToRole="Muon" />
+          <NavigationProperty Name="TheLoai" Relationship="Self.FK_Sach_TheLoai" FromRole="Sach" ToRole="TheLoai" />
+          <NavigationProperty Name="LiSuGiaoDiches" Relationship="API_ThuVienModel.FK_LiSuGiaoDich_Sach" FromRole="Sach" ToRole="LiSuGiaoDich" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TaiKhoan">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Pass" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="TenTK" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SdtTK" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="LiSuGiaoDiches" Relationship="API_ThuVienModel.FK_LiSuGiaoDich_TaiKhoan" FromRole="TaiKhoan" ToRole="LiSuGiaoDich" />
+        </EntityType>
+        <EntityType Name="TheLoai">
+          <Key>
+            <PropertyRef Name="MaTheLoai" />
+          </Key>
+          <Property Name="MaTheLoai" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="TenTheLoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Saches" Relationship="Self.FK_Sach_TheLoai" FromRole="TheLoai" ToRole="Sach" />
+        </EntityType>
+        <Association Name="FK_Muon_KhachHang">
+          <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
+          <End Role="Muon" Type="Self.Muon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KhachHang">
+              <PropertyRef Name="MaKH" />
+            </Principal>
+            <Dependent Role="Muon">
+              <PropertyRef Name="MaKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Muon_Sach">
+          <End Role="Sach" Type="Self.Sach" Multiplicity="0..1" />
+          <End Role="Muon" Type="Self.Muon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sach">
+              <PropertyRef Name="MaSach" />
+            </Principal>
+            <Dependent Role="Muon">
+              <PropertyRef Name="MaSach" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sach_TheLoai">
+          <End Role="TheLoai" Type="Self.TheLoai" Multiplicity="0..1" />
+          <End Role="Sach" Type="Self.Sach" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TheLoai">
+              <PropertyRef Name="MaTheLoai" />
+            </Principal>
+            <Dependent Role="Sach">
+              <PropertyRef Name="MaTheLoai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="API_ThuVienEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="KhachHangs" EntityType="Self.KhachHang" />
+          <EntitySet Name="Muons" EntityType="Self.Muon" />
+          <EntitySet Name="Saches" EntityType="Self.Sach" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TaiKhoans" EntityType="Self.TaiKhoan" />
+          <EntitySet Name="TheLoais" EntityType="Self.TheLoai" />
+          <AssociationSet Name="FK_Muon_KhachHang" Association="Self.FK_Muon_KhachHang">
+            <End Role="KhachHang" EntitySet="KhachHangs" />
+            <End Role="Muon" EntitySet="Muons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Muon_Sach" Association="Self.FK_Muon_Sach">
+            <End Role="Sach" EntitySet="Saches" />
+            <End Role="Muon" EntitySet="Muons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sach_TheLoai" Association="Self.FK_Sach_TheLoai">
+            <End Role="TheLoai" EntitySet="TheLoais" />
+            <End Role="Sach" EntitySet="Saches" />
+          </AssociationSet>
+          <EntitySet Name="LiSuGiaoDiches" EntityType="API_ThuVienModel.LiSuGiaoDich" />
+          <AssociationSet Name="FK_LiSuGiaoDich_Sach" Association="API_ThuVienModel.FK_LiSuGiaoDich_Sach">
+            <End Role="Sach" EntitySet="Saches" />
+            <End Role="LiSuGiaoDich" EntitySet="LiSuGiaoDiches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LiSuGiaoDich_TaiKhoan" Association="API_ThuVienModel.FK_LiSuGiaoDich_TaiKhoan">
+            <End Role="TaiKhoan" EntitySet="TaiKhoans" />
+            <End Role="LiSuGiaoDich" EntitySet="LiSuGiaoDiches" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="LiSuGiaoDich">
+          <Key>
+            <PropertyRef Name="MaGD" />
+          </Key>
+          <Property Name="MaGD" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="NgayGD" Type="DateTime" Precision="0" />
+          <Property Name="MaSach" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="SoLuong" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="TrangThai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Sach" Relationship="API_ThuVienModel.FK_LiSuGiaoDich_Sach" FromRole="LiSuGiaoDich" ToRole="Sach" />
+          <NavigationProperty Name="TaiKhoan" Relationship="API_ThuVienModel.FK_LiSuGiaoDich_TaiKhoan" FromRole="LiSuGiaoDich" ToRole="TaiKhoan" />
+        </EntityType>
+        <Association Name="FK_LiSuGiaoDich_Sach">
+          <End Type="API_ThuVienModel.Sach" Role="Sach" Multiplicity="0..1" />
+          <End Type="API_ThuVienModel.LiSuGiaoDich" Role="LiSuGiaoDich" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sach">
+              <PropertyRef Name="MaSach" />
+            </Principal>
+            <Dependent Role="LiSuGiaoDich">
+              <PropertyRef Name="MaSach" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LiSuGiaoDich_TaiKhoan">
+          <End Type="API_ThuVienModel.TaiKhoan" Role="TaiKhoan" Multiplicity="0..1" />
+          <End Type="API_ThuVienModel.LiSuGiaoDich" Role="LiSuGiaoDich" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaiKhoan">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="LiSuGiaoDich">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="API_ThuVienModelStoreContainer" CdmEntityContainer="API_ThuVienEntities">
+          <EntitySetMapping Name="KhachHangs">
+            <EntityTypeMapping TypeName="API_ThuVienModel.KhachHang">
+              <MappingFragment StoreEntitySet="KhachHang">
+                <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+                <ScalarProperty Name="TenKH" ColumnName="TenKH" />
+                <ScalarProperty Name="SdtKH" ColumnName="SdtKH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Muons">
+            <EntityTypeMapping TypeName="API_ThuVienModel.Muon">
+              <MappingFragment StoreEntitySet="Muon">
+                <ScalarProperty Name="MaMuon" ColumnName="MaMuon" />
+                <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+                <ScalarProperty Name="MaSach" ColumnName="MaSach" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="NgayMuon" ColumnName="NgayMuon" />
+                <ScalarProperty Name="NgayTra" ColumnName="NgayTra" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Saches">
+            <EntityTypeMapping TypeName="API_ThuVienModel.Sach">
+              <MappingFragment StoreEntitySet="Sach">
+                <ScalarProperty Name="MaSach" ColumnName="MaSach" />
+                <ScalarProperty Name="TenSach" ColumnName="TenSach" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="TacGia" ColumnName="TacGia" />
+                <ScalarProperty Name="MaTheLoai" ColumnName="MaTheLoai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="API_ThuVienModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaiKhoans">
+            <EntityTypeMapping TypeName="API_ThuVienModel.TaiKhoan">
+              <MappingFragment StoreEntitySet="TaiKhoan">
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="TenTK" ColumnName="TenTK" />
+                <ScalarProperty Name="SdtTK" ColumnName="SdtTK" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TheLoais">
+            <EntityTypeMapping TypeName="API_ThuVienModel.TheLoai">
+              <MappingFragment StoreEntitySet="TheLoai">
+                <ScalarProperty Name="MaTheLoai" ColumnName="MaTheLoai" />
+                <ScalarProperty Name="TenTheLoai" ColumnName="TenTheLoai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LiSuGiaoDiches">
+            <EntityTypeMapping TypeName="API_ThuVienModel.LiSuGiaoDich">
+              <MappingFragment StoreEntitySet="LiSuGiaoDich">
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="MaSach" ColumnName="MaSach" />
+                <ScalarProperty Name="NgayGD" ColumnName="NgayGD" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="MaGD" ColumnName="MaGD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TESTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Sach">
+    <Key>
+      <PropertyRef Name="MaSach" />
+    </Key>
+    <Property Name="MaSach" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="TenSach" Type="nvarchar" MaxLength="50" />
+    <Property Name="SoLuong" Type="int" />
+    <Property Name="MaTheLoai" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="TheLoai">
+    <Key>
+      <PropertyRef Name="MaTheLoai" />
+    </Key>
+    <Property Name="MaTheLoai" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="TenTheLoai" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK__Sach__MaTheLoai__5070F446">
+    <End Role="TheLoai" Type="Self.TheLoai" Multiplicity="0..1" />
+    <End Role="Sach" Type="Self.Sach" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TheLoai">
+        <PropertyRef Name="MaTheLoai" />
+      </Principal>
+      <Dependent Role="Sach">
+        <PropertyRef Name="MaTheLoai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TESTModelStoreContainer">
+    <EntitySet Name="Sach" EntityType="Self.Sach" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TheLoai" EntityType="Self.TheLoai" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Sach__MaTheLoai__5070F446" Association="Self.FK__Sach__MaTheLoai__5070F446">
+      <End Role="TheLoai" EntitySet="TheLoai" />
+      <End Role="Sach" EntitySet="Sach" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

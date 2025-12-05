@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="dea21e1cba22434486adee773671cff1" Name="Diagram1">
+        <EntityTypeShape EntityType="API_ThuVienModel.KhachHang" Width="1.5" PointX="9.625" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="API_ThuVienModel.Muon" Width="1.5" PointX="6.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="API_ThuVienModel.Sach" Width="1.5" PointX="3.875" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="API_ThuVienModel.sysdiagram" Width="2.125" PointX="1.125" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="API_ThuVienModel.TaiKhoan" Width="1.5" PointX="10.375" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="API_ThuVienModel.TheLoai" Width="1.5" PointX="0.875" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="API_ThuVienModel.FK_Muon_KhachHang" ManuallyRouted="false" />
+        <AssociationConnector Association="API_ThuVienModel.FK_Muon_Sach" ManuallyRouted="false" />
+        <AssociationConnector Association="API_ThuVienModel.FK_Sach_TheLoai" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="API_ThuVienModel.LiSuGiaoDich" Width="1.5" PointX="6.25" PointY="4.125" />
+        <AssociationConnector Association="API_ThuVienModel.FK_LiSuGiaoDich_Sach" />
+        <AssociationConnector Association="API_ThuVienModel.FK_LiSuGiaoDich_TaiKhoan" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

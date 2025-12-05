@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="TESTEntities-Web.config Connection String" description="TESTEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.Sach.csdl|res://*/Models.Sach.ssdl|res://*/Models.Sach.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=DESKTOP-R0NKBQ5\MSSQLSERVER01;initial catalog=TEST;persist security info=True;user id=sa;password=123;trustservercertificate=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='TESTEntities']/@connectionString" />
+  </parameter>
+</parameters>
