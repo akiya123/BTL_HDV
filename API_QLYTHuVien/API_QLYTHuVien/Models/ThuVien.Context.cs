@@ -31,6 +31,6 @@ namespace API_QLYTHuVien.Models
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
         public virtual DbSet<TheLoai> TheLoais { get; set; }
-        public virtual DbSet<LiSuGiaoDich> LiSuGiaoDiches { get; set; }
+        public virtual DbSet<LiSuGiaoDich> LiSuGiaoDich { get; set; }
     }
 }

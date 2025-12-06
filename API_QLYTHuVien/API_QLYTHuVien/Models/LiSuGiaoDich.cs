@@ -16,12 +16,10 @@ namespace API_QLYTHuVien.Models
     {
         public string MaGD { get; set; }
         public string Username { get; set; }
-        public Nullable<System.DateTime> NgayGD { get; set; }
+        public string MaKH { get; set; }
         public string MaSach { get; set; }
-        public string SoLuong { get; set; }
+        public Nullable<System.DateTime> NgayGD { get; set; }
+        public Nullable<int> SoLuong { get; set; }
         public string TrangThai { get; set; }
-    
-        public virtual Sach Sach { get; set; }
-        public virtual TaiKhoan TaiKhoan { get; set; }
     }
 }

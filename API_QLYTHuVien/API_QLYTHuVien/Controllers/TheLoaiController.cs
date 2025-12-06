@@ -75,6 +75,7 @@ namespace API_QLYTHuVien.Controllers
             {
                 return false; // Trả về false nếu thể loại không tồn tại
             }
+            db.Saches.RemoveRange(db.Saches.Where(s => s.MaTheLoai == MaTheLoai));
             db.TheLoais.Remove(existingTheLoai);
             db.SaveChanges();
             return true;

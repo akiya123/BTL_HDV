@@ -81,6 +81,7 @@ namespace API_QLYTHuVien.Controllers
             {
                 return false; // Trả về false nếu khách hàng không tồn tại
             }
+            db.Muons.RemoveRange(db.Muons.Where(m => m.MaKH == MaKH));
             db.KhachHangs.Remove(existingKhachHang);
             db.SaveChanges();
             return true;

@@ -66,12 +66,12 @@
     <EntitySetMapping Name="LiSuGiaoDiches">
       <EntityTypeMapping TypeName="API_ThuVienModel.LiSuGiaoDich">
         <MappingFragment StoreEntitySet="LiSuGiaoDich">
-          <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
           <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
-          <ScalarProperty Name="MaSach" ColumnName="MaSach" />
+          <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+          <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
           <ScalarProperty Name="NgayGD" ColumnName="NgayGD" />
+          <ScalarProperty Name="MaSach" ColumnName="MaSach" />
           <ScalarProperty Name="Username" ColumnName="Username" />
-          <ScalarProperty Name="MaGD" ColumnName="MaGD" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

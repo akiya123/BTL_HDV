@@ -14,19 +14,10 @@ namespace API_QLYTHuVien.Models
     
     public partial class TaiKhoan
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TaiKhoan()
-        {
-            this.LiSuGiaoDiches = new HashSet<LiSuGiaoDich>();
-        }
-    
         public string Username { get; set; }
         public string Pass { get; set; }
         public string TenTK { get; set; }
         public string SdtTK { get; set; }
         public string Role { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LiSuGiaoDich> LiSuGiaoDiches { get; set; }
     }
 }

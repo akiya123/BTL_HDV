@@ -19,9 +19,10 @@
           </Key>
           <Property Name="MaGD" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="Username" Type="nchar" MaxLength="50" />
-          <Property Name="NgayGD" Type="date" />
+          <Property Name="MaKH" Type="nchar" MaxLength="10" />
           <Property Name="MaSach" Type="nchar" MaxLength="10" />
-          <Property Name="SoLuong" Type="nchar" MaxLength="10" />
+          <Property Name="NgayGD" Type="date" />
+          <Property Name="SoLuong" Type="int" />
           <Property Name="TrangThai" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Muon">
@@ -72,30 +73,6 @@
           <Property Name="MaTheLoai" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="TenTheLoai" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK_LiSuGiaoDich_Sach">
-          <End Role="Sach" Type="Self.Sach" Multiplicity="0..1" />
-          <End Role="LiSuGiaoDich" Type="Self.LiSuGiaoDich" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sach">
-              <PropertyRef Name="MaSach" />
-            </Principal>
-            <Dependent Role="LiSuGiaoDich">
-              <PropertyRef Name="MaSach" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_LiSuGiaoDich_TaiKhoan">
-          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1" />
-          <End Role="LiSuGiaoDich" Type="Self.LiSuGiaoDich" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TaiKhoan">
-              <PropertyRef Name="Username" />
-            </Principal>
-            <Dependent Role="LiSuGiaoDich">
-              <PropertyRef Name="Username" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Muon_KhachHang">
           <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
           <End Role="Muon" Type="Self.Muon" Multiplicity="*" />
@@ -140,14 +117,6 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TheLoai" EntityType="Self.TheLoai" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_LiSuGiaoDich_Sach" Association="Self.FK_LiSuGiaoDich_Sach">
-            <End Role="Sach" EntitySet="Sach" />
-            <End Role="LiSuGiaoDich" EntitySet="LiSuGiaoDich" />
-          </AssociationSet>
-          <AssociationSet Name="FK_LiSuGiaoDich_TaiKhoan" Association="Self.FK_LiSuGiaoDich_TaiKhoan">
-            <End Role="TaiKhoan" EntitySet="TaiKhoan" />
-            <End Role="LiSuGiaoDich" EntitySet="LiSuGiaoDich" />
-          </AssociationSet>
           <AssociationSet Name="FK_Muon_KhachHang" Association="Self.FK_Muon_KhachHang">
             <End Role="KhachHang" EntitySet="KhachHang" />
             <End Role="Muon" EntitySet="Muon" />
@@ -198,7 +167,6 @@
           <Property Name="MaTheLoai" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="Muons" Relationship="Self.FK_Muon_Sach" FromRole="Sach" ToRole="Muon" />
           <NavigationProperty Name="TheLoai" Relationship="Self.FK_Sach_TheLoai" FromRole="Sach" ToRole="TheLoai" />
-          <NavigationProperty Name="LiSuGiaoDiches" Relationship="API_ThuVienModel.FK_LiSuGiaoDich_Sach" FromRole="Sach" ToRole="LiSuGiaoDich" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -219,7 +187,6 @@
           <Property Name="TenTK" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SdtTK" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Role" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="LiSuGiaoDiches" Relationship="API_ThuVienModel.FK_LiSuGiaoDich_TaiKhoan" FromRole="TaiKhoan" ToRole="LiSuGiaoDich" />
         </EntityType>
         <EntityType Name="TheLoai">
           <Key>
@@ -284,54 +251,21 @@
             <End Role="TheLoai" EntitySet="TheLoais" />
             <End Role="Sach" EntitySet="Saches" />
           </AssociationSet>
-          <EntitySet Name="LiSuGiaoDiches" EntityType="API_ThuVienModel.LiSuGiaoDich" />
-          <AssociationSet Name="FK_LiSuGiaoDich_Sach" Association="API_ThuVienModel.FK_LiSuGiaoDich_Sach">
-            <End Role="Sach" EntitySet="Saches" />
-            <End Role="LiSuGiaoDich" EntitySet="LiSuGiaoDiches" />
-          </AssociationSet>
-          <AssociationSet Name="FK_LiSuGiaoDich_TaiKhoan" Association="API_ThuVienModel.FK_LiSuGiaoDich_TaiKhoan">
-            <End Role="TaiKhoan" EntitySet="TaiKhoans" />
-            <End Role="LiSuGiaoDich" EntitySet="LiSuGiaoDiches" />
-          </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="LiSuGiaoDich" EntityType="API_ThuVienModel.LiSuGiaoDich" />
+          </EntityContainer>
         <EntityType Name="LiSuGiaoDich">
           <Key>
             <PropertyRef Name="MaGD" />
           </Key>
           <Property Name="MaGD" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="NgayGD" Type="DateTime" Precision="0" />
+          <Property Name="MaKH" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="MaSach" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="SoLuong" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="NgayGD" Type="DateTime" Precision="0" />
+          <Property Name="SoLuong" Type="Int32" />
           <Property Name="TrangThai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Sach" Relationship="API_ThuVienModel.FK_LiSuGiaoDich_Sach" FromRole="LiSuGiaoDich" ToRole="Sach" />
-          <NavigationProperty Name="TaiKhoan" Relationship="API_ThuVienModel.FK_LiSuGiaoDich_TaiKhoan" FromRole="LiSuGiaoDich" ToRole="TaiKhoan" />
         </EntityType>
-        <Association Name="FK_LiSuGiaoDich_Sach">
-          <End Type="API_ThuVienModel.Sach" Role="Sach" Multiplicity="0..1" />
-          <End Type="API_ThuVienModel.LiSuGiaoDich" Role="LiSuGiaoDich" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sach">
-              <PropertyRef Name="MaSach" />
-            </Principal>
-            <Dependent Role="LiSuGiaoDich">
-              <PropertyRef Name="MaSach" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_LiSuGiaoDich_TaiKhoan">
-          <End Type="API_ThuVienModel.TaiKhoan" Role="TaiKhoan" Multiplicity="0..1" />
-          <End Type="API_ThuVienModel.LiSuGiaoDich" Role="LiSuGiaoDich" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TaiKhoan">
-              <PropertyRef Name="Username" />
-            </Principal>
-            <Dependent Role="LiSuGiaoDich">
-              <PropertyRef Name="Username" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -399,13 +333,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="LiSuGiaoDiches">
+          <EntitySetMapping Name="LiSuGiaoDich">
             <EntityTypeMapping TypeName="API_ThuVienModel.LiSuGiaoDich">
               <MappingFragment StoreEntitySet="LiSuGiaoDich">
                 <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
                 <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
-                <ScalarProperty Name="MaSach" ColumnName="MaSach" />
                 <ScalarProperty Name="NgayGD" ColumnName="NgayGD" />
+                <ScalarProperty Name="MaSach" ColumnName="MaSach" />
+                <ScalarProperty Name="MaKH" ColumnName="MaKH" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="MaGD" ColumnName="MaGD" />
               </MappingFragment>
@@ -425,8 +360,8 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>

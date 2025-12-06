@@ -33,7 +33,6 @@
     <Property Name="MaTheLoai" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <NavigationProperty Name="Muons" Relationship="Self.FK_Muon_Sach" FromRole="Sach" ToRole="Muon" />
     <NavigationProperty Name="TheLoai" Relationship="Self.FK_Sach_TheLoai" FromRole="Sach" ToRole="TheLoai" />
-    <NavigationProperty Name="LiSuGiaoDiches" Relationship="API_ThuVienModel.FK_LiSuGiaoDich_Sach" FromRole="Sach" ToRole="LiSuGiaoDich" />
   </EntityType>
   <EntityType Name="sysdiagram">
     <Key>
@@ -54,7 +53,6 @@
     <Property Name="TenTK" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="SdtTK" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="Role" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <NavigationProperty Name="LiSuGiaoDiches" Relationship="API_ThuVienModel.FK_LiSuGiaoDich_TaiKhoan" FromRole="TaiKhoan" ToRole="LiSuGiaoDich" />
   </EntityType>
   <EntityType Name="TheLoai">
     <Key>
@@ -120,50 +118,16 @@
       <End Role="Sach" EntitySet="Saches" />
     </AssociationSet>
     <EntitySet Name="LiSuGiaoDiches" EntityType="API_ThuVienModel.LiSuGiaoDich" />
-    <AssociationSet Name="FK_LiSuGiaoDich_Sach" Association="API_ThuVienModel.FK_LiSuGiaoDich_Sach">
-      <End Role="Sach" EntitySet="Saches" />
-      <End Role="LiSuGiaoDich" EntitySet="LiSuGiaoDiches" />
-    </AssociationSet>
-    <AssociationSet Name="FK_LiSuGiaoDich_TaiKhoan" Association="API_ThuVienModel.FK_LiSuGiaoDich_TaiKhoan">
-      <End Role="TaiKhoan" EntitySet="TaiKhoans" />
-      <End Role="LiSuGiaoDich" EntitySet="LiSuGiaoDiches" />
-    </AssociationSet>
   </EntityContainer>
   <EntityType Name="LiSuGiaoDich">
     <Key>
-      <PropertyRef Name="MaGD" />
+      <PropertyRef Name="Username" />
     </Key>
-    <Property Name="MaGD" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="Username" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-    <Property Name="NgayGD" Type="DateTime" Precision="0" />
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
     <Property Name="MaSach" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="SoLuong" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="TrangThai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Sach" Relationship="API_ThuVienModel.FK_LiSuGiaoDich_Sach" FromRole="LiSuGiaoDich" ToRole="Sach" />
-    <NavigationProperty Name="TaiKhoan" Relationship="API_ThuVienModel.FK_LiSuGiaoDich_TaiKhoan" FromRole="LiSuGiaoDich" ToRole="TaiKhoan" />
+    <Property Name="NgayGD" Type="DateTime" Precision="0" />
+    <Property Name="TrangThai" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="MaKH" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="SoLuong" Type="Int32" />
   </EntityType>
-  <Association Name="FK_LiSuGiaoDich_Sach">
-    <End Type="API_ThuVienModel.Sach" Role="Sach" Multiplicity="0..1" />
-    <End Type="API_ThuVienModel.LiSuGiaoDich" Role="LiSuGiaoDich" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Sach">
-        <PropertyRef Name="MaSach" />
-      </Principal>
-      <Dependent Role="LiSuGiaoDich">
-        <PropertyRef Name="MaSach" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_LiSuGiaoDich_TaiKhoan">
-    <End Type="API_ThuVienModel.TaiKhoan" Role="TaiKhoan" Multiplicity="0..1" />
-    <End Type="API_ThuVienModel.LiSuGiaoDich" Role="LiSuGiaoDich" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TaiKhoan">
-        <PropertyRef Name="Username" />
-      </Principal>
-      <Dependent Role="LiSuGiaoDich">
-        <PropertyRef Name="Username" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
 </Schema>

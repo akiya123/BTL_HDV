@@ -18,7 +18,6 @@ namespace API_QLYTHuVien.Models
         public Sach()
         {
             this.Muons = new HashSet<Muon>();
-            this.LiSuGiaoDiches = new HashSet<LiSuGiaoDich>();
         }
     
         public string MaSach { get; set; }
@@ -30,7 +29,5 @@ namespace API_QLYTHuVien.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Muon> Muons { get; set; }
         public virtual TheLoai TheLoai { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LiSuGiaoDich> LiSuGiaoDiches { get; set; }
     }
 }

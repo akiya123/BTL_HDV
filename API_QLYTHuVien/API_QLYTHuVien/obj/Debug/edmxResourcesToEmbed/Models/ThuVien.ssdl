@@ -8,16 +8,18 @@
     <Property Name="TenKH" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="SdtKH" Type="nchar" MaxLength="10" Nullable="false" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'API_ThuVien.dbo.LiSuGiaoDich' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="LiSuGiaoDich">
     <Key>
-      <PropertyRef Name="MaGD" />
+      <PropertyRef Name="Username" />
     </Key>
-    <Property Name="MaGD" Type="nchar" MaxLength="10" Nullable="false" />
-    <Property Name="Username" Type="nchar" MaxLength="50" />
-    <Property Name="NgayGD" Type="date" />
+    <Property Name="Username" Type="nchar" MaxLength="50" Nullable="false" />
     <Property Name="MaSach" Type="nchar" MaxLength="10" />
-    <Property Name="SoLuong" Type="nchar" MaxLength="10" />
-    <Property Name="TrangThai" Type="nvarchar" MaxLength="50" />
+    <Property Name="NgayGD" Type="date" />
+    <Property Name="TrangThai" Type="nchar" MaxLength="10" />
+    <Property Name="MaKH" Type="nchar" MaxLength="10" />
+    <Property Name="SoLuong" Type="int" />
   </EntityType>
   <EntityType Name="Muon">
     <Key>
@@ -67,30 +69,6 @@
     <Property Name="MaTheLoai" Type="nchar" MaxLength="10" Nullable="false" />
     <Property Name="TenTheLoai" Type="nvarchar" MaxLength="50" />
   </EntityType>
-  <Association Name="FK_LiSuGiaoDich_Sach">
-    <End Role="Sach" Type="Self.Sach" Multiplicity="0..1" />
-    <End Role="LiSuGiaoDich" Type="Self.LiSuGiaoDich" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Sach">
-        <PropertyRef Name="MaSach" />
-      </Principal>
-      <Dependent Role="LiSuGiaoDich">
-        <PropertyRef Name="MaSach" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_LiSuGiaoDich_TaiKhoan">
-    <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1" />
-    <End Role="LiSuGiaoDich" Type="Self.LiSuGiaoDich" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TaiKhoan">
-        <PropertyRef Name="Username" />
-      </Principal>
-      <Dependent Role="LiSuGiaoDich">
-        <PropertyRef Name="Username" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Muon_KhachHang">
     <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
     <End Role="Muon" Type="Self.Muon" Multiplicity="*" />
@@ -129,20 +107,21 @@
   </Association>
   <EntityContainer Name="API_ThuVienModelStoreContainer">
     <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="LiSuGiaoDich" EntityType="Self.LiSuGiaoDich" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Muon" EntityType="Self.Muon" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sach" EntityType="Self.Sach" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TheLoai" EntityType="Self.TheLoai" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_LiSuGiaoDich_Sach" Association="Self.FK_LiSuGiaoDich_Sach">
-      <End Role="Sach" EntitySet="Sach" />
-      <End Role="LiSuGiaoDich" EntitySet="LiSuGiaoDich" />
-    </AssociationSet>
-    <AssociationSet Name="FK_LiSuGiaoDich_TaiKhoan" Association="Self.FK_LiSuGiaoDich_TaiKhoan">
-      <End Role="TaiKhoan" EntitySet="TaiKhoan" />
-      <End Role="LiSuGiaoDich" EntitySet="LiSuGiaoDich" />
-    </AssociationSet>
+    <EntitySet Name="LiSuGiaoDich" EntityType="Self.LiSuGiaoDich" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [LiSuGiaoDich].[Username] AS [Username], 
+    [LiSuGiaoDich].[MaSach] AS [MaSach], 
+    [LiSuGiaoDich].[NgayGD] AS [NgayGD], 
+    [LiSuGiaoDich].[TrangThai] AS [TrangThai], 
+    [LiSuGiaoDich].[MaKH] AS [MaKH], 
+    [LiSuGiaoDich].[SoLuong] AS [SoLuong]
+    FROM [dbo].[LiSuGiaoDich] AS [LiSuGiaoDich]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK_Muon_KhachHang" Association="Self.FK_Muon_KhachHang">
       <End Role="KhachHang" EntitySet="KhachHang" />
       <End Role="Muon" EntitySet="Muon" />

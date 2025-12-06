@@ -48,39 +48,17 @@ namespace API_QLYTHuVien.Controllers
             return db.LiSuGiaoDiches.Where(ls => ls.TrangThai == TrangThai).OrderByDescending(ls => ls.NgayGD).ToList();
         }
 
-        [HttpPost]
-        public bool AddLiSuGiaoDich(string MaGD, string Username, DateTime NgayGD, string MaSach, string SoLuong, string TrangThai)
+        [HttpGet]//Lấy theo mã
+        public bool GetLSuGiaoDichByMaGD(string MaGD)
         {
-            LiSuGiaoDich newLiSuGiaoDich = new LiSuGiaoDich
-            {
-                MaGD = MaGD,
-                Username = Username,
-                NgayGD = NgayGD,
-                MaSach = MaSach,
-                SoLuong = SoLuong,
-                TrangThai = TrangThai
-            };
-            if(db.LiSuGiaoDiches.Any(ls => ls.MaGD == MaGD))
+            db.LiSuGiaoDiches.Find(MaGD);
+            if (db.LiSuGiaoDiches.Find(MaGD) == null)
             {
                 return false;
             }
-            db.LiSuGiaoDiches.Add(newLiSuGiaoDich);
-            db.SaveChanges();
+            return true;
+        }
 
-            return true;
-        }
-        [HttpDelete]
-        public bool DeleteLiSuGiaoDich(string MaGD)
-        {
-            LiSuGiaoDich existingLiSuGiaoDich = db.LiSuGiaoDiches.Find(MaGD);
-            if (existingLiSuGiaoDich == null)
-            {
-                return false; // Trả về false nếu lịch sử giao dịch không tồn tại
-            }
-            db.LiSuGiaoDiches.Remove(existingLiSuGiaoDich);
-            db.SaveChanges();
-            return true;
-        }
         [HttpDelete]
         public void DeleteLiSuGiaoDichByYear()
         {
