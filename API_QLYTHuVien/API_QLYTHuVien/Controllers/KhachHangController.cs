@@ -42,13 +42,13 @@ namespace API_QLYTHuVien.Controllers
         }
 
         [HttpPost]//Thêm khách hàng
-        public bool AddKhachHang(string MaKH, string TenKH, string SDT)
+        public bool AddKhachHang(string MaKH, string TenKH, string SdtKH)
         {
             KhachHang newKhachHang = new KhachHang
             {
                 MaKH = MaKH,
                 TenKH = TenKH,
-                SdtKH = SDT,
+                SdtKH = SdtKH,
             };
             if (db.KhachHangs.Find(MaKH) != null)
             {
@@ -60,7 +60,7 @@ namespace API_QLYTHuVien.Controllers
         }
 
         [HttpPut]//Sửa khách hàng
-        public bool UpdateKhachHang(string MaKH, string TenKH, string SDT)
+        public bool UpdateKhachHang(string MaKH, string TenKH, string SdtKH)
         {
             KhachHang existingKhachHang = db.KhachHangs.Find(MaKH);
             if (existingKhachHang == null)
@@ -68,7 +68,7 @@ namespace API_QLYTHuVien.Controllers
                 return false; // Trả về false nếu khách hàng không tồn tại
             }
             existingKhachHang.TenKH = TenKH;
-            existingKhachHang.SdtKH = SDT;
+            existingKhachHang.SdtKH = SdtKH;
             db.SaveChanges();
             return true;
         }

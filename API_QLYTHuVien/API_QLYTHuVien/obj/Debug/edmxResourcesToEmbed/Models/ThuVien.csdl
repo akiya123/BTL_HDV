@@ -117,17 +117,18 @@
       <End Role="TheLoai" EntitySet="TheLoais" />
       <End Role="Sach" EntitySet="Saches" />
     </AssociationSet>
-    <EntitySet Name="LiSuGiaoDiches" EntityType="API_ThuVienModel.LiSuGiaoDich" />
+    <EntitySet Name="LiSuGiaoDich" EntityType="API_ThuVienModel.LiSuGiaoDich" />
   </EntityContainer>
   <EntityType Name="LiSuGiaoDich">
     <Key>
-      <PropertyRef Name="Username" />
+      <PropertyRef Name="MaGD" />
     </Key>
-    <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="MaGD" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="MaKH" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="MaSach" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="NgayGD" Type="DateTime" Precision="0" />
-    <Property Name="TrangThai" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="MaKH" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="SoLuong" Type="Int32" />
+    <Property Name="TrangThai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

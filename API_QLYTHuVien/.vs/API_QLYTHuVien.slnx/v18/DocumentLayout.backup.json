@@ -3,7 +3,23 @@
   "WorkspaceRootPath": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|c:\\users\\legion\\documents\\code\\btl_hdv\\api_qlythuvien\\api_qlythuvien\\models\\thuvien.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "AbsoluteMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\api_qlythuvien\\controllers\\khachhangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|solutionrelative:api_qlythuvien\\controllers\\khachhangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\api_qlythuvien\\controllers\\theloaicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|solutionrelative:api_qlythuvien\\controllers\\theloaicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\api_qlythuvien\\controllers\\taikhoancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|solutionrelative:api_qlythuvien\\controllers\\taikhoancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\api_qlythuvien\\controllers\\sachcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|solutionrelative:api_qlythuvien\\controllers\\sachcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\api_qlythuvien\\models\\thuvien.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
       "RelativeMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|solutionrelative:api_qlythuvien\\models\\thuvien.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
     },
     {
@@ -11,27 +27,23 @@
       "RelativeMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|solutionrelative:api_qlythuvien\\controllers\\muoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|c:\\users\\legion\\documents\\code\\btl_hdv\\api_qlythuvien\\api_qlythuvien\\models\\lisugiaodich.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|solutionrelative:api_qlythuvien\\models\\lisugiaodich.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|c:\\users\\legion\\documents\\code\\btl_hdv\\api_qlythuvien\\api_qlythuvien\\controllers\\sachcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|solutionrelative:api_qlythuvien\\controllers\\sachcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\api_qlythuvien\\controllers\\theloaicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|solutionrelative:api_qlythuvien\\controllers\\theloaicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\api_qlythuvien\\controllers\\lisugiaodichcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|c:\\users\\legion\\documents\\code\\btl_hdv\\api_qlythuvien\\api_qlythuvien\\controllers\\lisugiaodichcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|solutionrelative:api_qlythuvien\\controllers\\lisugiaodichcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|c:\\users\\legion\\documents\\code\\btl_hdv\\api_qlythuvien\\api_qlythuvien\\models\\sach.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\api_qlythuvien\\models\\lisugiaodich.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|solutionrelative:api_qlythuvien\\models\\lisugiaodich.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\api_qlythuvien\\models\\thuvien.tt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|solutionrelative:api_qlythuvien\\models\\thuvien.tt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\api_qlythuvien\\models\\sach.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|solutionrelative:api_qlythuvien\\models\\sach.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|c:\\users\\legion\\documents\\code\\btl_hdv\\api_qlythuvien\\api_qlythuvien\\models\\thuvien.edmx.diagram||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "AbsoluteMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\api_qlythuvien\\models\\thuvien.edmx.diagram||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|solutionrelative:api_qlythuvien\\models\\thuvien.edmx.diagram||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
@@ -41,14 +53,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\api_qlythuvien\\models\\muon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|solutionrelative:api_qlythuvien\\models\\muon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\api_qlythuvien\\controllers\\taikhoancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|solutionrelative:api_qlythuvien\\controllers\\taikhoancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\api_qlythuvien\\controllers\\khachhangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|solutionrelative:api_qlythuvien\\controllers\\khachhangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{989D48DD-F0B1-450C-A9D5-21B9F268F587}|API_QLYTHuVien\\API_QLYTHuVien.csproj|C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\api_qlythuvien\\models\\sysdiagram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -62,7 +66,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 268,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -74,90 +78,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MuonController.cs",
-              "DocumentMoniker": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Controllers\\MuonController.cs",
-              "RelativeDocumentMoniker": "API_QLYTHuVien\\Controllers\\MuonController.cs",
-              "ToolTip": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Controllers\\MuonController.cs",
-              "RelativeToolTip": "API_QLYTHuVien\\Controllers\\MuonController.cs",
-              "ViewState": "AgIAAGkAAAAAAAAAAAApwHoAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-05T04:38:22.879Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ThuVien.edmx.diagram",
-              "DocumentMoniker": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Models\\ThuVien.edmx.diagram",
-              "RelativeDocumentMoniker": "API_QLYTHuVien\\Models\\ThuVien.edmx.diagram",
-              "ToolTip": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Models\\ThuVien.edmx.diagram*",
-              "RelativeToolTip": "API_QLYTHuVien\\Models\\ThuVien.edmx.diagram*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-12-06T09:21:19.236Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "LiSuGiaoDichController.cs",
-              "DocumentMoniker": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Controllers\\LiSuGiaoDichController.cs",
-              "RelativeDocumentMoniker": "API_QLYTHuVien\\Controllers\\LiSuGiaoDichController.cs",
-              "ToolTip": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Controllers\\LiSuGiaoDichController.cs",
-              "RelativeToolTip": "API_QLYTHuVien\\Controllers\\LiSuGiaoDichController.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAAAADEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-05T16:54:11.382Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "LiSuGiaoDich.cs",
-              "DocumentMoniker": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Models\\LiSuGiaoDich.cs",
-              "RelativeDocumentMoniker": "API_QLYTHuVien\\Models\\LiSuGiaoDich.cs",
-              "ToolTip": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Models\\LiSuGiaoDich.cs",
-              "RelativeToolTip": "API_QLYTHuVien\\Models\\LiSuGiaoDich.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-06T09:11:46.303Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "TheLoaiController.cs",
-              "DocumentMoniker": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Controllers\\TheLoaiController.cs",
-              "RelativeDocumentMoniker": "API_QLYTHuVien\\Controllers\\TheLoaiController.cs",
-              "ToolTip": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Controllers\\TheLoaiController.cs",
-              "RelativeToolTip": "API_QLYTHuVien\\Controllers\\TheLoaiController.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAswE0AAABSAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T16:51:28.275Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ThuVien.edmx [Diagram1]",
-              "DocumentMoniker": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Models\\ThuVien.edmx",
-              "RelativeDocumentMoniker": "API_QLYTHuVien\\Models\\ThuVien.edmx",
-              "ToolTip": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Models\\ThuVien.edmx [Diagram1]*",
-              "RelativeToolTip": "API_QLYTHuVien\\Models\\ThuVien.edmx [Diagram1]*",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
-              "WhenOpened": "2025-12-06T09:17:44.22Z",
-              "EditorCaption": " [Diagram1]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
               "Title": "TaiKhoanController.cs",
               "DocumentMoniker": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Controllers\\TaiKhoanController.cs",
               "RelativeDocumentMoniker": "API_QLYTHuVien\\Controllers\\TaiKhoanController.cs",
               "ToolTip": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Controllers\\TaiKhoanController.cs",
               "RelativeToolTip": "API_QLYTHuVien\\Controllers\\TaiKhoanController.cs",
-              "ViewState": "AgIAAD4AAAAAAAAAAAAYwFgAAABEAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAqwFgAAABEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-05T04:25:58.743Z",
               "EditorCaption": ""
@@ -170,14 +97,115 @@
               "RelativeDocumentMoniker": "API_QLYTHuVien\\Controllers\\SachController.cs",
               "ToolTip": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Controllers\\SachController.cs",
               "RelativeToolTip": "API_QLYTHuVien\\Controllers\\SachController.cs",
-              "ViewState": "AgIAADsAAAAAAAAAAAAuwEoAAAApAAAAAAAAAA==",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAywBsAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-03T16:37:45.56Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TheLoaiController.cs",
+              "DocumentMoniker": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Controllers\\TheLoaiController.cs",
+              "RelativeDocumentMoniker": "API_QLYTHuVien\\Controllers\\TheLoaiController.cs",
+              "ToolTip": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Controllers\\TheLoaiController.cs",
+              "RelativeToolTip": "API_QLYTHuVien\\Controllers\\TheLoaiController.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAswCgAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T16:51:28.275Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "KhachHangController.cs",
+              "DocumentMoniker": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Controllers\\KhachHangController.cs",
+              "RelativeDocumentMoniker": "API_QLYTHuVien\\Controllers\\KhachHangController.cs",
+              "ToolTip": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Controllers\\KhachHangController.cs",
+              "RelativeToolTip": "API_QLYTHuVien\\Controllers\\KhachHangController.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAAswD4AAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-05T04:32:02.341Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ThuVien.edmx [Diagram1]",
+              "DocumentMoniker": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Models\\ThuVien.edmx",
+              "RelativeDocumentMoniker": "API_QLYTHuVien\\Models\\ThuVien.edmx",
+              "ToolTip": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Models\\ThuVien.edmx [Diagram1]",
+              "RelativeToolTip": "API_QLYTHuVien\\Models\\ThuVien.edmx [Diagram1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
+              "WhenOpened": "2025-12-06T09:17:44.22Z",
+              "EditorCaption": " [Diagram1]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MuonController.cs",
+              "DocumentMoniker": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Controllers\\MuonController.cs",
+              "RelativeDocumentMoniker": "API_QLYTHuVien\\Controllers\\MuonController.cs",
+              "ToolTip": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Controllers\\MuonController.cs",
+              "RelativeToolTip": "API_QLYTHuVien\\Controllers\\MuonController.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAIA4wHoAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-05T04:38:22.879Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 6,
+              "Title": "LiSuGiaoDichController.cs",
+              "DocumentMoniker": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Controllers\\LiSuGiaoDichController.cs",
+              "RelativeDocumentMoniker": "API_QLYTHuVien\\Controllers\\LiSuGiaoDichController.cs",
+              "ToolTip": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Controllers\\LiSuGiaoDichController.cs",
+              "RelativeToolTip": "API_QLYTHuVien\\Controllers\\LiSuGiaoDichController.cs",
+              "ViewState": "AgIAADkAAAAAAAAAAAApwC8AAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-05T16:54:11.382Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ThuVien.edmx.diagram",
+              "DocumentMoniker": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Models\\ThuVien.edmx.diagram",
+              "RelativeDocumentMoniker": "API_QLYTHuVien\\Models\\ThuVien.edmx.diagram",
+              "ToolTip": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Models\\ThuVien.edmx.diagram",
+              "RelativeToolTip": "API_QLYTHuVien\\Models\\ThuVien.edmx.diagram",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-12-06T09:21:19.236Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "LiSuGiaoDich.cs",
+              "DocumentMoniker": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Models\\LiSuGiaoDich.cs",
+              "RelativeDocumentMoniker": "API_QLYTHuVien\\Models\\LiSuGiaoDich.cs",
+              "ToolTip": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Models\\LiSuGiaoDich.cs",
+              "RelativeToolTip": "API_QLYTHuVien\\Models\\LiSuGiaoDich.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T09:50:32.195Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ThuVien.tt",
+              "DocumentMoniker": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Models\\ThuVien.tt",
+              "RelativeDocumentMoniker": "API_QLYTHuVien\\Models\\ThuVien.tt",
+              "ToolTip": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Models\\ThuVien.tt",
+              "RelativeToolTip": "API_QLYTHuVien\\Models\\ThuVien.tt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-12-06T09:50:46.26Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "Sach.cs",
               "DocumentMoniker": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Models\\Sach.cs",
               "RelativeDocumentMoniker": "API_QLYTHuVien\\Models\\Sach.cs",
@@ -185,25 +213,11 @@
               "RelativeToolTip": "API_QLYTHuVien\\Models\\Sach.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAABcAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-06T09:21:11.812Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-06T09:21:11.812Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "KhachHangController.cs",
-              "DocumentMoniker": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Controllers\\KhachHangController.cs",
-              "RelativeDocumentMoniker": "API_QLYTHuVien\\Controllers\\KhachHangController.cs",
-              "ToolTip": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Controllers\\KhachHangController.cs",
-              "RelativeToolTip": "API_QLYTHuVien\\Controllers\\KhachHangController.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAswEwAAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-05T04:32:02.341Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "Muon.cs",
               "DocumentMoniker": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Models\\Muon.cs",
               "RelativeDocumentMoniker": "API_QLYTHuVien\\Models\\Muon.cs",
@@ -211,12 +225,11 @@
               "RelativeToolTip": "API_QLYTHuVien\\Models\\Muon.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-05T04:49:38.546Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-05T04:49:38.546Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "TaiKhoan.cs",
               "DocumentMoniker": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Models\\TaiKhoan.cs",
               "RelativeDocumentMoniker": "API_QLYTHuVien\\Models\\TaiKhoan.cs",
@@ -224,12 +237,11 @@
               "RelativeToolTip": "API_QLYTHuVien\\Models\\TaiKhoan.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAkwBcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-06T06:47:10.44Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-06T06:47:10.44Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "sysdiagram.cs",
               "DocumentMoniker": "C:\\Users\\Legion\\Documents\\Code\\BTL_HDV\\API_QLYTHuVien\\API_QLYTHuVien\\Models\\sysdiagram.cs",
               "RelativeDocumentMoniker": "API_QLYTHuVien\\Models\\sysdiagram.cs",

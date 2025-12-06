@@ -141,6 +141,55 @@ public class SachService {
         return danhSachSach;
     }
 
+    //Lấy sách theo mã
+    public Sach GetSachByMa(String maSach) throws IOException, InterruptedException {
+        String url = baseUrl + "Sach/GetSachById?MaSach=" + URLEncoder.encode(maSach, StandardCharsets.UTF_8);
+
+        HttpRequest getRequest = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .GET()
+                .build();
+
+        response = client.send(getRequest, HttpResponse.BodyHandlers.ofString());
+
+        JSONObject obj = new JSONObject(response.body());
+
+        String tenSach = obj.optString("TenSach", "");
+        int soLuong = obj.optInt("SoLuong", 0);
+        String tacGia = obj.optString("TacGia", "");
+        String maTheLoai = obj.optString("MaTheLoai", "");
+
+        return new Sach(maSach, tenSach, soLuong, tacGia, maTheLoai);
+    }
+
+    //Lấy theo thể loại
+    public ArrayList<Sach> GetSachByTheLoai(String maTheLoai) throws IOException, InterruptedException {
+        String url = baseUrl + "Sach/GetSachByTheLoai?MaTheLoai=" + URLEncoder.encode(maTheLoai, StandardCharsets.UTF_8);
+
+        HttpRequest getRequest = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .GET()
+                .build();
+
+        response = client.send(getRequest, HttpResponse.BodyHandlers.ofString());
+
+        ArrayList<Sach> danhSachSach = new ArrayList<>();
+        JSONArray jsonArray = new JSONArray(response.body());
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject obj = jsonArray.getJSONObject(i);
+
+            String maSach = obj.optString("MaSach", "");
+            String tenSach = obj.optString("TenSach", "");
+            int soLuong = obj.optInt("SoLuong", 0);
+            String tacGia = obj.optString("TacGia", "");
+
+            Sach sach = new Sach(maSach, tenSach, soLuong, tacGia, maTheLoai);
+            danhSachSach.add(sach);
+        }
+        return danhSachSach;
+    }
+
     //Test
     public static void main(String[] args) {
         SachService sachService = new SachService();

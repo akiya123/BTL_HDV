@@ -21,38 +21,38 @@ namespace API_QLYTHuVien.Controllers
         [HttpGet]//lấy hết
         public IEnumerable<LiSuGiaoDich> GetAllLSuGiaoDich()
         {
-            return db.LiSuGiaoDiches.OrderByDescending(ls => ls.NgayGD).ToList();
+            return db.LiSuGiaoDich.OrderByDescending(ls => ls.NgayGD).ToList();
         }
 
         [HttpGet]//lấy theo username
         public IEnumerable<LiSuGiaoDich> GetLSuGiaoDichByUsername(string Username)
         {
-            return db.LiSuGiaoDiches.Where(ls => ls.Username == Username).OrderByDescending(ls => ls.NgayGD).ToList();
+            return db.LiSuGiaoDich.Where(ls => ls.Username == Username).OrderByDescending(ls => ls.NgayGD).ToList();
         }
         
         [HttpGet]//lấy theo mã sách
         public IEnumerable<LiSuGiaoDich> GetLSuGiaoDichByMaSach(string MaSach)
         {
-            return db.LiSuGiaoDiches.Where(ls => ls.MaSach == MaSach).OrderByDescending(ls => ls.NgayGD).ToList();
+            return db.LiSuGiaoDich.Where(ls => ls.MaSach == MaSach).OrderByDescending(ls => ls.NgayGD).ToList();
         }
 
         [HttpGet]//lấy theo ngày giao dịch
         public IEnumerable<LiSuGiaoDich> GetLSuGiaoDichByNgayGD(DateTime NgayGDCuoi, DateTime NgayGDDau)
         {
-            return db.LiSuGiaoDiches.Where(ls=> ls.NgayGD <= NgayGDCuoi && ls.NgayGD >= NgayGDDau).OrderByDescending(ls => ls.NgayGD).ToList();
+            return db.LiSuGiaoDich.Where(ls=> ls.NgayGD <= NgayGDCuoi && ls.NgayGD >= NgayGDDau).OrderByDescending(ls => ls.NgayGD).ToList();
         }
 
         [HttpGet]//Lấy theo trạng thái
         public IEnumerable<LiSuGiaoDich> GetLSuGiaoDichByTrangThai(string TrangThai)
         {
-            return db.LiSuGiaoDiches.Where(ls => ls.TrangThai == TrangThai).OrderByDescending(ls => ls.NgayGD).ToList();
+            return db.LiSuGiaoDich.Where(ls => ls.TrangThai == TrangThai).OrderByDescending(ls => ls.NgayGD).ToList();
         }
 
         [HttpGet]//Lấy theo mã
         public bool GetLSuGiaoDichByMaGD(string MaGD)
         {
-            db.LiSuGiaoDiches.Find(MaGD);
-            if (db.LiSuGiaoDiches.Find(MaGD) == null)
+            db.LiSuGiaoDich.Find(MaGD);
+            if (db.LiSuGiaoDich.Find(MaGD) == null)
             {
                 return false;
             }
@@ -63,9 +63,9 @@ namespace API_QLYTHuVien.Controllers
         public void DeleteLiSuGiaoDichByYear()
         {
             DateTime DateDelete = DateTime.Now;
-            IEnumerable<LiSuGiaoDich> arrDelete = db.LiSuGiaoDiches
+            IEnumerable<LiSuGiaoDich> arrDelete = db.LiSuGiaoDich
                 .Where(ls => ls.NgayGD.HasValue && ls.NgayGD.Value.Year <= (DateDelete.Year - 3));
-            db.LiSuGiaoDiches.RemoveRange(arrDelete);
+            db.LiSuGiaoDich.RemoveRange(arrDelete);
             db.SaveChanges();
         }
     }

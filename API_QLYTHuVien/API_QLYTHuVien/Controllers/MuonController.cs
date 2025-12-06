@@ -60,6 +60,7 @@ namespace API_QLYTHuVien.Controllers
             }
             return sb.ToString();
         }
+
         [HttpPost]//Thêm mượn
         public bool AddMuon(string MaMuon, string MaKH, string MaSach,string SoLuong, DateTime NgayMuon, DateTime NgayTra, string username)
         {
@@ -67,9 +68,11 @@ namespace API_QLYTHuVien.Controllers
             do
             {
                  MaGD = $"GD" + GenerateFourRandomDigits();
-            } while (db.LiSuGiaoDiches.Find(MaGD) != null);
+            } while (db.LiSuGiaoDich.Find(MaGD) != null);
+
             Sach sach = db.Saches.Find(MaSach);
             int soLuongMuon = int.Parse(SoLuong);
+
             if(sach.SoLuong < soLuongMuon)
             {
                 return false;
@@ -90,7 +93,7 @@ namespace API_QLYTHuVien.Controllers
             db.Muons.Add(newMuon);
             sach.SoLuong -= soLuongMuon;
 
-            db.LiSuGiaoDiches.Add(new LiSuGiaoDich
+            db.LiSuGiaoDich.Add(new LiSuGiaoDich
             {
                 MaKH = MaKH,
                 MaSach = MaSach,
@@ -119,7 +122,7 @@ namespace API_QLYTHuVien.Controllers
                 return false; // Trả về false nếu số lượng trả lớn hơn số lượng mượn
             }
 
-            db.LiSuGiaoDiches.Add(new LiSuGiaoDich
+            db.LiSuGiaoDich.Add(new LiSuGiaoDich
             {
                 MaKH = existingMuon.MaKH,
                 MaSach = existingMuon.MaSach,
