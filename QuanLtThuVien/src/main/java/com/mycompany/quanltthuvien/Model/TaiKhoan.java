@@ -3,35 +3,35 @@ package com.mycompany.quanltthuvien.Model;
 import java.util.regex.Pattern;
 
 public class TaiKhoan {
-    private String username;
-    private String password;
+    private String Username;
+    private String Pass;
     private String role;
     private String TenTK;
     private String SdtTK;
     private static final Pattern PHONE_PATTERN = Pattern.compile("^[0-9]{10}$");
 
     public TaiKhoan(String username, String password, String role,String SdtTK, String TenTK) {
-        this.username = username;
-        this.password = password;
+        this.Username = username;
+        this.Pass = password;
         this.role = role;
         setSdtTK(SdtTK);
         this.TenTK = TenTK;
     }
 
     public String getUsername() {
-        return username;
+        return Username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String Username) {
+        this.Username = Username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPass() {
+        return Pass;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPass(String Pass) {
+        this.Pass = Pass;
     }
 
     public String getRole() {

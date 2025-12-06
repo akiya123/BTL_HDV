@@ -12,14 +12,14 @@ public class Sach {
     private String MaSach;
     private String TenSach;
     private int SoLuong;
-    private String TacGua;
+    private String TacGia;
     private String MaTheLoai;
 
-    public Sach(String MaSach, String TenSach, int SoLuong, String TacGua, String MaTheLoai) {
+    public Sach(String MaSach, String TenSach, int SoLuong, String TacGia, String MaTheLoai) {
         this.MaSach = MaSach;
         this.TenSach = TenSach;
         this.SoLuong = SoLuong;
-        this.TacGua = TacGua;
+        this.TacGia = TacGia;
         this.MaTheLoai = MaTheLoai;
     }
 
@@ -47,12 +47,12 @@ public class Sach {
         this.SoLuong = SoLuong;
     }
 
-    public String getTacGua() {
-        return TacGua;
+    public String getTacGia() {
+        return TacGia;
     }
 
-    public void setTacGua(String TacGua) {
-        this.TacGua = TacGua;
+    public void setTacGia(String TacGia) {
+        this.TacGia = TacGia;
     }
 
     public String getMaTheLoai() {

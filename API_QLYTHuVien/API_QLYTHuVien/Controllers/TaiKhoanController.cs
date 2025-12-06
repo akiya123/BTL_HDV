@@ -23,7 +23,18 @@ namespace API_QLYTHuVien.Controllers
         {
             return db.TaiKhoans.ToList();
         }
-        [HttpGet]
+        [HttpGet]//Lấy theo username
+        public bool GetTaiKhoanByUsername(string username)
+        {
+            TaiKhoan tks = db.TaiKhoans.FirstOrDefault(tk => tk.Username == username);
+            if(tks == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        [HttpGet]//Đăng nhập
         public bool Login(string username, string password)
         {
             var user = db.TaiKhoans.FirstOrDefault(tk => tk.Username == username && tk.Pass == password);
@@ -33,28 +44,38 @@ namespace API_QLYTHuVien.Controllers
             }
             return true;
         }
+
         [HttpPost]//Thêm tài khoản
-        public bool AddTaiKhoan(string Username, string Pass)
+        public bool AddTaiKhoan(string Username, string Pass, string TenTK, string SdtTK,string Role)
         {
             TaiKhoan newTaiKhoan = new TaiKhoan
             {
                 Username = Username,
                 Pass = Pass,
-                Role = "MG"
+                TenTK = TenTK,
+                SdtTK = SdtTK,
+                Role = Role
             };
             db.TaiKhoans.Add(newTaiKhoan);
             db.SaveChanges();
             return true;
         }
+        
+        
         [HttpPut]//Đổi mật khẩu
-        public bool UpdateTaiKhoan(string Username, string NewPass)
+        public bool UpdateTaiKhoan(string Username, string Pass, string TenTK, string SdtTK, string Role)
         {
             TaiKhoan existingTaiKhoan = db.TaiKhoans.Find(Username);
             if (existingTaiKhoan == null)
             {
-                return false; // Trả về false nếu tài khoản không tồn tại
+                return false;
             }
-            existingTaiKhoan.Pass = NewPass;
+
+            existingTaiKhoan.Pass = Pass;
+            existingTaiKhoan.TenTK = TenTK;
+            existingTaiKhoan.SdtTK = SdtTK;
+            existingTaiKhoan.Role = Role ;
+
             db.SaveChanges();
             return true;
         }

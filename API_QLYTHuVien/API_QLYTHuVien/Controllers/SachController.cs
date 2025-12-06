@@ -38,38 +38,40 @@ namespace API_QLYTHuVien.Controllers
         [HttpGet] // lấy theo tên
         public IEnumerable<Sach> SearchSachByName(string keyword)
         {
-            return db.Saches.Where(s => s.TenSach.Contains(keyword));
+            if(string.IsNullOrWhiteSpace(keyword))
+    {
+                // Decide behavior: return empty set instead of all records
+                return Enumerable.Empty<Sach>();
+            }
+
+            keyword = keyword.Trim().ToLower();
+
+            // case-insensitive search translated to SQL by EF
+            return db.Saches.Where(s => s.TenSach.ToLower().Contains(keyword));
         }
 
         [HttpPost]//Thêm sách
-        public bool AddSach(string MaSach, string TenSach, int SoLuong, string MaTheLoai)
+        public bool AddSach(string MaSach, string TenSach, string SoLuong, string TacGia, string MaTheLoai)
         {
-            Sach newSach = new Sach
-            {
-                MaSach = MaSach,
-                TenSach = TenSach,
-                SoLuong = SoLuong,
-                MaTheLoai = MaTheLoai
-            };
-            if(db.Saches.Find(MaSach)!= null)
-            {
-                return false; // Trả về false nếu mã sách đã tồn tại
-            }
+            if (db.Saches.Any(s => s.MaSach == MaSach)) return false;
+            if (!db.TheLoais.Any(t => t.MaTheLoai == MaTheLoai)) return false; // validate FK target
+
+            if (!int.TryParse(SoLuong, out var qty)) return false;
+
+            var newSach = new Sach { MaSach = MaSach, TenSach = TenSach, SoLuong = qty, TacGia = TacGia, MaTheLoai = MaTheLoai };
             db.Saches.Add(newSach);
             db.SaveChanges();
             return true;
         }
 
         [HttpPut]//Sửa sách
-        public bool UpdateSach(string MaSach, string TenSach, int SoLuong, string MaTheLoai)
+        public bool UpdateSach(string MaSach, string TenSach, string SoLuong, string TacGia, string MaTheLoai)
         {
             Sach existingSach = db.Saches.Find(MaSach);
-            if (existingSach == null)
-            {
-                return false; // Trả về false nếu sách không tồn tại
-            }
+            if (existingSach == null) return false;
             existingSach.TenSach = TenSach;
-            existingSach.SoLuong = SoLuong;
+            existingSach.SoLuong = int.Parse(SoLuong);
+            existingSach.TacGia = TacGia;
             existingSach.MaTheLoai = MaTheLoai;
             db.SaveChanges();
             return true;
