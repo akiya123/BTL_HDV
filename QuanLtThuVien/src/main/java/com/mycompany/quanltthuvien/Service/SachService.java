@@ -1,4 +1,4 @@
-package com.mycompany.quanltthuvien.Controller;
+package com.mycompany.quanltthuvien.Service;
 
 import java.io.IOException;
 import java.net.URI;
@@ -106,7 +106,7 @@ public class SachService {
 
         HttpResponse<String> putResponse = client.send(putRequest, HttpResponse.BodyHandlers.ofString());
 
-         if( putResponse.statusCode() == 200 ) {
+        if( putResponse.statusCode() == 200 ) {
             return true;
         }
         return false;
@@ -205,7 +205,7 @@ public class SachService {
                 System.out.println("---------------------------");
             }
         } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
+            
         }
     }
 

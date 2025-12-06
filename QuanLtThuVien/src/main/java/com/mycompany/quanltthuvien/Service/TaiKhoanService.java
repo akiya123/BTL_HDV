@@ -1,4 +1,4 @@
-package com.mycompany.quanltthuvien.Controller;
+package com.mycompany.quanltthuvien.Service;
 
 import java.io.IOException;
 import java.net.URI;
@@ -14,7 +14,7 @@ import org.json.JSONObject;
 
 import com.mycompany.quanltthuvien.Model.TaiKhoan;
 
-public class UserService {
+public class TaiKhoanService {
     HttpClient client = HttpClient.newHttpClient();
     String baseUrl = "http://localhost/API_THUVIEN/api/";
     HttpResponse<String> response;

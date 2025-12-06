@@ -5,6 +5,7 @@
 package com.mycompany.quanltthuvien.Model;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -18,13 +19,15 @@ public class Muon {
     private Date NgayMuon;
     private Date NgayTra;
 
-    public Muon(String MaMuon, String MaKH, String MaSach, int SoLuong, Date NgayMuon, Date NgayTra) {
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+    public Muon(String MaMuon, String MaKH, String MaSach, int SoLuong, String NgayMuon, String NgayTra) {
         this.MaMuon = MaMuon;
         this.MaKH = MaKH;
         this.MaSach = MaSach;
         this.SoLuong = SoLuong;
-        this.NgayMuon = NgayMuon;
-        this.NgayTra = NgayTra;
+        setNgayTra(NgayTra);
+        setNgayMuon(NgayMuon);
     }
 
     public String getMaMuon() {
@@ -63,16 +66,24 @@ public class Muon {
         return NgayMuon;
     }
 
-    public void setNgayMuon(Date NgayMuon) {
-        this.NgayMuon = NgayMuon;
+    public void setNgayMuon(String NgayMuon) {
+        try {
+            java.util.Date utilDate = dateFormat.parse(NgayMuon);
+            this.NgayMuon = new java.sql.Date(utilDate.getTime());
+        } catch (Exception e) {
+        }
     }
 
     public Date getNgayTra() {
         return NgayTra;
     }
 
-    public void setNgayTra(Date NgayTra) {
-        this.NgayTra = NgayTra;
+    public void setNgayTra(String NgayTra) {
+        try {
+            java.util.Date utilDate = dateFormat.parse(NgayTra);
+            this.NgayTra = new java.sql.Date(utilDate.getTime());
+        } catch (Exception e) {
+        }
     }
     
 }

@@ -4,6 +4,9 @@
  */
 package com.mycompany.quanltthuvien.Model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  *
  * @author Legion
@@ -11,15 +14,17 @@ package com.mycompany.quanltthuvien.Model;
 public class LiSuGiaoDich {
     private String MaGD;
     private String Username;
-    private String NgayGD;
+    private Date NgayGD;
     private String MaSach;
     private int SoLuong;
     private String TrangThai;
 
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
     public LiSuGiaoDich(String MaGD, String Username, String NgayGD, String MaSach, int SoLuong, String TrangThai) {
         this.MaGD = MaGD;
         this.Username = Username;
-        this.NgayGD = NgayGD;
+        setNgayGD(NgayGD);
         this.MaSach = MaSach;
         this.SoLuong = SoLuong;
         this.TrangThai = TrangThai;
@@ -41,12 +46,16 @@ public class LiSuGiaoDich {
         this.Username = Username;
     }
 
-    public String getNgayGD() {
+    public Date getNgayGD() {
         return NgayGD;
     }
 
     public void setNgayGD(String NgayGD) {
-        this.NgayGD = NgayGD;
+        try {
+            java.util.Date utilDate = dateFormat.parse(NgayGD);
+            this.NgayGD = new java.sql.Date(utilDate.getTime());
+        } catch (Exception e) {
+        }
     }
 
     public String getMaSach() {

@@ -1,6 +1,6 @@
 com\mycompany\quanltthuvien\Model\Muon.class
 com\mycompany\quanltthuvien\Model\Sach.class
+com\mycompany\quanltthuvien\Model\TheLoai.class
 com\mycompany\quanltthuvien\QuanLtThuVien.class
 com\mycompany\quanltthuvien\Model\KhachHang.class
 com\mycompany\quanltthuvien\Model\LiSuGiaoDich.class
-com\mycompany\quanltthuvien\Model\TheLoai.class
