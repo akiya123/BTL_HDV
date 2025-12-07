@@ -8,6 +8,16 @@ import com.mycompany.quanltthuvien.Service.KhachHangService;
 import com.mycompany.quanltthuvien.Service.MuonService;
 
 public class ManagerController {
+
+    //____________// $Random mã
+    public String RandomMa() {
+        String Ma = "";
+        for(int i = 0; i < 6; i++) {
+            int random = (int) (Math.random() * 10);
+            Ma += random;
+        }
+        return Ma;
+    }
    
     //____________// #khách hàng
     KhachHangService khs = new KhachHangService();
@@ -26,6 +36,7 @@ public class ManagerController {
     //Thêm khách hàng
     public boolean AddKhachHang(KhachHang khachHang) {
         try {
+            khachHang.setMaKH("KH"+RandomMa());
             return khs.AddKhachHang(khachHang);
         } catch (Exception e) {
         }
@@ -149,6 +160,7 @@ public class ManagerController {
     //Thêm mượn
     public boolean MuonSach(Muon muon, String username) {
         try {
+            muon.setMaMuon("M"+RandomMa());
             return ms.MuonSach(muon, username);
         } catch (Exception e) {
         }

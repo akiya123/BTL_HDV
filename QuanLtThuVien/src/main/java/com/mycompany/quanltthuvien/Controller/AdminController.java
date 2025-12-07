@@ -13,6 +13,16 @@ import com.mycompany.quanltthuvien.Service.TheLoaiService;
 
 public class AdminController {
 
+    //____________// $Random mã
+    public String RandomMa() {
+        String Ma = "";
+        for(int i = 0; i < 6; i++) {
+            int random = (int) (Math.random() * 10);
+            Ma += random;
+        }
+        return Ma;
+    }
+
     //_________________// #Sách
     SachService ss = new SachService();
 
@@ -30,6 +40,7 @@ public class AdminController {
     //Thêm sách
     public boolean AddSach(Sach sach) {
         try {
+            sach.setMaSach("S"+RandomMa());
             return ss.AddSach(sach);
         } catch (Exception e) {
         }
@@ -102,6 +113,7 @@ public class AdminController {
     //Thêm thể loại
     public boolean AddTheLoai(TheLoai theLoai) {
         try {
+            theLoai.setMaTheLoai("TL"+RandomMa());
             return tls.AddTheLoai(theLoai);
         } catch (Exception e) {
         }
