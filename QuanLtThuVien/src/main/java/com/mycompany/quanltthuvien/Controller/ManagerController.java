@@ -134,4 +134,33 @@ public class ManagerController {
         }
         return arr;
     }
+
+    //Lấy theo ngày trả
+    public ArrayList<Muon> GetMuonByNgayTra(String NgayTra) {
+        ArrayList<Muon> arr = new ArrayList<>();
+        try {
+            arr = ms.GetMuonByNgayTra(NgayTra);
+            return arr;
+        } catch (Exception e) {
+        }
+        return arr;
+    }
+
+    //Thêm mượn
+    public boolean MuonSach(Muon muon, String username) {
+        try {
+            return ms.MuonSach(muon, username);
+        } catch (Exception e) {
+        }
+        return false;
+    }
+
+    //Trả sách
+    public boolean TraSach(String MaMuon, String username,int SoLuong) {
+        try {
+            return ms.TraSach(MaMuon, username,SoLuong);
+        } catch (Exception e) {
+        }
+        return false;
+    }
 }
