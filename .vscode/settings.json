@@ -1,3 +1,9 @@
 {
-    "java.configuration.updateBuildConfiguration": "disabled"
+    "java.configuration.updateBuildConfiguration": "disabled",
+    "CodeGPT.apiKey": "Gemini CLI",
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#5B0937",
+        "titleBar.activeBackground": "#7F0D4D",
+        "titleBar.activeForeground": "#FFFCFD"
+    }
 }

@@ -10,10 +10,10 @@ public class TaiKhoan {
     private String SdtTK;
     private static final Pattern PHONE_PATTERN = Pattern.compile("^[0-9]{10}$");
 
-    public TaiKhoan(String username, String password, String role,String SdtTK, String TenTK) {
+    public TaiKhoan(String username, String password,String Role,String SdtTK, String TenTK) {
         this.Username = username;
         this.Pass = password;
-        this.role = role;
+        this.role = Role;
         setSdtTK(SdtTK);
         this.TenTK = TenTK;
     }

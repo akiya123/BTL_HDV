@@ -4,8 +4,6 @@
 
 package com.mycompany.quanltthuvien;
 
-import com.mycompany.quanltthuvien.Model.KhachHang;
-
 /**
  *
  * @author Legion

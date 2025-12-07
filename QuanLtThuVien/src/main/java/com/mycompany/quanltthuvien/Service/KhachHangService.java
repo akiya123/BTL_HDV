@@ -44,80 +44,123 @@ public class KhachHangService {
         return danhSachKhachHang;
     }
 
-    //Thêm sách
+    //Thêm khách hàng
     public boolean AddKhachHang(KhachHang khachHang) throws IOException, InterruptedException {
-        String url = baseUrl + "KhachHang/AddKhachHang?" +
-        "MaKH=" + URLEncoder.encode(khachHang.getMaKH(), StandardCharsets.UTF_8) +
-        "&TenKH=" + URLEncoder.encode(khachHang.getTenKH(), StandardCharsets.UTF_8) +
-        "&SdtKH=" + URLEncoder.encode(khachHang.getSdtKH(), StandardCharsets.UTF_8);
+        try {
+            String url = baseUrl + "KhachHang/AddKhachHang?" +
+                "MaKH=" + URLEncoder.encode(khachHang.getMaKH(), StandardCharsets.UTF_8) +
+                "&TenKH=" + URLEncoder.encode(khachHang.getTenKH(), StandardCharsets.UTF_8) +
+                "&SdtKH=" + URLEncoder.encode(khachHang.getSdtKH(), StandardCharsets.UTF_8);
 
-        HttpRequest postRequest = HttpRequest.newBuilder()
-                .uri(URI.create(url))
-                .POST(HttpRequest.BodyPublishers.noBody())
-                .build();
-        
-        response = client.send(postRequest, HttpResponse.BodyHandlers.ofString());
-        
-        return response.statusCode() == 200;
+            System.out.println("URL POST: " + url);
+
+            HttpRequest postRequest = HttpRequest.newBuilder()
+                    .uri(URI.create(url))
+                    .POST(HttpRequest.BodyPublishers.noBody())
+                    .build();
+            
+            response = client.send(postRequest, HttpResponse.BodyHandlers.ofString());
+            
+            System.out.println("Status: " + response.statusCode());
+            System.out.println("Response: " + response.body());
+            
+            if (response.statusCode() == 200) {
+                String result = response.body().trim();
+                return result.equalsIgnoreCase("true");
+            }
+            return false;
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
     }
 
     //Sửa Khách hàng
     public boolean UpdateKhachHang(KhachHang khachHang) throws IOException, InterruptedException {
-        String url = baseUrl + "KhachHang/UpdateKhachHang?" +
-        "MaKH=" + URLEncoder.encode(khachHang.getMaKH(), StandardCharsets.UTF_8) +
-        "&TenKH=" + URLEncoder.encode(khachHang.getTenKH(), StandardCharsets.UTF_8) +
-        "&SdtKH=" + URLEncoder.encode(khachHang.getSdtKH(), StandardCharsets.UTF_8);
+        try {
+            String url = baseUrl + "KhachHang/UpdateKhachHang?" +
+                "MaKH=" + URLEncoder.encode(khachHang.getMaKH(), StandardCharsets.UTF_8) +
+                "&TenKH=" + URLEncoder.encode(khachHang.getTenKH(), StandardCharsets.UTF_8) +
+                "&SdtKH=" + URLEncoder.encode(khachHang.getSdtKH(), StandardCharsets.UTF_8);
 
-        System.err.println("URL PUT: " + url);
 
-        HttpRequest putRequest = HttpRequest.newBuilder()
-                .uri(URI.create(url))
-                .PUT(HttpRequest.BodyPublishers.noBody())
-                .build();
-        
-        response = client.send(putRequest, HttpResponse.BodyHandlers.ofString());
-        
-        return response.statusCode() == 200;
+            HttpRequest putRequest = HttpRequest.newBuilder()
+                    .uri(URI.create(url))
+                    .PUT(HttpRequest.BodyPublishers.noBody())
+                    .build();
+            
+            response = client.send(putRequest, HttpResponse.BodyHandlers.ofString());
+
+            if (response.statusCode() == 200) {
+                String result = response.body().trim();
+                return result.equalsIgnoreCase("true");
+            }
+            return false;
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
     }
 
-    // Xóa Khách hàng
+    // Xóa Khách hàng 
     public boolean DeleteKhachHang(String maKH) throws IOException, InterruptedException {
-        String url = baseUrl + "KhachHang?MaKH=" + URLEncoder.encode(maKH, StandardCharsets.UTF_8);
+        try {
+            String url = baseUrl + "KhachHang/DeleteKhachHang?MaKH=" + 
+                        URLEncoder.encode(maKH, StandardCharsets.UTF_8);
 
-
-        HttpRequest deleteRequest = HttpRequest.newBuilder()
-                .uri(URI.create(url))
-                .DELETE()
-                .build();
-        
-        response = client.send(deleteRequest, HttpResponse.BodyHandlers.ofString());
-        
-        return response.statusCode() == 200;
+            HttpRequest deleteRequest = HttpRequest.newBuilder()
+                    .uri(URI.create(url))
+                    .DELETE()
+                    .build();
+            
+            response = client.send(deleteRequest, HttpResponse.BodyHandlers.ofString());
+            
+            if (response.statusCode() == 200) {
+                String result = response.body().trim();
+                return result.equalsIgnoreCase("true");
+            }
+            return false;
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
     }
 
-    // Tìm khách hàng theo mã
+    // Tìm khách hàng theo mã 
     public KhachHang GetKhachHangByMa(String maKH) throws IOException, InterruptedException{
-        String url = baseUrl + "KhachHang?MaKH=" + URLEncoder.encode(maKH, StandardCharsets.UTF_8);
+        try {
+            String url = baseUrl + "KhachHang/GetKhachHangById?MaKH=" + 
+                        URLEncoder.encode(maKH, StandardCharsets.UTF_8);
 
-        HttpRequest getRequest = HttpRequest.newBuilder()
-                .uri(URI.create(url))
-                .GET()
-                .build();
-        
-        response = client.send(getRequest, HttpResponse.BodyHandlers.ofString());
-        
-        JSONObject obj = new JSONObject(response.body());
 
-        String tenKH = obj.optString("TenKH", "");
-        String sdtKH = obj.optString("SdtKH", "");
+            HttpRequest getRequest = HttpRequest.newBuilder()
+                    .uri(URI.create(url))
+                    .GET()
+                    .build();
+            
+            response = client.send(getRequest, HttpResponse.BodyHandlers.ofString());
 
-        KhachHang khachHang = new KhachHang(maKH, tenKH, sdtKH);
-        return khachHang;
+            JSONObject obj = new JSONObject(response.body());
+
+            String tenKH = obj.optString("TenKH", "");
+            String sdtKH = obj.optString("SdtKH", "");
+
+            return new KhachHang(maKH, tenKH, sdtKH);
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+            e.printStackTrace();
+            return null;
+        }
     }
 
-    //Tìm khách hàng theo tên // lỗi
-    public ArrayList<KhachHang> TimKiemKhachHangTheoTen(String tenKH) throws IOException, InterruptedException {
-        String url = baseUrl + "KhachHang/SearchKhachHangByName?TenKH=" + URLEncoder.encode(tenKH, StandardCharsets.UTF_8);
+    //Tìm khách hàng theo tên
+    public ArrayList<KhachHang> GetKhachHangByTen(String tenKH) throws IOException, InterruptedException {
+        try {
+        String url = baseUrl + "KhachHang/SearchKhachHangByName?keyword=" + 
+                    URLEncoder.encode(tenKH, StandardCharsets.UTF_8);
 
         HttpRequest getRequest = HttpRequest.newBuilder()
             .uri(URI.create(url))
@@ -140,42 +183,40 @@ public class KhachHangService {
             danhSachKhachHang.add(khachHang);
         }
         return danhSachKhachHang;
+    } catch (Exception e) {
+        System.err.println("Error: " + e.getMessage());
+        e.printStackTrace();
+        return new ArrayList<>();
+    }
     }
 
     //Tìm khách theo số điện thoại
-    public KhachHang TimKiemKhachHangTheoSDT(String sdtKH) throws IOException, InterruptedException {
-        String url = baseUrl + "KhachHang?SdtKH=" + URLEncoder.encode(sdtKH, StandardCharsets.UTF_8);
+    public KhachHang GetKhachHangBySdt(String sdt) throws IOException, InterruptedException {
+        try {
+            String url = baseUrl + "KhachHang/SearchKhachHangBySDT?sdt=" + 
+                    URLEncoder.encode(sdt, StandardCharsets.UTF_8);
 
-    HttpRequest getRequest = HttpRequest.newBuilder()
-        .uri(URI.create(url))
-        .GET()
-        .build();
+        HttpRequest getRequest = HttpRequest.newBuilder()
+            .uri(URI.create(url))
+            .GET()
+            .build();
 
-    response = client.send(getRequest, HttpResponse.BodyHandlers.ofString());
+        response = client.send(getRequest, HttpResponse.BodyHandlers.ofString());
+        
+        JSONObject obj = new JSONObject(response.body());
 
-    String body = response.body();
-    if (body == null || body.isEmpty() || body.equals("null")) {
+            String maKH = obj.optString("MaKH", "");
+            String tenKHResult = obj.optString("TenKH", "");
+            String sdtKH = obj.optString("SdtKH", "");
+
+            KhachHang khachHang = new KhachHang(maKH, tenKHResult, sdtKH);
+            
+            return khachHang;
+            
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+            e.printStackTrace();
+        }
         return null;
-    }
-
-    // Nếu trả về mảng
-    if (body.trim().startsWith("[")) {
-        JSONArray arr = new JSONArray(body);
-        if (arr.length() == 0) return null;
-        JSONObject obj = arr.getJSONObject(0);
-        String maKH = obj.optString("MaKH", "");
-        String tenKH = obj.optString("TenKH", "");
-        String sdt = obj.optString("SdtKH", "");
-        if (maKH.isEmpty()) return null;
-        return new KhachHang(maKH, tenKH, sdt);
-    }
-
-    // Nếu trả về object
-    JSONObject obj = new JSONObject(body);
-    String maKH = obj.optString("MaKH", "");
-    String tenKH = obj.optString("TenKH", "");
-    String sdt = obj.optString("SdtKH", "");
-    if (maKH.isEmpty()) return null;
-    return new KhachHang(maKH, tenKH, sdt);
     }
 }

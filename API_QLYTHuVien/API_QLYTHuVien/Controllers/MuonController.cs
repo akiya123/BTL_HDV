@@ -115,15 +115,23 @@ namespace API_QLYTHuVien.Controllers
 
             if (existingMuon == null)
             {
-                return false; // Trả về false nếu mã mượn không tồn tại
+                return false;
             }
             if (soLuongTra > existingMuon.SoLuong)
             {
-                return false; // Trả về false nếu số lượng trả lớn hơn số lượng mượn
+                return false;
             }
+
+            // Tạo MaGD ngẫu nhiên - THÊM ĐOẠN NÀY
+            string MaGD;
+            do
+            {
+                MaGD = $"GD{GenerateFourRandomDigits()}";
+            } while (db.LiSuGiaoDich.Find(MaGD) != null);
 
             db.LiSuGiaoDich.Add(new LiSuGiaoDich
             {
+                MaGD = MaGD,  // THÊM DÒNG NÀY
                 MaKH = existingMuon.MaKH,
                 MaSach = existingMuon.MaSach,
                 NgayGD = DateTime.Now,
@@ -140,6 +148,7 @@ namespace API_QLYTHuVien.Controllers
             {
                 db.Muons.Remove(existingMuon);
             }
+
             db.SaveChanges();
             return true;
         }

@@ -19,6 +19,22 @@ public class TaiKhoanService {
     String baseUrl = "http://localhost/API_THUVIEN/api/";
     HttpResponse<String> response;
 
+
+    //Lấy theo username
+    public String GetRole(String username) throws IOException, InterruptedException {
+        HttpRequest getRequest = HttpRequest.newBuilder()
+                .uri(URI.create(baseUrl + "TaiKhoan/GetTaiKhoanByUsername?username=" + URLEncoder.encode(username, StandardCharsets.UTF_8)))
+                .GET()
+                .build();
+        
+        response = client.send(getRequest, HttpResponse.BodyHandlers.ofString());
+        
+        JSONObject obj = new JSONObject(response.body());
+            String role = obj.optString("Role", "");
+
+        return role;
+    }
+
     //Lấy tất cả tài khoản
     public ArrayList<TaiKhoan> GetAllTaiKhoan() throws IOException, InterruptedException {
         HttpRequest getRequest = HttpRequest.newBuilder()
@@ -51,7 +67,7 @@ public class TaiKhoanService {
     // Đăng nhập
     public boolean login(String username, String password) throws IOException, InterruptedException {
         // Encode tham số
-        String url = baseUrl + "TaiKhoan?" +
+        String url = baseUrl + "TaiKhoan/Login?" +
                     "username=" + URLEncoder.encode(username, StandardCharsets.UTF_8) +
                     "&password=" + URLEncoder.encode(password, StandardCharsets.UTF_8);
         

@@ -72,20 +72,29 @@ public class SachService {
 
     // Xóa sách
     public boolean DeleteSach(String maSach) throws IOException, InterruptedException {
-        String url = baseUrl + "Sach?MaSach=" + maSach;
+        try {
+            String url = baseUrl + "Sach/DeleteSach?MaSach=" + 
+                        URLEncoder.encode(maSach, StandardCharsets.UTF_8);
 
-        HttpRequest deleteRequest = HttpRequest.newBuilder()
-                .uri(URI.create(url))
-                .DELETE()
-                .build();
+            HttpRequest deleteRequest = HttpRequest.newBuilder()
+                    .uri(URI.create(url))
+                    .DELETE()
+                    .build();
 
-        HttpResponse<String> deleteResponse = client.send(deleteRequest, HttpResponse.BodyHandlers.ofString());
+            HttpResponse<String> deleteResponse = client.send(deleteRequest, HttpResponse.BodyHandlers.ofString());
 
-        if( deleteResponse.statusCode() == 200 ) {
-            return true;
+            if (deleteResponse.statusCode() == 200) {
+                String result = deleteResponse.body().trim();
+                return result.equalsIgnoreCase("true");
+            }
+            return false;
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+            e.printStackTrace();
+            return false;
         }
-        return false;
     }
+
 
     //sửa sách
     public boolean UpdateSach(Sach sach) throws IOException, InterruptedException {
@@ -112,33 +121,40 @@ public class SachService {
         return false;
     }
 
-    //Tim kiếm sách theo tên // lỗi
-    public ArrayList<Sach> TimKiemSachTheoTen(String tenSach) throws IOException, InterruptedException {
-        String url = baseUrl + "Sach/SearchSachByName?TenSach=" + URLEncoder.encode(tenSach, StandardCharsets.UTF_8);
+    //Tim kiếm sách theo tên
+    public ArrayList<Sach> GetSachByTenSach(String tenSach) throws IOException, InterruptedException {
+        try {
+            String url = baseUrl + "Sach/SearchSachByName?keyword=" + 
+                        URLEncoder.encode(tenSach, StandardCharsets.UTF_8);
 
-        HttpRequest getRequest = HttpRequest.newBuilder()
-                .uri(URI.create(url))
-                .GET()
-                .build();
+            HttpRequest getRequest = HttpRequest.newBuilder()
+                    .uri(URI.create(url))
+                    .GET()
+                    .build();
 
-        response = client.send(getRequest, HttpResponse.BodyHandlers.ofString());
+            response = client.send(getRequest, HttpResponse.BodyHandlers.ofString());
 
-        ArrayList<Sach> danhSachSach = new ArrayList<>();
-        JSONArray jsonArray = new JSONArray(response.body());
+            ArrayList<Sach> danhSachSach = new ArrayList<>();
+            JSONArray jsonArray = new JSONArray(response.body());
 
-        for (int i = 0; i < jsonArray.length(); i++) {
-            JSONObject obj = jsonArray.getJSONObject(i);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject obj = jsonArray.getJSONObject(i);
 
-            String maSach = obj.optString("MaSach", "");
-            String tenSachResult = obj.optString("TenSach", "");
-            int soLuong = obj.optInt("SoLuong", 0);
-            String tacGia = obj.optString("TacGia", "");
-            String maTheLoai = obj.optString("MaTheLoai", "");
+                String maSach = obj.optString("MaSach", "");
+                String tenSachResult = obj.optString("TenSach", "");
+                int soLuong = obj.optInt("SoLuong", 0);
+                String tacGia = obj.optString("TacGia", "");
+                String maTheLoai = obj.optString("MaTheLoai", "");
 
-            Sach sach = new Sach(maSach, tenSachResult, soLuong, tacGia, maTheLoai);
-            danhSachSach.add(sach);
+                Sach sach = new Sach(maSach, tenSachResult, soLuong, tacGia, maTheLoai);
+                danhSachSach.add(sach);
+            }
+            return danhSachSach;
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+            e.printStackTrace();
+            return new ArrayList<>();
         }
-        return danhSachSach;
     }
 
     //Lấy sách theo mã
@@ -189,24 +205,4 @@ public class SachService {
         }
         return danhSachSach;
     }
-
-    //Test
-    public static void main(String[] args) {
-        SachService sachService = new SachService();
-        try {
-            sachService.DeleteSach("S004");
-            ArrayList<Sach> danhSachSach = sachService.TimKiemSachTheoTen("sao");
-            for (Sach sach : danhSachSach) {
-                System.out.println("Mã Sách: " + sach.getMaSach());
-                System.out.println("Tên Sách: " + sach.getTenSach());
-                System.out.println("Số Lượng: " + sach.getSoLuong());
-                System.out.println("Tác Giả: " + sach.getTacGia());
-                System.out.println("Mã Thể Loại: " + sach.getMaTheLoai());
-                System.out.println("---------------------------");
-            }
-        } catch (IOException | InterruptedException e) {
-            
-        }
-    }
-
 }

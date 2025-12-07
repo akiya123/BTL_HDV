@@ -24,14 +24,9 @@ namespace API_QLYTHuVien.Controllers
             return db.TaiKhoans.ToList();
         }
         [HttpGet]//Lấy theo username
-        public bool GetTaiKhoanByUsername(string username)
+        public TaiKhoan GetTaiKhoanByUsername(string username)
         {
-            TaiKhoan tks = db.TaiKhoans.FirstOrDefault(tk => tk.Username == username);
-            if(tks == null)
-            {
-                return false;
-            }
-            return true;
+            return db.TaiKhoans.FirstOrDefault(tk => tk.Username == username);
         }
 
         [HttpGet]//Đăng nhập

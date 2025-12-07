@@ -38,7 +38,7 @@ namespace API_QLYTHuVien.Controllers
         [HttpGet]//lấy theo số điện thoại
         public KhachHang SearchKhachHangBySDT(string sdt)
         {
-            return db.KhachHangs.Find(sdt);
+            return db.KhachHangs.FirstOrDefault(s=>s.SdtKH.Contains(sdt));
         }
 
         [HttpPost]//Thêm khách hàng

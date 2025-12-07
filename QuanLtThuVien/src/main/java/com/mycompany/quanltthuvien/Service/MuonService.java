@@ -74,19 +74,23 @@ public class MuonService {
         return danhSachMuon;
     }
 
-    //Lấy theo MaMuon // lỗi
+    //Lấy theo MaMuon
     public Muon GetMuonByMaMuon(String MaMuon) throws IOException, InterruptedException{
-        HttpRequest GRequest = HttpRequest.newBuilder()
-            .uri(URI.create(baseUrl+"Muon/GetMuonByMaMuon?MaMuon="+MaMuon))
-            .GET()
-            .build();
+        try {
+            String url = baseUrl + "Muon/GetMuonByMaMuon?MaMuon=" + 
+                        URLEncoder.encode(MaMuon, StandardCharsets.UTF_8);
+            
+            HttpRequest GRequest = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .GET()
+                .build();
 
-        System.out.println();
-        response = client.send(GRequest, HttpResponse.BodyHandlers.ofString());
-        
-        JSONArray jsonArray = new JSONArray(response.body());
-        
-            JSONObject obj = jsonArray.getJSONObject(0);
+            System.out.println("URL: " + url);
+            
+            response = client.send(GRequest, HttpResponse.BodyHandlers.ofString());
+
+            // Parse trực tiếp JSONObject, KHÔNG phải JSONArray
+            JSONObject obj = new JSONObject(response.body());
 
             String MaKH = obj.optString("MaKH", "");
             String MaSach = obj.optString("MaSach", "");
@@ -94,9 +98,15 @@ public class MuonService {
             String NgayTra = obj.optString("NgayTra", "");
             int SoLuong = obj.optInt("SoLuong", 0);
 
-            Muon muon = new Muon(MaMuon,MaKH,MaSach,SoLuong,NgayMuon,NgayTra);
+            Muon muon = new Muon(MaMuon, MaKH, MaSach, SoLuong, NgayMuon, NgayTra);
             
-        return muon;
+            return muon;
+            
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+            e.printStackTrace();
+            return null;
+        }
     }
 
 
@@ -154,16 +164,21 @@ public class MuonService {
         return danhSachMuon;
     }
 
-    //Lấy theo ngày trả // lỗi
+    //Lấy theo ngày trả 
         public ArrayList<Muon> GetMuonByNgayTra(String NgayTra) throws IOException, InterruptedException{
-        HttpRequest GRequest = HttpRequest.newBuilder()
-            .uri(URI.create(baseUrl+"Muon/GetMuonByNgayTra?NgayTra="+URLEncoder.encode(NgayTra, StandardCharsets.UTF_8)))
-            .GET()
-            .build();
+    // Format: yyyy-MM-dd hoặc yyyy-MM-ddTHH:mm:ss
+    String encodedDate = URLEncoder.encode(NgayTra, StandardCharsets.UTF_8);
+    
+    HttpRequest GRequest = HttpRequest.newBuilder()
+        .uri(URI.create(baseUrl + "Muon/GetMuonByNgayTra?NgayTra=" + encodedDate))
+        .GET()
+        .build();
 
-        response = client.send(GRequest, HttpResponse.BodyHandlers.ofString());
-        
-        ArrayList<Muon> danhSachMuon = new ArrayList<>();
+    response = client.send(GRequest, HttpResponse.BodyHandlers.ofString());
+    
+    ArrayList<Muon> danhSachMuon = new ArrayList<>();
+    
+    try {
         JSONArray jsonArray = new JSONArray(response.body());
         
         for (int i = 0; i < jsonArray.length(); i++) {
@@ -175,41 +190,48 @@ public class MuonService {
             String NgayMuon = obj.optString("NgayMuon", "");
             int SoLuong = obj.optInt("SoLuong", 0);
 
-            Muon muon = new Muon(MaMuon,MaKH,MaSach,SoLuong,NgayMuon,NgayTra);
+            Muon muon = new Muon(MaMuon, MaKH, MaSach, SoLuong, NgayMuon, NgayTra);
             danhSachMuon.add(muon);
         }
-        return danhSachMuon;
+    } catch (Exception e) {
+        System.err.println("Parse error: " + e.getMessage());
     }
+    
+    return danhSachMuon;
+}
 
-    //Mượn sách // lỗi
-    public boolean MuonSach(Muon muon, String username) throws IOException, InterruptedException{
-        String url = baseUrl+"Muon/AddMuon?MaMuon="
-            +URLEncoder.encode(muon.getMaMuon(), StandardCharsets.UTF_8)
-            +URLEncoder.encode(muon.getMaKH(), StandardCharsets.UTF_8)
-            +URLEncoder.encode(muon.getMaSach(), StandardCharsets.UTF_8)
-            +muon.getSoLuong()
-            +URLEncoder.encode(muon.getNgayMuon().toString(), StandardCharsets.UTF_8)
-            +URLEncoder.encode(muon.getNgayTra().toString(), StandardCharsets.UTF_8)
-            +URLEncoder.encode(username, StandardCharsets.UTF_8);
+    //Mượn sách 
+public boolean MuonSach(Muon muon, String username) throws IOException, InterruptedException{
+    String url = baseUrl+"Muon/AddMuon?MaMuon="
+        + URLEncoder.encode(muon.getMaMuon(), StandardCharsets.UTF_8)
+        + "&MaKH=" + URLEncoder.encode(muon.getMaKH(), StandardCharsets.UTF_8)
+        + "&MaSach=" + URLEncoder.encode(muon.getMaSach(), StandardCharsets.UTF_8)
+        + "&SoLuong=" + muon.getSoLuong()  // THÊM DẤU & Ở ĐÂY
+        + "&NgayMuon=" + URLEncoder.encode(muon.getNgayMuon().toString(), StandardCharsets.UTF_8)
+        + "&NgayTra=" + URLEncoder.encode(muon.getNgayTra().toString(), StandardCharsets.UTF_8)
+        + "&username=" + URLEncoder.encode(username, StandardCharsets.UTF_8);
 
-        HttpRequest PoRequest = HttpRequest.newBuilder()
-            .uri(URI.create(url))
-            .POST(HttpRequest.BodyPublishers.noBody())
-            .build();
-        response = client.send(PoRequest, HttpResponse.BodyHandlers.ofString());
-        if( response.statusCode() == 200 ) {
-            return true;
-        }
-        return false;
-    }
+    HttpRequest postRequest = HttpRequest.newBuilder()
+        .uri(URI.create(url))
+        .POST(HttpRequest.BodyPublishers.noBody())
+        .build();
+        
+    response = client.send(postRequest, HttpResponse.BodyHandlers.ofString());
+    
+    System.out.println("Status: " + response.statusCode());
+    System.out.println("Response: " + response.body());
+    
+    return response.statusCode() == 200 && response.body().trim().equalsIgnoreCase("true");
+}
 
-    //Trả sách // lỗi
+    //Trả sách
     public boolean TraSach(String MaMuon, String username, int SoLuong) throws IOException, InterruptedException{
-        String url = baseUrl+"Muon/AddMuon?MaMuon="
+        String url = baseUrl+"Muon/TraSach?MaMuon="
             +URLEncoder.encode(MaMuon, StandardCharsets.UTF_8)
-            +URLEncoder.encode(username, StandardCharsets.UTF_8)
-            +SoLuong;
+            +"&Username="+URLEncoder.encode(username, StandardCharsets.UTF_8)
+            +"&SoLuong="+SoLuong;
 
+            System.out.println(url);
         HttpRequest PuRequest = HttpRequest.newBuilder()
             .uri(URI.create(url))
             .PUT(HttpRequest.BodyPublishers.noBody())
@@ -220,19 +242,5 @@ public class MuonService {
             return true;
         }
         return false;
-    }
-
-    //test
-    public static void main(String[] args) {
-        try {
-            MuonService m = new MuonService();
-            // m.TraSach("M002", "Hoan2", 1);
-            Muon arr = m.GetMuonByMaMuon("M002");
-            Muon elem = arr;
-            // for (Muon elem : arr) {
-                System.out.println(elem.getMaMuon()+elem.getMaKH()+elem.getMaSach()+elem.getSoLuong()+elem.getNgayMuon()+elem.getNgayTra());
-            // }
-        } catch (Exception e) {
-        }
     }
 }
