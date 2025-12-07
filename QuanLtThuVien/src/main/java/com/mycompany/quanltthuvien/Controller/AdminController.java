@@ -40,7 +40,9 @@ public class AdminController {
     //Thêm sách
     public boolean AddSach(Sach sach) {
         try {
-            sach.setMaSach("S"+RandomMa());
+            do {
+                sach.setMaSach("S"+RandomMa());             
+            } while (ss.GetSachByMa(sach.getMaSach()) != null);
             return ss.AddSach(sach);
         } catch (Exception e) {
         }
@@ -113,7 +115,9 @@ public class AdminController {
     //Thêm thể loại
     public boolean AddTheLoai(TheLoai theLoai) {
         try {
-            theLoai.setMaTheLoai("TL"+RandomMa());
+            do { 
+                theLoai.setMaTheLoai("TL"+RandomMa());             
+            } while (tls.GetTheLoaiByMa(theLoai.getMaTheLoai()) != null);
             return tls.AddTheLoai(theLoai);
         } catch (Exception e) {
         }

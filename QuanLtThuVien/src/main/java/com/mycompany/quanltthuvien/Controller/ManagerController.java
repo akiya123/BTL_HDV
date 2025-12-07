@@ -36,7 +36,9 @@ public class ManagerController {
     //Thêm khách hàng
     public boolean AddKhachHang(KhachHang khachHang) {
         try {
-            khachHang.setMaKH("KH"+RandomMa());
+            do {
+                khachHang.setMaKH("KH"+RandomMa());             
+            } while (khs.GetKhachHangByMa(khachHang.getMaKH()) != null);
             return khs.AddKhachHang(khachHang);
         } catch (Exception e) {
         }
@@ -160,7 +162,9 @@ public class ManagerController {
     //Thêm mượn
     public boolean MuonSach(Muon muon, String username) {
         try {
-            muon.setMaMuon("M"+RandomMa());
+            do {
+                muon.setMaMuon("M"+RandomMa());             
+            } while (ms.GetMuonByMaMuon(muon.getMaMuon()) != null);
             return ms.MuonSach(muon, username);
         } catch (Exception e) {
         }
