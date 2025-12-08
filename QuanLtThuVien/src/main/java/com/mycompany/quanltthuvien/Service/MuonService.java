@@ -250,8 +250,7 @@ public boolean MuonSach(Muon muon, String username) throws IOException, Interrup
             +URLEncoder.encode(MaMuon, StandardCharsets.UTF_8)
             +"&Username="+URLEncoder.encode(username, StandardCharsets.UTF_8)
             +"&SoLuongMat="+SoLuong;
-
-            System.out.println(url);
+            
         HttpRequest PuRequest = HttpRequest.newBuilder()
             .uri(URI.create(url))
             .PUT(HttpRequest.BodyPublishers.noBody())
