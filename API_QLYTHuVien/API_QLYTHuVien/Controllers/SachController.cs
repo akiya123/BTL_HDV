@@ -39,8 +39,8 @@ namespace API_QLYTHuVien.Controllers
         [HttpGet] // lấy theo tên
         public IEnumerable<Sach> SearchSachByName(string keyword)
         {
-            if(string.IsNullOrWhiteSpace(keyword))
-    {
+            if (string.IsNullOrWhiteSpace(keyword))
+            {
                 // Decide behavior: return empty set instead of all records
                 return Enumerable.Empty<Sach>();
             }
@@ -78,7 +78,25 @@ namespace API_QLYTHuVien.Controllers
             return true;
         }
 
+        [HttpPut]//Thêm số lượng sách
+        public bool AddMoreSach(String MaSach, String SoLuongThem)
+        {
+            Sach sach = db.Saches.Find(MaSach);
+            if (sach == null) return false;
+            sach.SoLuong += int.Parse(SoLuongThem);
+            db.SaveChanges();
+            return true;
+        }
 
+        [HttpPut]//Hủy sách
+        public bool RemoveSomeSach(String MaSach, String SoLuongXoa)
+        {
+            Sach sach = db.Saches.Find(MaSach);
+            if (sach == null || sach.SoLuong < int.Parse(SoLuongXoa)) return false;
+            sach.SoLuong -= int.Parse(SoLuongXoa);
+            db.SaveChanges();
+            return true;
+        }
 
         [HttpDelete]//Xóa sách
         public bool DeleteSach(string MaSach)

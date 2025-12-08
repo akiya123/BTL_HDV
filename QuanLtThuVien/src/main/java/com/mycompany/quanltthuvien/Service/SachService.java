@@ -205,4 +205,40 @@ public class SachService {
         }
         return danhSachSach;
     }
+
+    //Thêm số lượng sách
+    public boolean AddMoreSach(String maSach, int soLuong) throws IOException, InterruptedException {
+        String url = baseUrl + "Sach/AddMoreSach?" +
+            "MaSach=" + URLEncoder.encode(maSach, StandardCharsets.UTF_8) +
+            "&SoLuongThem=" + soLuong;
+
+        HttpRequest putRequest = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .PUT(HttpRequest.BodyPublishers.noBody())
+                .build();
+
+        HttpResponse<String> putResponse = client.send(putRequest, HttpResponse.BodyHandlers.ofString());
+        if( putResponse.statusCode() == 200 ) {
+            return true;
+        }
+        return false;
+    }
+
+    //Hủy lượng sách
+    public boolean RemoveSomeSach(String maSach, int soLuong) throws IOException, InterruptedException {
+        String url = baseUrl + "Sach/RemoveSomeSach?" +
+            "MaSach=" + URLEncoder.encode(maSach, StandardCharsets.UTF_8) +
+            "&SoLuongXoa=" + soLuong;
+
+        HttpRequest putRequest = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .PUT(HttpRequest.BodyPublishers.noBody())
+                .build();
+
+        HttpResponse<String> putResponse = client.send(putRequest, HttpResponse.BodyHandlers.ofString());
+        if( putResponse.statusCode() == 200 ) {
+            return true;
+        }
+        return false;
+    }
 }

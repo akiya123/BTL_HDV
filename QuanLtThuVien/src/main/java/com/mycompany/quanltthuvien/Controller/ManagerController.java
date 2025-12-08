@@ -6,6 +6,7 @@ import com.mycompany.quanltthuvien.Model.KhachHang;
 import com.mycompany.quanltthuvien.Model.Muon;
 import com.mycompany.quanltthuvien.Service.KhachHangService;
 import com.mycompany.quanltthuvien.Service.MuonService;
+import com.mycompany.quanltthuvien.Service.SachService;
 
 public class ManagerController {
 
@@ -18,7 +19,17 @@ public class ManagerController {
         }
         return Ma;
     }
-   
+    //_____________//#Sách
+    SachService sachService = new SachService();
+    //Hủy sách
+    public boolean RemoveSomeSach(String MaSach, int SoLuong) {
+        try {
+            return sachService.RemoveSomeSach(MaSach, SoLuong);
+        } catch (Exception e) {
+        }
+        return false;
+    }
+    
     //____________// #khách hàng
     KhachHangService khs = new KhachHangService();
     

@@ -49,6 +49,15 @@ public class AdminController {
         return false;
     }
 
+    //Thêm số sách
+    public boolean AddMoreSach(String MaSach, int SoLuong){
+        try {
+            return ss.AddMoreSach(MaSach, SoLuong);
+        } catch (Exception e) {
+        }
+        return false;
+    }
+
     //Xóa sách
     public boolean DeleteSach(String maSach) {
         try {
