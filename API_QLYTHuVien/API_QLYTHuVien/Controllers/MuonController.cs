@@ -152,5 +152,46 @@ namespace API_QLYTHuVien.Controllers
             db.SaveChanges();
             return true;
         }
+
+         [HttpPut]//Mất sách
+        public bool MatSach(string MaMuon, string username, string SoLuongMat)
+        {
+            Muon existingMuon = db.Muons.Find(MaMuon);
+            int soLuong = int.Parse(SoLuongMat);
+
+            if (existingMuon == null)
+            {
+                return false;
+            }
+
+            // Tạo MaGD ngẫu nhiên - THÊM ĐOẠN NÀY
+            string MaGD;
+            do
+            {
+                MaGD = $"GD{GenerateFourRandomDigits()}";
+            } while (db.LiSuGiaoDich.Find(MaGD) != null);
+
+            db.LiSuGiaoDich.Add(new LiSuGiaoDich
+            {
+                MaGD = MaGD,  // THÊM DÒNG NÀY
+                MaKH = existingMuon.MaKH,
+                MaSach = existingMuon.MaSach,
+                NgayGD = DateTime.Now,
+                TrangThai = "Mất",
+                Username = username,
+                SoLuong = soLuong
+            });
+
+            Sach sach = db.Saches.Find(existingMuon.MaSach);
+            existingMuon.SoLuong -= soLuong;
+
+            if (existingMuon.SoLuong == 0)
+            {
+                db.Muons.Remove(existingMuon);
+            }
+
+            db.SaveChanges();
+            return true;
+        }
     }
 }

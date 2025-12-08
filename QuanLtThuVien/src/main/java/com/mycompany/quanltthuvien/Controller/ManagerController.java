@@ -22,9 +22,9 @@ public class ManagerController {
     //_____________//#Sách
     SachService sachService = new SachService();
     //Hủy sách
-    public boolean RemoveSomeSach(String MaSach, int SoLuong) {
+    public boolean RemoveSomeSach(String MaSach, int SoLuongXoa, String username) {
         try {
-            return sachService.RemoveSomeSach(MaSach, SoLuong);
+            return sachService.RemoveSomeSach(MaSach, SoLuongXoa,username);
         } catch (Exception e) {
         }
         return false;
@@ -186,6 +186,15 @@ public class ManagerController {
     public boolean TraSach(String MaMuon, String username,int SoLuong) {
         try {
             return ms.TraSach(MaMuon, username,SoLuong);
+        } catch (Exception e) {
+        }
+        return false;
+    }
+
+    //Mất sách
+    public boolean MatSach(String MaMuon, String username, int SoLuong) {
+        try {
+            return ms.MatSach(MaMuon, username,SoLuong);
         } catch (Exception e) {
         }
         return false;

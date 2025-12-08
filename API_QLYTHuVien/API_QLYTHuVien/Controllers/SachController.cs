@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Web.Http;
 
@@ -12,6 +13,18 @@ namespace API_QLYTHuVien.Controllers
     public class SachController : ApiController
     {
         API_ThuVienEntities db = new API_ThuVienEntities();
+
+        public static string GenerateFourRandomDigits()
+        {
+            Random random = new Random();
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < 6; i++)
+            {
+                // Next(0, 10) tạo số từ 0 đến 9
+                sb.Append(random.Next(0, 10));
+            }
+            return sb.ToString();
+        }
         public SachController()
         {
             db.Configuration.ProxyCreationEnabled = false;
@@ -89,11 +102,28 @@ namespace API_QLYTHuVien.Controllers
         }
 
         [HttpPut]//Hủy sách
-        public bool RemoveSomeSach(String MaSach, String SoLuongXoa)
+        public bool RemoveSomeSach(String MaSach, String SoLuongXoa, String username)
         {
             Sach sach = db.Saches.Find(MaSach);
             if (sach == null || sach.SoLuong < int.Parse(SoLuongXoa)) return false;
             sach.SoLuong -= int.Parse(SoLuongXoa);
+
+            string MaGD;
+            do
+            {
+                MaGD = $"GD{GenerateFourRandomDigits()}";
+            } while (db.LiSuGiaoDich.Find(MaGD) != null);
+
+            db.LiSuGiaoDich.Add(new LiSuGiaoDich
+            {
+                MaGD = MaGD,  // THÊM DÒNG NÀY
+                MaKH = " ",
+                MaSach = sach.MaSach,
+                NgayGD = DateTime.Now,
+                TrangThai = "Hủy",
+                Username = username,
+                SoLuong = int.Parse(SoLuongXoa)
+            });
             db.SaveChanges();
             return true;
         }

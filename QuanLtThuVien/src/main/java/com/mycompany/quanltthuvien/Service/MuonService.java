@@ -243,4 +243,24 @@ public boolean MuonSach(Muon muon, String username) throws IOException, Interrup
         }
         return false;
     }
+
+    //Mất sách
+    public boolean MatSach(String MaMuon, String username, int SoLuong) throws IOException, InterruptedException{
+        String url = baseUrl+"Muon/MatSach?MaMuon="
+            +URLEncoder.encode(MaMuon, StandardCharsets.UTF_8)
+            +"&Username="+URLEncoder.encode(username, StandardCharsets.UTF_8)
+            +"&SoLuongMat="+SoLuong;
+
+            System.out.println(url);
+        HttpRequest PuRequest = HttpRequest.newBuilder()
+            .uri(URI.create(url))
+            .PUT(HttpRequest.BodyPublishers.noBody())
+            .build();
+
+        response = client.send(PuRequest, HttpResponse.BodyHandlers.ofString());
+        if( response.statusCode() == 200 ) {
+            return true;
+        }
+        return false;
+    }
 }

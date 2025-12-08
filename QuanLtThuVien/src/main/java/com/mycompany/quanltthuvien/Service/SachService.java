@@ -225,10 +225,11 @@ public class SachService {
     }
 
     //Hủy lượng sách
-    public boolean RemoveSomeSach(String maSach, int soLuong) throws IOException, InterruptedException {
+    public boolean RemoveSomeSach(String maSach, int soLuong, String username) throws IOException, InterruptedException {
         String url = baseUrl + "Sach/RemoveSomeSach?" +
             "MaSach=" + URLEncoder.encode(maSach, StandardCharsets.UTF_8) +
-            "&SoLuongXoa=" + soLuong;
+            "&SoLuongXoa=" + soLuong +
+            "&username=" + URLEncoder.encode(username, StandardCharsets.UTF_8);
 
         HttpRequest putRequest = HttpRequest.newBuilder()
                 .uri(URI.create(url))
