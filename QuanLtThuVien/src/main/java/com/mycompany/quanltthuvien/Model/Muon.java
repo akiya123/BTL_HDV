@@ -30,6 +30,10 @@ public class Muon {
         setNgayMuon(NgayMuon);
     }
 
+    public Muon() {
+        
+    }
+
     public String getMaMuon() {
         return MaMuon;
     }
