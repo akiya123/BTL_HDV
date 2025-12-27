@@ -1,4 +1,6 @@
+C:\Users\Legion\Documents\Code\BTL_HDV\QuanLtThuVien\src\main\java\com\mycompany\quanltthuvien\Controller\AdminController.java
 C:\Users\Legion\Documents\Code\BTL_HDV\QuanLtThuVien\src\main\java\com\mycompany\quanltthuvien\Controller\LoginController.java
+C:\Users\Legion\Documents\Code\BTL_HDV\QuanLtThuVien\src\main\java\com\mycompany\quanltthuvien\Controller\ManagerController.java
 C:\Users\Legion\Documents\Code\BTL_HDV\QuanLtThuVien\src\main\java\com\mycompany\quanltthuvien\Model\KhachHang.java
 C:\Users\Legion\Documents\Code\BTL_HDV\QuanLtThuVien\src\main\java\com\mycompany\quanltthuvien\Model\LiSuGiaoDich.java
 C:\Users\Legion\Documents\Code\BTL_HDV\QuanLtThuVien\src\main\java\com\mycompany\quanltthuvien\Model\Muon.java
@@ -12,3 +14,6 @@ C:\Users\Legion\Documents\Code\BTL_HDV\QuanLtThuVien\src\main\java\com\mycompany
 C:\Users\Legion\Documents\Code\BTL_HDV\QuanLtThuVien\src\main\java\com\mycompany\quanltthuvien\Service\SachService.java
 C:\Users\Legion\Documents\Code\BTL_HDV\QuanLtThuVien\src\main\java\com\mycompany\quanltthuvien\Service\TaiKhoanService.java
 C:\Users\Legion\Documents\Code\BTL_HDV\QuanLtThuVien\src\main\java\com\mycompany\quanltthuvien\Service\TheLoaiService.java
+C:\Users\Legion\Documents\Code\BTL_HDV\QuanLtThuVien\src\main\java\com\mycompany\quanltthuvien\View\Admin.java
+C:\Users\Legion\Documents\Code\BTL_HDV\QuanLtThuVien\src\main\java\com\mycompany\quanltthuvien\View\Login.java
+C:\Users\Legion\Documents\Code\BTL_HDV\QuanLtThuVien\src\main\java\com\mycompany\quanltthuvien\View\Manager.java
