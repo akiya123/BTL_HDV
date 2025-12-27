@@ -40,7 +40,7 @@ public class Manager extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     
-    TaiKhoan tk = new TaiKhoan(" ", "", "", "", "");
+    TaiKhoan tk = new TaiKhoan("null ", "null", "null", "0912345678", "null");
     
     public void GetUsername(String usernameLogin) throws InterruptedException, IOException {
             TaiKhoanService taiKhoanService = new TaiKhoanService();
