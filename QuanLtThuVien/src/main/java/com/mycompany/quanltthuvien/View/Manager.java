@@ -11,6 +11,7 @@ import com.mycompany.quanltthuvien.Controller.ManagerController;
 import com.mycompany.quanltthuvien.Model.TaiKhoan;
 import com.mycompany.quanltthuvien.Service.SachService;
 import com.mycompany.quanltthuvien.Service.TaiKhoanService;
+import java.awt.HeadlessException;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -27,6 +28,7 @@ import java.util.logging.Logger;
  * @author hienb
  */
 public class Manager extends javax.swing.JFrame {
+    private javax.swing.JTabbedPane tabManager;
     ManagerController managerController = new ManagerController();
     SachService sachService = new SachService();
     
@@ -88,7 +90,6 @@ public class Manager extends javax.swing.JFrame {
         Muon_txtTenKH = new javax.swing.JTextField();
         Muon_txtTenSach = new javax.swing.JTextField();
         Muon_lbTenSach = new javax.swing.JLabel();
-        Muon_btTim = new javax.swing.JButton();
         Muon_lbDSMuon = new javax.swing.JLabel();
         Muon_lbTheLoaiTimKiem = new javax.swing.JLabel();
         Muon_txtTheLoaiTimKiem = new javax.swing.JTextField();
@@ -99,6 +100,7 @@ public class Manager extends javax.swing.JFrame {
         Muon_lbTenSachTimKiem = new javax.swing.JLabel();
         Muon_txtTenSachTimKiem = new javax.swing.JTextField();
         Muon_lbSach = new javax.swing.JLabel();
+        Muon_btXacNhan = new javax.swing.JButton();
         TraSach = new javax.swing.JPanel();
         TraSach_lbSLTra = new javax.swing.JLabel();
         TraSach_txtSLTra = new javax.swing.JTextField();
@@ -201,16 +203,31 @@ public class Manager extends javax.swing.JFrame {
 
         TimKiem_cbGet.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         TimKiem_cbGet.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã", "Tên Bạn đọc", "Số Điện thoại" }));
+        TimKiem_cbGet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TimKiem_cbGetActionPerformed(evt);
+            }
+        });
         TimKiem.add(TimKiem_cbGet);
         TimKiem_cbGet.setBounds(580, 30, 120, 30);
 
         TimKiem_btTim.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         TimKiem_btTim.setText("Tìm Kiếm");
+        TimKiem_btTim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TimKiem_btTimActionPerformed(evt);
+            }
+        });
         TimKiem.add(TimKiem_btTim);
         TimKiem_btTim.setBounds(580, 110, 110, 40);
 
         TimKiem_btMuon.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         TimKiem_btMuon.setText("Mượn sách");
+        TimKiem_btMuon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TimKiem_btMuonActionPerformed(evt);
+            }
+        });
         TimKiem.add(TimKiem_btMuon);
         TimKiem_btMuon.setBounds(630, 210, 130, 50);
 
@@ -282,7 +299,6 @@ public class Manager extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        Muon_tbDSMuon.setEnabled(false);
         jScrollPane1.setViewportView(Muon_tbDSMuon);
 
         Muon.add(jScrollPane1);
@@ -307,7 +323,6 @@ public class Manager extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        Muon_tbSach.setEnabled(false);
         jScrollPane2.setViewportView(Muon_tbSach);
 
         Muon.add(jScrollPane2);
@@ -324,8 +339,13 @@ public class Manager extends javax.swing.JFrame {
 
         Muon_bt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Muon_bt.setText("Mượn");
+        Muon_bt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Muon_btActionPerformed(evt);
+            }
+        });
         Muon.add(Muon_bt);
-        Muon_bt.setBounds(430, 130, 90, 27);
+        Muon_bt.setBounds(420, 110, 90, 27);
 
         Muon_lbMaKH.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Muon_lbMaKH.setText("Mã bạn đọc:");
@@ -357,11 +377,6 @@ public class Manager extends javax.swing.JFrame {
         Muon.add(Muon_lbTenSach);
         Muon_lbTenSach.setBounds(60, 130, 120, 30);
 
-        Muon_btTim.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Muon_btTim.setText("Tìm kiếm");
-        Muon.add(Muon_btTim);
-        Muon_btTim.setBounds(430, 50, 90, 27);
-
         Muon_lbDSMuon.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         Muon_lbDSMuon.setText("Danh sách Mượn");
         Muon.add(Muon_lbDSMuon);
@@ -373,6 +388,7 @@ public class Manager extends javax.swing.JFrame {
         Muon_lbTheLoaiTimKiem.setBounds(630, 120, 70, 30);
 
         Muon_txtTheLoaiTimKiem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Muon_txtTheLoaiTimKiem.setEnabled(false);
         Muon.add(Muon_txtTheLoaiTimKiem);
         Muon_txtTheLoaiTimKiem.setBounds(710, 120, 180, 26);
 
@@ -386,11 +402,21 @@ public class Manager extends javax.swing.JFrame {
         Muon_txtMaSachTimKiem.setBounds(710, 40, 180, 26);
 
         Muon_btTimKiemSach.setText("Tìm Kiếm Sách");
+        Muon_btTimKiemSach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Muon_btTimKiemSachActionPerformed(evt);
+            }
+        });
         Muon.add(Muon_btTimKiemSach);
         Muon_btTimKiemSach.setBounds(740, 170, 110, 30);
 
         Muon_cbTimTheo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Muon_cbTimTheo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã Sách", "Tên Sách", "Thể Loại" }));
+        Muon_cbTimTheo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Muon_cbTimTheoActionPerformed(evt);
+            }
+        });
         Muon.add(Muon_cbTimTheo);
         Muon_cbTimTheo.setBounds(940, 80, 90, 22);
 
@@ -400,6 +426,7 @@ public class Manager extends javax.swing.JFrame {
         Muon_lbTenSachTimKiem.setBounds(630, 80, 70, 30);
 
         Muon_txtTenSachTimKiem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Muon_txtTenSachTimKiem.setEnabled(false);
         Muon.add(Muon_txtTenSachTimKiem);
         Muon_txtTenSachTimKiem.setBounds(710, 80, 180, 26);
 
@@ -407,6 +434,16 @@ public class Manager extends javax.swing.JFrame {
         Muon_lbSach.setText("Kho Sách");
         Muon.add(Muon_lbSach);
         Muon_lbSach.setBounds(590, 250, 90, 25);
+
+        Muon_btXacNhan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Muon_btXacNhan.setText("Xác nhận");
+        Muon_btXacNhan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Muon_btXacNhanActionPerformed(evt);
+            }
+        });
+        Muon.add(Muon_btXacNhan);
+        Muon_btXacNhan.setBounds(910, 250, 100, 30);
 
         jTabbedPane1.addTab("Mượn sách", Muon);
 
@@ -692,7 +729,7 @@ public class Manager extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButton1);
-        jButton1.setBounds(530, 80, 120, 30);
+        jButton1.setBounds(530, 80, 130, 30);
 
         jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextField3.setEnabled(false);
@@ -756,7 +793,7 @@ public class Manager extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButton2);
-        jButton2.setBounds(530, 130, 120, 30);
+        jButton2.setBounds(530, 130, 130, 30);
 
         jButton3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton3.setText("Thêm bạn đọc");
@@ -766,9 +803,9 @@ public class Manager extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButton3);
-        jButton3.setBounds(530, 30, 120, 30);
+        jButton3.setBounds(530, 30, 130, 30);
 
-        jTabbedPane1.addTab("Khách Hàng", jPanel2);
+        jTabbedPane1.addTab("Bạn đọc", jPanel2);
 
         Info_lbTK.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         Info_lbTK.setText("Tên tài khoản:");
@@ -933,6 +970,289 @@ public class Manager extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void TimKiem_btTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimKiem_btTimActionPerformed
+        // TODO add your handling code here:
+        int index = TimKiem_cbGet.getSelectedIndex();
+        
+        DefaultTableModel model = (DefaultTableModel) TimKiem_tbDSKH.getModel();
+        model.setRowCount(0);
+        
+        // Tìm theo Mã khách hàng
+        switch (index) {
+            case 0 -> {
+                String maKH = TimKiem_txtMaKH.getText().trim();
+                if(maKH.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Vui lòng nhập mã bạn đọc trước!");
+                    return;
+                }   KhachHang khachHang = managerController.GetKhachHangByMa(maKH);
+                if(khachHang == null) {
+                    JOptionPane.showMessageDialog(this, "Không tìm thấy bạn đọc này!");
+                    return;
+                }   model.addRow(new Object[]{
+                    khachHang.getMaKH(),    
+                    khachHang.getSdtKH(),
+                    khachHang.getSdtKH()
+                });
+            }
+            case 1 -> {
+                String tenKH = TimKiem_txtTenKH.getText().trim();
+                if(tenKH.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Vui lòng nhập tên bạn đọc trước!");
+                    return;
+                }   ArrayList<KhachHang> list = managerController.GetKhachHangByTen(tenKH);
+                if(list.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Không tìm thấy bạn đọc này!");
+                }   loadTableKH(list);
+            }
+            case 2 -> {
+                String sdt = TimKiem_txtSDT.getText().trim();
+                if(sdt.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Vui lòng nhập số điện thoại trước!");
+                    return;
+                }   KhachHang kh = managerController.GetKhachHangBySdt(sdt);
+                if(kh == null) {
+                    JOptionPane.showMessageDialog(this, "Không tìm thấy bạn đọc này!");
+                } model.addRow(new Object[] {
+                    kh.getMaKH(),
+                    kh.getTenKH(),
+                    kh.getSdtKH()
+                });
+            }
+            default -> {
+            }
+        }
+    }//GEN-LAST:event_TimKiem_btTimActionPerformed
+
+    private void TimKiem_btMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimKiem_btMuonActionPerformed
+        // TODO add your handling code here:
+        int row = TimKiem_tbDSKH.getSelectedRow();
+        
+        String maKH = TimKiem_tbDSKH.getValueAt(row, 0).toString();
+        String tenKH = TimKiem_tbDSKH.getValueAt(row, 1).toString();
+        
+        // Chuyển sang tab Mượn
+        Muon_txtMaKH.setText(maKH);
+        Muon_txtTenKH.setText(tenKH);
+        
+        tabManager.setSelectedIndex(0);
+    }//GEN-LAST:event_TimKiem_btMuonActionPerformed
+
+    private void TimKiem_cbGetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimKiem_cbGetActionPerformed
+        // TODO add your handling code here:
+        
+        int index = TimKiem_cbGet.getSelectedIndex();
+        TimKiem_cbGet.setSelectedIndex(index);
+        
+        // Reset text
+        TimKiem_txtMaKH.setText("");
+        TimKiem_txtTenKH.setText("");
+        TimKiem_txtSDT.setText("");
+        
+        switch (index) {
+            case 0 -> {
+                TimKiem_txtMaKH.setEnabled(true);
+                TimKiem_txtTenKH.setEnabled(false);
+                TimKiem_txtSDT.setEnabled(false);
+            }
+            case 1 -> {
+                TimKiem_txtMaKH.setEnabled(false);
+                TimKiem_txtTenKH.setEnabled(true);
+                TimKiem_txtSDT.setEnabled(false);
+            }
+            case 2 -> {
+                TimKiem_txtMaKH.setEnabled(false);
+                TimKiem_txtTenKH.setEnabled(false);
+                TimKiem_txtSDT.setEnabled(true);
+            }
+            default -> {
+            }
+        }
+    }//GEN-LAST:event_TimKiem_cbGetActionPerformed
+
+    private void Muon_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Muon_btActionPerformed
+        // Kiểm tra xem đã tồn tại bạn đọc chưa
+        String maKH = Muon_txtMaKH.getText().trim();
+        String tenKH = Muon_txtTenKH.getText().trim();
+        if("".equals(maKH) || "".equals(tenKH)) {
+            JOptionPane.showMessageDialog(this, "Không tìm thấy bạn đọc, không thể tiến hành mượn sách!");
+            return;
+        }
+
+        // Kiểm tra xem đã chọn sách chưa
+        int selected = Muon_tbSach.getSelectedRow();
+
+        if(selected == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn sách trong kho!");
+            return;
+        }
+
+        // Kiểm tra số lượng mượn
+        String soLuongText = Muon_txtSLMuon.getText().trim();
+        if(soLuongText.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập số lượng mượn!");
+            return;
+        }
+
+        int soLuongMuon;
+        try {
+            soLuongMuon = Integer.parseInt(soLuongText);
+            if(soLuongMuon <= 0) throw new NumberFormatException();
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng định dạng số!");
+            return;
+        }
+
+        // Lấy dữ liệu từ kho
+        String tenSach = Muon_tbSach.getValueAt(selected, 1).toString();
+        int soLuongKho = Integer.parseInt(Muon_tbSach.getValueAt(selected, 2).toString());
+
+        // So sánh trong kho
+        int soLuongCon = soLuongKho - soLuongMuon;
+        if(soLuongMuon > soLuongKho) {
+            JOptionPane.showMessageDialog(this, "Số lượng bạn nhập đã vượt quá số lượng trong kho!");
+        }
+        else {
+            // Thêm vào bảng DS Mượn
+            DefaultTableModel model = (DefaultTableModel) Muon_tbDSMuon.getModel();
+            model.addRow(new Object[] {
+                tenSach,
+                soLuongMuon
+            });
+            // Trừ số lượng trong kho
+            Muon_tbSach.setValueAt(soLuongCon, selected, 2);
+        }
+
+        // Reset input
+        Muon_txtSLMuon.setText("");
+
+    }//GEN-LAST:event_Muon_btActionPerformed
+
+    private void Muon_btTimKiemSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Muon_btTimKiemSachActionPerformed
+        DefaultTableModel model =
+            (DefaultTableModel) Muon_tbSach.getModel();
+    model.setRowCount(0); // Xóa dữ liệu cũ
+
+    String loaiTim = Muon_cbTimTheo.getSelectedItem().toString();
+
+    try {
+            // ===== TÌM THEO MÃ SÁCH =====
+            switch (loaiTim) {
+                case "Mã Sách" -> {
+                    String maSach = Muon_txtMaSachTimKiem.getText().trim();
+                    if (maSach.isEmpty()) {
+                        JOptionPane.showMessageDialog(this,
+                                "Vui lòng nhập mã sách!");
+                        return;
+                    }       Sach s = sachService.GetSachByMa(maSach);
+                    if (s == null) {
+                        JOptionPane.showMessageDialog(this,
+                                "Không tìm thấy sách!");
+                        return;
+                    }       model.addRow(new Object[]{
+                        s.getMaSach(),
+                        s.getTenSach(),
+                        s.getSoLuong()
+                    });
+                }
+                case "Tên Sách" ->                     {
+                        String tenSach = Muon_txtTenSachTimKiem.getText().trim();
+                        if (tenSach.isEmpty()) {
+                            JOptionPane.showMessageDialog(this,
+                                    "Vui lòng nhập tên sách!");
+                            return;
+                        }           ArrayList<Sach> list = sachService.GetSachByTenSach(tenSach);
+                        if (list == null || list.isEmpty()) {
+                            JOptionPane.showMessageDialog(this,
+                                    "Không tìm thấy sách!");
+                            return;
+                        }           for(Sach s : list) {
+                            model.addRow(new Object[]{
+                                s.getMaSach(),
+                                s.getTenSach(),
+                                s.getSoLuong()
+                            });
+                        }                              }
+                case "Thể Loại" ->                     {
+                        String maTL = Muon_txtTheLoaiTimKiem.getText().trim();
+                        if (maTL.isEmpty()) {
+                            JOptionPane.showMessageDialog(this,
+                                    "Vui lòng nhập mã thể loại!");
+                            return;
+                        }           ArrayList<Sach> list =
+                                sachService.GetSachByTheLoai(maTL);
+                        if (list == null || list.isEmpty()) {
+                            JOptionPane.showMessageDialog(this,
+                                    "Không tìm thấy sách theo thể loại!");
+                            return;
+                        }           for (Sach s : list) {
+                            model.addRow(new Object[]{
+                                s.getMaSach(),
+                                s.getTenSach(),
+                                s.getSoLuong()
+                            });
+                        }                              }
+                default -> {
+                }
+            }
+
+    } catch (HeadlessException | IOException | InterruptedException e) {
+        JOptionPane.showMessageDialog(this,
+                "Lỗi khi tìm kiếm sách!");
+        }
+    }//GEN-LAST:event_Muon_btTimKiemSachActionPerformed
+
+    private void Muon_btXacNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Muon_btXacNhanActionPerformed
+        // Kiểm tra người dùng
+        String maKH = Muon_txtMaKH.getText().trim();
+        String tenKH = Muon_txtTenKH.getText().trim();
+        if("".equals(maKH) || "".equals(tenKH)) {
+            JOptionPane.showMessageDialog(this, "Không tìm thấy bạn đọc, không thể tiến hành mượn sách!");
+            return;
+        }
+
+        int selected = Muon_tbSach.getSelectedRow();
+
+        if(selected == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn sách trong kho!");
+            return;
+        }
+
+        String tenSach = Muon_tbSach.getValueAt(selected, 1).toString();
+
+        Muon_txtTenSach.setText(tenSach);
+    }//GEN-LAST:event_Muon_btXacNhanActionPerformed
+
+    private void Muon_cbTimTheoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Muon_cbTimTheoActionPerformed
+        // TODO add your handling code here:
+        int index = Muon_cbTimTheo.getSelectedIndex();
+        Muon_cbTimTheo.setSelectedIndex(index);
+
+        // Reset text
+        Muon_txtMaSachTimKiem.setText("");
+        Muon_txtTenSachTimKiem.setText("");
+        Muon_txtTheLoaiTimKiem.setText("");
+
+        switch (index) {
+            case 0 -> {
+                Muon_txtMaSachTimKiem.setEnabled(true);
+                Muon_txtTenSachTimKiem.setEnabled(false);
+                Muon_txtTheLoaiTimKiem.setEnabled(false);
+            }
+            case 1 -> {
+                Muon_txtMaSachTimKiem.setEnabled(false);
+                Muon_txtTenSachTimKiem.setEnabled(true);
+                Muon_txtTheLoaiTimKiem.setEnabled(false);
+            }
+            case 2 -> {
+                Muon_txtMaSachTimKiem.setEnabled(false);
+                Muon_txtTenSachTimKiem.setEnabled(false);
+                Muon_txtTheLoaiTimKiem.setEnabled(true);
+            }
+            default -> {
+            }
+        }
+    }//GEN-LAST:event_Muon_cbTimTheoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -975,8 +1295,8 @@ public class Manager extends javax.swing.JFrame {
     private javax.swing.JTextField Info_txtUsername;
     private javax.swing.JPanel Muon;
     private javax.swing.JButton Muon_bt;
-    private javax.swing.JButton Muon_btTim;
     private javax.swing.JButton Muon_btTimKiemSach;
+    private javax.swing.JButton Muon_btXacNhan;
     private javax.swing.JComboBox<String> Muon_cbTimTheo;
     private javax.swing.JLabel Muon_lbDSMuon;
     private javax.swing.JLabel Muon_lbMaKH;
