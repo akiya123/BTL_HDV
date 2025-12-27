@@ -37,22 +37,52 @@ public class Admin extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         Sach_txtMaSach = new javax.swing.JTextPane();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Sach_tbSach = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        Sach_tbTheLoai = new javax.swing.JTable();
         Sach_lbTheLoai = new javax.swing.JLabel();
-        Sach_butThemTenSach = new javax.swing.JButton();
+        Sach_butThem = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTextPane2 = new javax.swing.JTextPane();
-        Sach_butNhapSoLuong = new javax.swing.JButton();
-        Sach_butXoaSach = new javax.swing.JButton();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        Sach_tfTimKiem = new javax.swing.JTextPane();
+        Sach_butXoa = new javax.swing.JButton();
         Sach_butTimKiem = new javax.swing.JButton();
         Sach_butLamMoi = new javax.swing.JButton();
+        Sach_butSua = new javax.swing.JButton();
+        Sach_butHienThi = new javax.swing.JButton();
+        Sach_cbTimTheo = new javax.swing.JComboBox<>();
         TheLoai = new javax.swing.JPanel();
+        TheLoai_butThem = new javax.swing.JButton();
+        TheLoai_butSua = new javax.swing.JButton();
+        TheLoai_butXoa = new javax.swing.JButton();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        TheLoai_txtTheLoai = new javax.swing.JTextPane();
+        TheLoai_lbTheLoai = new javax.swing.JLabel();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        TheLoai_tfTimKiem = new javax.swing.JTextPane();
+        TheLoai_butTimKiem = new javax.swing.JButton();
+        TheLoai_butHienThi = new javax.swing.JButton();
+        TheLoai_cbTimTheo = new javax.swing.JComboBox<>();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        TheLoai_tbTheLoai = new javax.swing.JTable();
         TaiKhoan = new javax.swing.JPanel();
+        TaiKhoan_lbTenTaiKhoan = new javax.swing.JLabel();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        TaiKhoan_txtTenTaiKhoan = new javax.swing.JTextPane();
+        TaiKhoan__butThem = new javax.swing.JButton();
+        TaiKhoan__butSua = new javax.swing.JButton();
+        TaiKhoan__butXoa = new javax.swing.JButton();
+        TaiKhoan_lbMatKhau = new javax.swing.JLabel();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        TaiKhoan_txtMatKhau = new javax.swing.JTextPane();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        Sach_tfTimKiem1 = new javax.swing.JTextPane();
+        Sach_butTimKiem1 = new javax.swing.JButton();
+        Sach_butHienThi1 = new javax.swing.JButton();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        TaiKhoan_tbTaiKhoan = new javax.swing.JTable();
+        TaiKhoan_lbTimTheoTenTK = new javax.swing.JLabel();
         LichSuGiaoDich = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -61,87 +91,76 @@ public class Admin extends javax.swing.JFrame {
 
         Sach.setDoubleBuffered(false);
 
+        Sach_lbTenSach.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Sach_lbTenSach.setText("Tên Sách:");
 
+        Sach_lbSoLuong.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Sach_lbSoLuong.setText("Số lượng:");
 
         jScrollPane1.setViewportView(Sach_txtTenSach);
 
         jScrollPane2.setViewportView(Sach_txtMaSach);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Sach_tbSach.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Mã Sách", "Tên Sách", "Số lượng"
+                "Mã Sách", "Tên Sách", "Số lượng", "Thể loại"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-        }
+        jScrollPane3.setViewportView(Sach_tbSach);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        Sach_tbTheLoai.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null},
+                {null},
+                {null},
+                {null}
             },
             new String [] {
-                "Mã thể loại", "Thể loại"
+                "Thể loại"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane4.setViewportView(jTable2);
+        jScrollPane4.setViewportView(Sach_tbTheLoai);
 
+        Sach_lbTheLoai.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Sach_lbTheLoai.setText("Thể loại:");
 
-        Sach_butThemTenSach.setLabel("Thêm");
-        Sach_butThemTenSach.addActionListener(new java.awt.event.ActionListener() {
+        Sach_butThem.setLabel("Thêm");
+        Sach_butThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Sach_butThemTenSachActionPerformed(evt);
+                Sach_butThemActionPerformed(evt);
             }
         });
 
         jScrollPane5.setViewportView(jTextPane1);
 
-        jScrollPane6.setViewportView(jTextPane2);
+        jScrollPane6.setViewportView(Sach_tfTimKiem);
 
-        Sach_butNhapSoLuong.setLabel("Nhập số lượng");
-
-        Sach_butXoaSach.setText("Xóa sách");
-        Sach_butXoaSach.addActionListener(new java.awt.event.ActionListener() {
+        Sach_butXoa.setText("Xóa");
+        Sach_butXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Sach_butXoaSachActionPerformed(evt);
-            }
-        });
-
-        jToggleButton1.setText("Tìm theo");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                Sach_butXoaActionPerformed(evt);
             }
         });
 
@@ -159,6 +178,17 @@ public class Admin extends javax.swing.JFrame {
             }
         });
 
+        Sach_butSua.setText("Sửa");
+        Sach_butSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Sach_butSuaActionPerformed(evt);
+            }
+        });
+
+        Sach_butHienThi.setText("Hiển thị");
+
+        Sach_cbTimTheo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tim theo tên", "Tim theo mã", "Tim theo thể loại" }));
+
         javax.swing.GroupLayout SachLayout = new javax.swing.GroupLayout(Sach);
         Sach.setLayout(SachLayout);
         SachLayout.setHorizontalGroup(
@@ -166,43 +196,43 @@ public class Admin extends javax.swing.JFrame {
             .addGroup(SachLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(SachLayout.createSequentialGroup()
-                            .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(SachLayout.createSequentialGroup()
-                                    .addComponent(Sach_lbTenSach, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(6, 6, 6)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(SachLayout.createSequentialGroup()
-                                    .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(Sach_lbTheLoai, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(Sach_lbSoLuong, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE))
-                                    .addGap(6, 6, 6)
-                                    .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                                        .addComponent(jScrollPane5))))
-                            .addGap(64, 64, 64)
-                            .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(SachLayout.createSequentialGroup()
-                                    .addComponent(Sach_butThemTenSach)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(Sach_butXoaSach))
-                                .addComponent(Sach_butNhapSoLuong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(SachLayout.createSequentialGroup()
-                            .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jScrollPane6)
-                            .addGap(18, 18, 18)
-                            .addComponent(Sach_butTimKiem)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SachLayout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 753, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                    .addGroup(SachLayout.createSequentialGroup()
                         .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SachLayout.createSequentialGroup()
-                                .addComponent(Sach_butLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)))))
-                .addContainerGap())
+                            .addGroup(SachLayout.createSequentialGroup()
+                                .addComponent(Sach_lbTenSach, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(SachLayout.createSequentialGroup()
+                                .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(Sach_lbTheLoai, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Sach_lbSoLuong, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE))
+                                .addGap(6, 6, 6)
+                                .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane5))))
+                        .addGap(64, 64, 64)
+                        .addComponent(Sach_butThem)
+                        .addGap(18, 18, 18)
+                        .addComponent(Sach_butSua)
+                        .addGap(18, 18, 18)
+                        .addComponent(Sach_butXoa)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(SachLayout.createSequentialGroup()
+                        .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(SachLayout.createSequentialGroup()
+                                .addComponent(Sach_cbTimTheo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(Sach_butTimKiem)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Sach_butHienThi))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 753, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                        .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Sach_butLamMoi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33))))
         );
         SachLayout.setVerticalGroup(
             SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,26 +245,24 @@ public class Admin extends javax.swing.JFrame {
                                 .addComponent(jScrollPane1)
                                 .addComponent(Sach_lbTenSach, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(Sach_butThemTenSach)
-                                .addComponent(Sach_butXoaSach)))
-                        .addGap(17, 17, 17)
-                        .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jScrollPane2)
-                                .addComponent(Sach_lbSoLuong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(Sach_butNhapSoLuong))
+                                .addComponent(Sach_butThem)
+                                .addComponent(Sach_butXoa)
+                                .addComponent(Sach_butSua)))
+                        .addGap(18, 18, 18)
+                        .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2)
+                            .addComponent(Sach_lbSoLuong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(Sach_lbTheLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(55, 55, 55)
                 .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                    .addGroup(SachLayout.createSequentialGroup()
-                        .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Sach_butTimKiem))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
+                    .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Sach_butTimKiem)
+                        .addComponent(Sach_butHienThi))
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Sach_cbTimTheo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane4)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -243,37 +271,263 @@ public class Admin extends javax.swing.JFrame {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        Sach_butThemTenSach.getAccessibleContext().setAccessibleName("Thêm");
-
         AdminCT.addTab("Sach", Sach);
         Sach.getAccessibleContext().setAccessibleName("");
 
         TheLoai.setDoubleBuffered(false);
 
+        TheLoai_butThem.setLabel("Thêm");
+        TheLoai_butThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TheLoai_butThemActionPerformed(evt);
+            }
+        });
+
+        TheLoai_butSua.setText("Sửa");
+        TheLoai_butSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TheLoai_butSuaActionPerformed(evt);
+            }
+        });
+
+        TheLoai_butXoa.setText("Xóa");
+        TheLoai_butXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TheLoai_butXoaActionPerformed(evt);
+            }
+        });
+
+        jScrollPane9.setViewportView(TheLoai_txtTheLoai);
+
+        TheLoai_lbTheLoai.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        TheLoai_lbTheLoai.setText("Thể loại:");
+
+        jScrollPane10.setViewportView(TheLoai_tfTimKiem);
+
+        TheLoai_butTimKiem.setText("Tìm kiếm");
+        TheLoai_butTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TheLoai_butTimKiemActionPerformed(evt);
+            }
+        });
+
+        TheLoai_butHienThi.setText("Hiển thị");
+
+        TheLoai_cbTimTheo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tìm theo mã", "Tìm theo tên" }));
+
+        TheLoai_tbTheLoai.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Mã thể loại", "Tên thể loại"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane8.setViewportView(TheLoai_tbTheLoai);
+
         javax.swing.GroupLayout TheLoaiLayout = new javax.swing.GroupLayout(TheLoai);
         TheLoai.setLayout(TheLoaiLayout);
         TheLoaiLayout.setHorizontalGroup(
             TheLoaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1024, Short.MAX_VALUE)
+            .addGroup(TheLoaiLayout.createSequentialGroup()
+                .addGroup(TheLoaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(TheLoaiLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, TheLoaiLayout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addGroup(TheLoaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(TheLoaiLayout.createSequentialGroup()
+                                .addComponent(TheLoai_lbTheLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(TheLoai_butThem))
+                            .addGroup(TheLoaiLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(TheLoai_cbTimTheo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane10)))
+                        .addGap(18, 18, 18)
+                        .addGroup(TheLoaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TheLoai_butSua)
+                            .addComponent(TheLoai_butTimKiem))
+                        .addGap(18, 18, 18)
+                        .addGroup(TheLoaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TheLoai_butXoa)
+                            .addComponent(TheLoai_butHienThi))))
+                .addContainerGap(410, Short.MAX_VALUE))
         );
         TheLoaiLayout.setVerticalGroup(
             TheLoaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 733, Short.MAX_VALUE)
+            .addGroup(TheLoaiLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(TheLoaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(TheLoaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(TheLoai_butThem)
+                        .addComponent(TheLoai_butXoa)
+                        .addComponent(TheLoai_butSua))
+                    .addComponent(TheLoai_lbTheLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(TheLoaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(TheLoaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(TheLoai_butTimKiem)
+                        .addComponent(TheLoai_butHienThi))
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TheLoai_cbTimTheo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 598, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         AdminCT.addTab("TheLoai", TheLoai);
 
         TaiKhoan.setDoubleBuffered(false);
 
+        TaiKhoan_lbTenTaiKhoan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        TaiKhoan_lbTenTaiKhoan.setText("Tên tài khoản:");
+
+        jScrollPane11.setViewportView(TaiKhoan_txtTenTaiKhoan);
+
+        TaiKhoan__butThem.setLabel("Thêm");
+        TaiKhoan__butThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TaiKhoan__butThemActionPerformed(evt);
+            }
+        });
+
+        TaiKhoan__butSua.setText("Sửa");
+        TaiKhoan__butSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TaiKhoan__butSuaActionPerformed(evt);
+            }
+        });
+
+        TaiKhoan__butXoa.setText("Xóa");
+        TaiKhoan__butXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TaiKhoan__butXoaActionPerformed(evt);
+            }
+        });
+
+        TaiKhoan_lbMatKhau.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        TaiKhoan_lbMatKhau.setText("Mật khẩu:");
+
+        jScrollPane12.setViewportView(TaiKhoan_txtMatKhau);
+
+        jScrollPane13.setViewportView(Sach_tfTimKiem1);
+
+        Sach_butTimKiem1.setText("Tìm kiếm");
+        Sach_butTimKiem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Sach_butTimKiem1ActionPerformed(evt);
+            }
+        });
+
+        Sach_butHienThi1.setText("Hiển thị");
+        Sach_butHienThi1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Sach_butHienThi1ActionPerformed(evt);
+            }
+        });
+
+        TaiKhoan_tbTaiKhoan.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Username", "Mật khẩu", "Số điện thoại", "Tên khách hàng"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane7.setViewportView(TaiKhoan_tbTaiKhoan);
+
+        TaiKhoan_lbTimTheoTenTK.setText("Tìm theo tên tài khoản");
+
         javax.swing.GroupLayout TaiKhoanLayout = new javax.swing.GroupLayout(TaiKhoan);
         TaiKhoan.setLayout(TaiKhoanLayout);
         TaiKhoanLayout.setHorizontalGroup(
             TaiKhoanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1024, Short.MAX_VALUE)
+            .addGroup(TaiKhoanLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(TaiKhoanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(TaiKhoanLayout.createSequentialGroup()
+                        .addGroup(TaiKhoanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(TaiKhoanLayout.createSequentialGroup()
+                                .addGroup(TaiKhoanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(TaiKhoan_lbTenTaiKhoan, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                                    .addComponent(TaiKhoan_lbMatKhau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(TaiKhoanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane12)))
+                            .addGroup(TaiKhoanLayout.createSequentialGroup()
+                                .addComponent(TaiKhoan_lbTimTheoTenTK, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane13)))
+                        .addGap(18, 18, 18)
+                        .addGroup(TaiKhoanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(TaiKhoanLayout.createSequentialGroup()
+                                .addComponent(TaiKhoan__butThem)
+                                .addGap(18, 18, 18)
+                                .addComponent(TaiKhoan__butSua)
+                                .addGap(18, 18, 18)
+                                .addComponent(TaiKhoan__butXoa))
+                            .addComponent(Sach_butTimKiem1))
+                        .addGap(133, 133, 133)
+                        .addComponent(Sach_butHienThi1))
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 920, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(69, 69, 69))
         );
         TaiKhoanLayout.setVerticalGroup(
             TaiKhoanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 733, Short.MAX_VALUE)
+            .addGroup(TaiKhoanLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(TaiKhoanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(TaiKhoanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane11)
+                        .addComponent(TaiKhoan_lbTenTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(TaiKhoanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(TaiKhoan__butThem)
+                        .addComponent(TaiKhoan__butXoa)
+                        .addComponent(TaiKhoan__butSua)))
+                .addGap(18, 18, 18)
+                .addGroup(TaiKhoanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane12)
+                    .addComponent(TaiKhoan_lbMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(95, 95, 95)
+                .addGroup(TaiKhoanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(TaiKhoanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Sach_butTimKiem1)
+                        .addComponent(Sach_butHienThi1))
+                    .addGroup(TaiKhoanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(TaiKhoan_lbTimTheoTenTK, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane13, javax.swing.GroupLayout.Alignment.LEADING)))
+                .addGap(36, 36, 36)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         AdminCT.addTab("TaiKhoan", TaiKhoan);
@@ -311,17 +565,13 @@ public class Admin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Sach_butThemTenSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butThemTenSachActionPerformed
+    private void Sach_butThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butThemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Sach_butThemTenSachActionPerformed
+    }//GEN-LAST:event_Sach_butThemActionPerformed
 
-    private void Sach_butXoaSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butXoaSachActionPerformed
+    private void Sach_butXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butXoaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Sach_butXoaSachActionPerformed
-
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    }//GEN-LAST:event_Sach_butXoaActionPerformed
 
     private void Sach_butTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butTimKiemActionPerformed
         // TODO add your handling code here:
@@ -330,6 +580,46 @@ public class Admin extends javax.swing.JFrame {
     private void Sach_butLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butLamMoiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Sach_butLamMoiActionPerformed
+
+    private void Sach_butSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butSuaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Sach_butSuaActionPerformed
+
+    private void TheLoai_butThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TheLoai_butThemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TheLoai_butThemActionPerformed
+
+    private void TheLoai_butSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TheLoai_butSuaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TheLoai_butSuaActionPerformed
+
+    private void TheLoai_butXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TheLoai_butXoaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TheLoai_butXoaActionPerformed
+
+    private void TheLoai_butTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TheLoai_butTimKiemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TheLoai_butTimKiemActionPerformed
+
+    private void TaiKhoan__butThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaiKhoan__butThemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TaiKhoan__butThemActionPerformed
+
+    private void TaiKhoan__butSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaiKhoan__butSuaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TaiKhoan__butSuaActionPerformed
+
+    private void TaiKhoan__butXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaiKhoan__butXoaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TaiKhoan__butXoaActionPerformed
+
+    private void Sach_butTimKiem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butTimKiem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Sach_butTimKiem1ActionPerformed
+
+    private void Sach_butHienThi1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butHienThi1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Sach_butHienThi1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -360,28 +650,58 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JTabbedPane AdminCT;
     private javax.swing.JPanel LichSuGiaoDich;
     private javax.swing.JPanel Sach;
+    private javax.swing.JButton Sach_butHienThi;
+    private javax.swing.JButton Sach_butHienThi1;
     private javax.swing.JButton Sach_butLamMoi;
-    private javax.swing.JButton Sach_butNhapSoLuong;
-    private javax.swing.JButton Sach_butThemTenSach;
+    private javax.swing.JButton Sach_butSua;
+    private javax.swing.JButton Sach_butThem;
     private javax.swing.JButton Sach_butTimKiem;
-    private javax.swing.JButton Sach_butXoaSach;
+    private javax.swing.JButton Sach_butTimKiem1;
+    private javax.swing.JButton Sach_butXoa;
+    private javax.swing.JComboBox<String> Sach_cbTimTheo;
     private javax.swing.JLabel Sach_lbSoLuong;
     private javax.swing.JLabel Sach_lbTenSach;
     private javax.swing.JLabel Sach_lbTheLoai;
+    private javax.swing.JTable Sach_tbSach;
+    private javax.swing.JTable Sach_tbTheLoai;
+    private javax.swing.JTextPane Sach_tfTimKiem;
+    private javax.swing.JTextPane Sach_tfTimKiem1;
     private javax.swing.JTextPane Sach_txtMaSach;
     private javax.swing.JTextPane Sach_txtTenSach;
     private javax.swing.JPanel TaiKhoan;
+    private javax.swing.JButton TaiKhoan__butSua;
+    private javax.swing.JButton TaiKhoan__butThem;
+    private javax.swing.JButton TaiKhoan__butXoa;
+    private javax.swing.JLabel TaiKhoan_lbMatKhau;
+    private javax.swing.JLabel TaiKhoan_lbTenTaiKhoan;
+    private javax.swing.JLabel TaiKhoan_lbTimTheoTenTK;
+    private javax.swing.JTable TaiKhoan_tbTaiKhoan;
+    private javax.swing.JTextPane TaiKhoan_txtMatKhau;
+    private javax.swing.JTextPane TaiKhoan_txtTenTaiKhoan;
     private javax.swing.JPanel TheLoai;
+    private javax.swing.JButton TheLoai_butHienThi;
+    private javax.swing.JButton TheLoai_butSua;
+    private javax.swing.JButton TheLoai_butThem;
+    private javax.swing.JButton TheLoai_butTimKiem;
+    private javax.swing.JButton TheLoai_butXoa;
+    private javax.swing.JComboBox<String> TheLoai_cbTimTheo;
+    private javax.swing.JLabel TheLoai_lbTheLoai;
+    private javax.swing.JTable TheLoai_tbTheLoai;
+    private javax.swing.JTextPane TheLoai_tfTimKiem;
+    private javax.swing.JTextPane TheLoai_txtTheLoai;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTextPane jTextPane1;
-    private javax.swing.JTextPane jTextPane2;
-    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }
