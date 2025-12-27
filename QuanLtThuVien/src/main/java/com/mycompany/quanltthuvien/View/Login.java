@@ -113,20 +113,19 @@ public class Login extends javax.swing.JFrame {
         LoginController lc = new LoginController();
         String role = lc.login(usernane, pass);
         if(role != null){
-            //Chuyển sang màn hình tương ứng với role
-            if(role.equals("AD")){
+            if(role.contains("AD")){
                 Admin ad = new Admin();
                 ad.setVisible(true);
                 this.dispose();
-            }else if(role.equals("MG")){
+            }else if(role.contains("MG")){
                 Manager mg = new Manager();
                 mg.setVisible(true);
-                this.dispose();
+                this.dispose();     
             }
         }else{
-            //Hiển thị thông báo lỗi
-            javax.swing.JOptionPane.showMessageDialog(this, "Tên đăng nhập hoặc mật khẩu không đúng");
+            javax.swing.JOptionPane.showMessageDialog(this, "Đăng nhập thất bại");
         }
+        
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
