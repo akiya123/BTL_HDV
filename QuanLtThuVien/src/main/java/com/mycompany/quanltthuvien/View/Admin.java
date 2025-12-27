@@ -112,6 +112,7 @@ public class Admin extends javax.swing.JFrame {
         TruyVan_txtNamTra = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         TruyVan_btLayThongTin = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1024, 768));
@@ -802,6 +803,15 @@ public class Admin extends javax.swing.JFrame {
         AdminCT.addTab("Truy Vấn", LichSuGiaoDich);
         LichSuGiaoDich.getAccessibleContext().setAccessibleName("");
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 128)); // NOI18N
+        jButton1.setText("Đăng xuất");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Logout(evt);
+            }
+        });
+        AdminCT.addTab("Đăng xuất", jButton1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -915,6 +925,13 @@ public class Admin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TruyVan_txtNamTraActionPerformed
 
+    private void Logout(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Logout
+        // TODO add your handling code here:
+        Login lg = new Login();
+        lg.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_Logout
+
     /**
      * @param args the command line arguments
      */
@@ -996,6 +1013,7 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JTextField TruyVan_txtNgayTra;
     private javax.swing.JTextField TruyVan_txtThangMuon;
     private javax.swing.JTextField TruyVan_txtThangTra;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

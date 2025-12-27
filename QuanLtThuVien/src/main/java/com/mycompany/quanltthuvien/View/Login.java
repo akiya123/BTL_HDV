@@ -4,6 +4,8 @@
  */
 package com.mycompany.quanltthuvien.View;
 
+import java.io.IOException;
+
 import com.mycompany.quanltthuvien.Controller.LoginController;
 
 /**
@@ -103,15 +105,15 @@ public class Login extends javax.swing.JFrame {
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
-        String usernane = txt_username.getText();
+        String username = txt_username.getText();
         String pass = new String(txt_pass.getPassword());
-        if(usernane.isEmpty() || pass.isEmpty()){
+        if(username.isEmpty() || pass.isEmpty()){
             javax.swing.JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin");
             return;
         }
         //Xử lý đăng nhập ở đây
         LoginController lc = new LoginController();
-        String role = lc.login(usernane, pass);
+        String role = lc.login(username, pass);
         if(role != null){
             if(role.contains("AD")){
                 Admin ad = new Admin();
@@ -119,6 +121,15 @@ public class Login extends javax.swing.JFrame {
                 this.dispose();
             }else if(role.contains("MG")){
                 Manager mg = new Manager();
+                try {
+                    mg.GetUsername(username);
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
                 mg.setVisible(true);
                 this.dispose();     
             }

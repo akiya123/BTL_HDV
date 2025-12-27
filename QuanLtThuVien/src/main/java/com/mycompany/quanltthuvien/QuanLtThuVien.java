@@ -4,6 +4,8 @@
 
 package com.mycompany.quanltthuvien;
 
+import com.mycompany.quanltthuvien.View.Manager;
+
 /**
  *
  * @author Legion
@@ -11,6 +13,7 @@ package com.mycompany.quanltthuvien;
 public class QuanLtThuVien {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Manager mg = new Manager();
+        mg.setVisible(true);
     }
 }

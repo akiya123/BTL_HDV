@@ -35,6 +35,24 @@ public class TaiKhoanService {
         return role;
     }
 
+    //Lấy tài khoản
+    public TaiKhoan GetTaiKhoan(String username) throws IOException, InterruptedException {
+        HttpRequest getRequest = HttpRequest.newBuilder()
+                .uri(URI.create(baseUrl + "TaiKhoan/GetTaiKhoanByUsername?username=" + URLEncoder.encode(username, StandardCharsets.UTF_8)))
+                .GET()
+                .build();
+        
+        response = client.send(getRequest, HttpResponse.BodyHandlers.ofString());
+        
+        JSONObject obj = new JSONObject(response.body());
+            String password = obj.optString("Pass", "");
+            String role = obj.optString("Role", "");
+            String sdtTK = obj.optString("SdtTK", "");
+            String tenTK = obj.optString("TenTK", "");
+            TaiKhoan tk = new TaiKhoan(username, password, role, sdtTK, tenTK);
+        return tk;
+    }
+
     //Lấy tất cả tài khoản
     public ArrayList<TaiKhoan> GetAllTaiKhoan() throws IOException, InterruptedException {
         HttpRequest getRequest = HttpRequest.newBuilder()
