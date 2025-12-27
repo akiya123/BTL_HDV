@@ -10,6 +10,7 @@ import com.mycompany.quanltthuvien.Model.Sach;
 import com.mycompany.quanltthuvien.Controller.ManagerController;
 import com.mycompany.quanltthuvien.Service.SachService;
 import java.io.IOException;
+import java.time.LocalDate;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -1024,11 +1025,16 @@ public class Manager extends javax.swing.JFrame {
             }
             
             // Tạo đối tượng Mượn
-            Muon muon = new Muon();
-            muon.setMaKH(maKH);
-            muon.setMaSach(maSach);
-            muon.setSoLuong(soluongMuon);
-            
+            String NgayTra;
+            String NgayMuon = LocalDate.now().toString();
+            if(LocalDate.now().getDayOfMonth() + 3 > 12) {
+                NgayTra = LocalDate.now().plusMonths(LocalDate.now().getDayOfMonth() + 3 - 12).toString();
+            }else{
+                NgayTra = LocalDate.now().plusMonths(3).toString();
+            }
+
+            Muon muon = new Muon(" ",maKH , maSach, soluongMuon, NgayMuon, NgayTra);
+
             boolean result = managerController.MuonSach(muon, usernameLogin);
             
             if(result) {

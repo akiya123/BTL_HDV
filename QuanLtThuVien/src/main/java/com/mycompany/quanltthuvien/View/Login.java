@@ -19,7 +19,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
-        setSize(1024, 768); // hoặc kích thước bạn muốn
+        setSize(415, 520); // hoặc kích thước bạn muốn
         setLocationRelativeTo(null);
     }
 
@@ -96,7 +96,7 @@ public class Login extends javax.swing.JFrame {
         jToggleButton2.setBounds(100, 420, 190, 50);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, -10, 560, 590);
+        jPanel1.setBounds(0, -10, 400, 490);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
