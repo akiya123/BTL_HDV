@@ -119,7 +119,6 @@ public class Manager extends javax.swing.JFrame {
         TraSach_lbMaSach = new javax.swing.JLabel();
         TraSach_txtMaSachTimKiem = new javax.swing.JTextField();
         TraSach_btTimKiemSach = new javax.swing.JButton();
-        TraSach_cbTimTheo = new javax.swing.JComboBox<>();
         Muon_lbTenSachTimKiem1 = new javax.swing.JLabel();
         TraSach_txtTenSachTimKiem = new javax.swing.JTextField();
         TraSach_lbDSMuon = new javax.swing.JLabel();
@@ -127,6 +126,7 @@ public class Manager extends javax.swing.JFrame {
         TraSach_txtTheLoaiTimKiem = new javax.swing.JTextField();
         TraSach_lbNgayMuon = new javax.swing.JLabel();
         TraSach_txtNgayMuon = new javax.swing.JTextField();
+        TraSach_cbTimKiem = new javax.swing.JComboBox<>();
         TruyVan = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         TruyVan_tbDonMuon = new javax.swing.JTable();
@@ -418,7 +418,7 @@ public class Manager extends javax.swing.JFrame {
             }
         });
         Muon.add(Muon_cbTimTheo);
-        Muon_cbTimTheo.setBounds(940, 80, 90, 22);
+        Muon_cbTimTheo.setBounds(940, 80, 100, 30);
 
         Muon_lbTenSachTimKiem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Muon_lbTenSachTimKiem.setText("Tên sách:");
@@ -461,7 +461,7 @@ public class Manager extends javax.swing.JFrame {
         TraSach_bt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         TraSach_bt.setText("Trả");
         TraSach.add(TraSach_bt);
-        TraSach_bt.setBounds(430, 130, 80, 27);
+        TraSach_bt.setBounds(420, 110, 80, 27);
 
         TraSach_lbMaKH.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         TraSach_lbMaKH.setText("Mã bạn đọc:");
@@ -512,11 +512,10 @@ public class Manager extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        TraSach_tbDSTra.setEnabled(false);
         jScrollPane4.setViewportView(TraSach_tbDSTra);
 
         TraSach.add(jScrollPane4);
-        jScrollPane4.setBounds(40, 300, 410, 340);
+        jScrollPane4.setBounds(40, 300, 410, 350);
 
         TraSach_lbDSTra.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         TraSach_lbDSTra.setText("Danh sách Trả");
@@ -542,7 +541,6 @@ public class Manager extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        TraSach_tbDSMuon.setEnabled(false);
         jScrollPane5.setViewportView(TraSach_tbDSMuon);
 
         TraSach.add(jScrollPane5);
@@ -561,17 +559,13 @@ public class Manager extends javax.swing.JFrame {
         TraSach.add(TraSach_btTimKiemSach);
         TraSach_btTimKiemSach.setBounds(770, 220, 90, 30);
 
-        TraSach_cbTimTheo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        TraSach_cbTimTheo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã Sách", "Tên Sách", "Thể Loại", "Ngày mượn" }));
-        TraSach.add(TraSach_cbTimTheo);
-        TraSach_cbTimTheo.setBounds(1100, 70, 90, 22);
-
         Muon_lbTenSachTimKiem1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Muon_lbTenSachTimKiem1.setText("Tên sách:");
         TraSach.add(Muon_lbTenSachTimKiem1);
         Muon_lbTenSachTimKiem1.setBounds(650, 80, 70, 30);
 
         TraSach_txtTenSachTimKiem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        TraSach_txtTenSachTimKiem.setEnabled(false);
         TraSach.add(TraSach_txtTenSachTimKiem);
         TraSach_txtTenSachTimKiem.setBounds(740, 80, 180, 26);
 
@@ -586,6 +580,7 @@ public class Manager extends javax.swing.JFrame {
         TraSach_lbTheLoai.setBounds(650, 120, 70, 30);
 
         TraSach_txtTheLoaiTimKiem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        TraSach_txtTheLoaiTimKiem.setEnabled(false);
         TraSach.add(TraSach_txtTheLoaiTimKiem);
         TraSach_txtTheLoaiTimKiem.setBounds(740, 120, 180, 26);
 
@@ -595,8 +590,19 @@ public class Manager extends javax.swing.JFrame {
         TraSach_lbNgayMuon.setBounds(650, 160, 80, 30);
 
         TraSach_txtNgayMuon.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        TraSach_txtNgayMuon.setEnabled(false);
         TraSach.add(TraSach_txtNgayMuon);
         TraSach_txtNgayMuon.setBounds(740, 160, 180, 26);
+
+        TraSach_cbTimKiem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        TraSach_cbTimKiem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã sách", "Tên sách", "Thể loại", "Ngày mượn" }));
+        TraSach_cbTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TraSach_cbTimKiemActionPerformed(evt);
+            }
+        });
+        TraSach.add(TraSach_cbTimKiem);
+        TraSach_cbTimKiem.setBounds(950, 100, 90, 26);
 
         jTabbedPane1.addTab("Trả Sách", TraSach);
 
@@ -844,7 +850,7 @@ public class Manager extends javax.swing.JFrame {
                         .addComponent(Info_lbTK)
                         .addGap(47, 47, 47)
                         .addComponent(Info_txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addContainerGap(241, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -870,7 +876,7 @@ public class Manager extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1079, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1177, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1033,6 +1039,10 @@ public class Manager extends javax.swing.JFrame {
         // Chuyển sang tab Mượn
         Muon_txtMaKH.setText(maKH);
         Muon_txtTenKH.setText(tenKH);
+        
+        // Chuyển sang tab Tra
+        TraSach_txtMaKH.setText(maKH);
+        TraSach_txtTenKH.setText(tenKH);
         
         tabManager.setSelectedIndex(0);
     }//GEN-LAST:event_TimKiem_btMuonActionPerformed
@@ -1252,6 +1262,47 @@ public class Manager extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_Muon_cbTimTheoActionPerformed
+                                                                    
+    private void TraSach_cbTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TraSach_cbTimKiemActionPerformed
+        // TODO add your handling code here:
+        int index = TraSach_cbTimKiem.getSelectedIndex();
+        Muon_cbTimTheo.setSelectedIndex(index);
+
+        // Reset text
+        TraSach_txtMaSachTimKiem.setText("");
+        TraSach_txtTenSachTimKiem.setText("");
+        TraSach_txtTheLoaiTimKiem.setText("");
+
+        switch (index) {
+            case 0 -> {
+                TraSach_txtMaSachTimKiem.setEnabled(true);
+                TraSach_txtTenSachTimKiem.setEnabled(false);
+                TraSach_txtTheLoaiTimKiem.setEnabled(false);
+                TraSach_txtNgayMuon.setEnabled(false);
+            }
+            case 1 -> {
+                TraSach_txtMaSachTimKiem.setEnabled(false);
+                TraSach_txtTenSachTimKiem.setEnabled(true);
+                TraSach_txtTheLoaiTimKiem.setEnabled(false);
+                TraSach_txtNgayMuon.setEnabled(false);
+            }
+            case 2 -> {
+                TraSach_txtMaSachTimKiem.setEnabled(false);
+                TraSach_txtTenSachTimKiem.setEnabled(false);
+                TraSach_txtTheLoaiTimKiem.setEnabled(true);
+                TraSach_txtNgayMuon.setEnabled(false);
+            }
+            case 3 -> {
+                TraSach_txtMaSachTimKiem.setEnabled(false);
+                TraSach_txtTenSachTimKiem.setEnabled(false);
+                TraSach_txtTheLoaiTimKiem.setEnabled(false);
+                TraSach_txtNgayMuon.setEnabled(true);
+            }
+            default -> {
+            }
+        }
+        
+    }//GEN-LAST:event_TraSach_cbTimKiemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1332,7 +1383,7 @@ public class Manager extends javax.swing.JFrame {
     private javax.swing.JPanel TraSach;
     private javax.swing.JButton TraSach_bt;
     private javax.swing.JButton TraSach_btTimKiemSach;
-    private javax.swing.JComboBox<String> TraSach_cbTimTheo;
+    private javax.swing.JComboBox<String> TraSach_cbTimKiem;
     private javax.swing.JLabel TraSach_lbDSMuon;
     private javax.swing.JLabel TraSach_lbDSTra;
     private javax.swing.JLabel TraSach_lbMaKH;
