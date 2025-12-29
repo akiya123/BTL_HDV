@@ -106,6 +106,8 @@ public class Manager extends javax.swing.JFrame {
         Muon_txtTenSachTimKiem = new javax.swing.JTextField();
         Muon_lbSach = new javax.swing.JLabel();
         Muon_btXacNhan = new javax.swing.JButton();
+        Muon_btConfimrMuon = new javax.swing.JButton();
+        Muon_HuyMuon = new javax.swing.JButton();
         TraSach = new javax.swing.JPanel();
         TraSach_lbSLTra = new javax.swing.JLabel();
         TraSach_txtSLTra = new javax.swing.JTextField();
@@ -461,6 +463,19 @@ public class Manager extends javax.swing.JFrame {
         Muon.add(Muon_btXacNhan);
         Muon_btXacNhan.setBounds(920, 260, 100, 30);
 
+        Muon_btConfimrMuon.setText("Xác nhận mượn");
+        Muon.add(Muon_btConfimrMuon);
+        Muon_btConfimrMuon.setBounds(330, 260, 130, 23);
+
+        Muon_HuyMuon.setText("Hủy mượn");
+        Muon_HuyMuon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Muon_HuyMuonActionPerformed(evt);
+            }
+        });
+        Muon.add(Muon_HuyMuon);
+        Muon_HuyMuon.setBounds(200, 260, 120, 23);
+
         jTabbedPane1.addTab("Mượn sách", Muon);
 
         TraSach.setLayout(null);
@@ -577,6 +592,11 @@ public class Manager extends javax.swing.JFrame {
         TraSach_txtMaSachTimKiem.setBounds(750, 50, 180, 26);
 
         TraSach_btTimKiemSach.setText("Tìm Kiếm");
+        TraSach_btTimKiemSach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TraSach_btTimKiemSachActionPerformed(evt);
+            }
+        });
         TraSach.add(TraSach_btTimKiemSach);
         TraSach_btTimKiemSach.setBounds(780, 230, 90, 30);
 
@@ -1367,6 +1387,15 @@ public class Manager extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TraSach_btActionPerformed
 
+    private void TraSach_btTimKiemSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TraSach_btTimKiemSachActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TraSach_btTimKiemSachActionPerformed
+
+    private void Muon_HuyMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Muon_HuyMuonActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_Muon_HuyMuonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1410,7 +1439,9 @@ public class Manager extends javax.swing.JFrame {
     private javax.swing.JTextField Info_txtSDT;
     private javax.swing.JTextField Info_txtUsername;
     private javax.swing.JPanel Muon;
+    private javax.swing.JButton Muon_HuyMuon;
     private javax.swing.JButton Muon_bt;
+    private javax.swing.JButton Muon_btConfimrMuon;
     private javax.swing.JButton Muon_btTimKiemSach;
     private javax.swing.JButton Muon_btXacNhan;
     private javax.swing.JComboBox<String> Muon_cbTimTheo;
