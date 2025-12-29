@@ -298,17 +298,17 @@ public class Manager extends javax.swing.JFrame {
 
         Muon_tbDSMuon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Tên sách", "Số lượng mượn"
+                "Mã sách", "Tên sách", "Số lượng mượn"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -516,17 +516,17 @@ public class Manager extends javax.swing.JFrame {
 
         TraSach_tbDSTra.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Tên sách", "Số lượng trả"
+                "Mã sách", "Tên sách", "Số lượng trả"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1157,6 +1157,7 @@ public class Manager extends javax.swing.JFrame {
         }
 
         // Lấy dữ liệu từ kho
+        String maSach = Muon_tbSach.getValueAt(selected, 0).toString();
         String tenSach = Muon_tbSach.getValueAt(selected, 1).toString();
         int soLuongKho = Integer.parseInt(Muon_tbSach.getValueAt(selected, 2).toString());
 
@@ -1169,6 +1170,7 @@ public class Manager extends javax.swing.JFrame {
             // Thêm vào bảng DS Mượn
             DefaultTableModel model = (DefaultTableModel) Muon_tbDSMuon.getModel();
             model.addRow(new Object[] {
+                maSach,
                 tenSach,
                 soLuongMuon
             });
