@@ -9,6 +9,8 @@ import com.mycompany.quanltthuvien.Model.Muon;
 import com.mycompany.quanltthuvien.Model.Sach;
 import com.mycompany.quanltthuvien.Controller.ManagerController;
 import com.mycompany.quanltthuvien.Model.TaiKhoan;
+import com.mycompany.quanltthuvien.Model.TheLoai;
+import com.mycompany.quanltthuvien.Service.MuonService;
 import com.mycompany.quanltthuvien.Service.SachService;
 import com.mycompany.quanltthuvien.Service.TaiKhoanService;
 import java.awt.HeadlessException;
@@ -19,6 +21,8 @@ import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,6 +35,7 @@ public class Manager extends javax.swing.JFrame {
     private javax.swing.JTabbedPane tabManager;
     ManagerController managerController = new ManagerController();
     SachService sachService = new SachService();
+    MuonService muonService = new MuonService();
     
     String usernameLogin = "admin";
     /**
@@ -134,6 +139,7 @@ public class Manager extends javax.swing.JFrame {
         TraSach_lbNgayMuon = new javax.swing.JLabel();
         TraSach_txtNgayMuon = new javax.swing.JTextField();
         TraSach_cbTimKiem = new javax.swing.JComboBox<>();
+        TraSach_btXacNhan = new javax.swing.JButton();
         TruyVan = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         TruyVan_tbDonMuon = new javax.swing.JTable();
@@ -550,7 +556,7 @@ public class Manager extends javax.swing.JFrame {
         jScrollPane4.setViewportView(TraSach_tbDSTra);
 
         TraSach.add(jScrollPane4);
-        jScrollPane4.setBounds(40, 300, 410, 350);
+        jScrollPane4.setBounds(40, 300, 410, 360);
 
         TraSach_lbDSTra.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         TraSach_lbDSTra.setText("Danh sách Trả");
@@ -640,6 +646,16 @@ public class Manager extends javax.swing.JFrame {
         });
         TraSach.add(TraSach_cbTimKiem);
         TraSach_cbTimKiem.setBounds(960, 110, 90, 26);
+
+        TraSach_btXacNhan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        TraSach_btXacNhan.setText("Xác nhận");
+        TraSach_btXacNhan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TraSach_btXacNhanActionPerformed(evt);
+            }
+        });
+        TraSach.add(TraSach_btXacNhan);
+        TraSach_btXacNhan.setBounds(960, 260, 100, 40);
 
         jTabbedPane1.addTab("Trả Sách", TraSach);
 
@@ -1394,6 +1410,117 @@ public class Manager extends javax.swing.JFrame {
 
     private void TraSach_btTimKiemSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TraSach_btTimKiemSachActionPerformed
         // TODO add your handling code here:
+        DefaultTableModel model =
+            (DefaultTableModel) TraSach_tbDSMuon.getModel();
+    model.setRowCount(0); // Xóa dữ liệu cũ
+
+    String loaiTim = TraSach_cbTimKiem.getSelectedItem().toString();
+
+    try {
+            // ===== TÌM THEO MÃ SÁCH =====
+            switch (loaiTim) {
+                case "Mã sách" ->
+                {
+                    String maSach = TraSach_txtMaSachTimKiem.getText().trim();
+                    if (maSach.isEmpty()) {
+                        JOptionPane.showMessageDialog(this,
+                                "Vui lòng nhập mã sách!");
+                        return;
+                    }       ArrayList<Muon> list = muonService.GetMuonByMaSach(maSach);
+                    if (list == null || list.isEmpty()) {
+                        JOptionPane.showMessageDialog(this,
+                                "Không tìm thấy sách!");
+                        return;
+                    }       
+                    for(Muon m : list) {
+                        Sach s = sachService.GetSachByMa(m.getMaSach());
+                        model.addRow(new Object[]{
+                            m.getMaSach(),
+                            s.getTenSach(),
+                            m.getSoLuong(),
+                            m.getNgayMuon()
+                        });
+                    }
+                }
+                case "Tên sách" ->
+                {
+                        String maSach = TraSach_txtMaSachTimKiem.getText().trim();
+                        String tenSach = TraSach_txtTenSachTimKiem.getText().trim();
+                        if (tenSach.isEmpty()) {
+                            JOptionPane.showMessageDialog(this,
+                                    "Vui lòng nhập tên sách!");
+                            return;
+                        }
+                        ArrayList<Muon> listMuon = muonService.GetMuonByMaSach(maSach);
+                        ArrayList<Sach> listSach = sachService.GetSachByTenSach(tenSach);
+                        if (listSach == null || listSach.isEmpty()) {
+                            JOptionPane.showMessageDialog(this,
+                                    "Không tìm thấy sách!");
+                            return;
+                        }
+//                        Set<String> maSachSet = new HashSet<>();
+//                        for(Sach s : listSach) {
+//                            maSachSet.add(s.getMaSach());
+//                        }
+//                        for(Muon m : listMuon) {
+//                            
+//                        }
+                }
+                case "Thể Loại" ->
+                {
+                        String maTL = TraSach_txtTheLoaiTimKiem.getText().trim();
+                        if (maTL.isEmpty()) {
+                            JOptionPane.showMessageDialog(this,
+                                    "Vui lòng nhập mã thể loại!");
+                            return;
+                        }           
+//                        ArrayList<Muon> list = muonService.get
+//                        if (list == null) {
+//                        JOptionPane.showMessageDialog(this,
+//                                "Không tìm thấy sách!");
+//                        return;
+//                    }       
+//                    for(Muon m : list) {
+//                        Sach s = sachService.GetSachByMa(m.getMaSach());
+//                        model.addRow(new Object[]{
+//                            m.getMaSach(),
+//                            s.getTenSach(),
+//                            m.getSoLuong(),
+//                            m.getNgayMuon()
+//                        });
+//                    }
+                }
+                case "Ngày mượn" -> {
+                    String ngayMuon = TraSach_txtNgayMuon.getText().trim();
+                    if(ngayMuon.isEmpty()) {
+                        JOptionPane.showMessageDialog(this,
+                                "Vui lòng nhập mã sách!");
+                        return;
+                    }
+                    ArrayList<Muon> listMuon = muonService.GetMuonByNgayMuon(ngayMuon);
+                    if (listMuon == null || listMuon.isEmpty()) {
+                        JOptionPane.showMessageDialog(this,
+                                "Không tìm thấy sách!");
+                        return;
+                    }
+                    for(Muon m : listMuon) {
+                        Sach s = sachService.GetSachByMa(m.getMaSach());
+                        model.addRow(new Object[]{
+                            m.getMaSach(),
+                            s.getTenSach(),
+                            m.getSoLuong(),
+                            m.getNgayMuon()
+                        });
+                    }
+                }
+                default -> {
+                }
+            }
+
+    } catch (HeadlessException | IOException | InterruptedException e) {
+        JOptionPane.showMessageDialog(this,
+                "Lỗi khi tìm kiếm sách!");
+        }
     }//GEN-LAST:event_TraSach_btTimKiemSachActionPerformed
 
     private void Muon_HuyMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Muon_HuyMuonActionPerformed
@@ -1447,6 +1574,27 @@ public class Manager extends javax.swing.JFrame {
         Muon_tbDSMuon.removeAll();
 
     }//GEN-LAST:event_Muon_btConfimrMuonActionPerformed
+
+    private void TraSach_btXacNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TraSach_btXacNhanActionPerformed
+        // Kiểm tra người dùng
+        String maKH = TraSach_txtMaKH.getText().trim();
+        String tenKH = TraSach_txtTenKH.getText().trim();
+        if("".equals(maKH) || "".equals(tenKH)) {
+            JOptionPane.showMessageDialog(this, "Không tìm thấy bạn đọc, không thể tiến hành trả sách!");
+            return;
+        }
+
+        int selected = TraSach_tbDSMuon.getSelectedRow();
+
+        if(selected == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn sách trong kho!");
+            return;
+        }
+
+        String tenSach = TraSach_tbDSMuon.getValueAt(selected, 1).toString();
+
+        TraSach_txtTenSach.setText(tenSach);
+    }//GEN-LAST:event_TraSach_btXacNhanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1532,6 +1680,7 @@ public class Manager extends javax.swing.JFrame {
     private javax.swing.JPanel TraSach;
     private javax.swing.JButton TraSach_bt;
     private javax.swing.JButton TraSach_btTimKiemSach;
+    private javax.swing.JButton TraSach_btXacNhan;
     private javax.swing.JComboBox<String> TraSach_cbTimKiem;
     private javax.swing.JLabel TraSach_lbDSMuon;
     private javax.swing.JLabel TraSach_lbDSTra;
