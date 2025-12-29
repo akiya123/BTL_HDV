@@ -300,10 +300,7 @@ public class Manager extends javax.swing.JFrame {
 
         Muon_tbDSMuon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Mã sách", "Tên sách", "Số lượng mượn"
@@ -464,6 +461,11 @@ public class Manager extends javax.swing.JFrame {
         Muon_btXacNhan.setBounds(920, 260, 100, 30);
 
         Muon_btConfimrMuon.setText("Xác nhận mượn");
+        Muon_btConfimrMuon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Muon_btConfimrMuonActionPerformed(evt);
+            }
+        });
         Muon.add(Muon_btConfimrMuon);
         Muon_btConfimrMuon.setBounds(330, 260, 130, 23);
 
@@ -1393,8 +1395,55 @@ public class Manager extends javax.swing.JFrame {
 
     private void Muon_HuyMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Muon_HuyMuonActionPerformed
         // TODO add your handling code here:
+        DefaultTableModel DSMuon =
+            (DefaultTableModel) this.Muon_tbDSMuon.getModel();
+        DefaultTableModel Muon_tbSach =
+            (DefaultTableModel) this.Muon_tbSach.getModel();
         
+        // Lấy mã sách từ bảng DS Mượn
+        String maSach = DSMuon.getValueAt(Muon_tbDSMuon.getSelectedRow(), 0).toString();
+        
+        //Thêm lại số lượng sách vào kho
+        // Lấy số lượng sách mượn từ bảng DS Mượn
+        int soLuongMuon = Integer.parseInt(DSMuon.getValueAt(Muon_tbDSMuon.getSelectedRow(), 2).toString());
+        
+        // Cập nhật số lượng sách trong bảng Sách
+        for (int i = 0; i < Muon_tbSach.getRowCount(); i++) {
+            if (Muon_tbSach.getValueAt(i, 0).toString().equals(maSach)) {
+                int soLuongHienTai = Integer.parseInt(Muon_tbSach.getValueAt(i, 2).toString());
+                Muon_tbSach.setValueAt(soLuongHienTai + soLuongMuon, i, 2);
+                break;
+            }
+        }
+
+        // Xóa sách khỏi bảng DS Mượn
+        DSMuon.removeRow(Muon_tbDSMuon.getSelectedRow());
     }//GEN-LAST:event_Muon_HuyMuonActionPerformed
+
+    private void Muon_btConfimrMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Muon_btConfimrMuonActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel DSMuon =
+            (DefaultTableModel) this.Muon_tbDSMuon.getModel();
+        if(DSMuon.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(this, "Danh sách mượn trống!");
+            return;
+        }
+        String maKH = Muon_txtMaKH.getText().trim();
+
+        if(maKH.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập mã khách hàng!");
+            return;
+        }
+        // Thêm dữ liệu vào database
+        for(int i = 0; i < DSMuon.getRowCount(); i++) {
+            String maSach = DSMuon.getValueAt(i, 0).toString();
+            int soLuong = Integer.parseInt(DSMuon.getValueAt(i, 2).toString());
+            // Thêm dữ liệu vào database
+            managerController.MuonSach(new Muon(" ", maKH, maSach, soLuong, LocalDate.now().toString(), LocalDate.now().plusMonths(3).toString()), tk.getUsername());
+        }
+        Muon_tbDSMuon.removeAll();
+
+    }//GEN-LAST:event_Muon_btConfimrMuonActionPerformed
 
     /**
      * @param args the command line arguments

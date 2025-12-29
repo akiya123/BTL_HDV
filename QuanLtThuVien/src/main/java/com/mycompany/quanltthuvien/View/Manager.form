@@ -321,7 +321,7 @@
                 <Component class="javax.swing.JTable" name="Muon_tbDSMuon">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="3" rowCount="4">
+                      <Table columnCount="3" rowCount="0">
                         <Column editable="true" title="M&#xe3; s&#xe1;ch" type="java.lang.String"/>
                         <Column editable="true" title="T&#xea;n s&#xe1;ch" type="java.lang.String"/>
                         <Column editable="true" title="S&#x1ed1; l&#x1b0;&#x1ee3;ng m&#x1b0;&#x1ee3;n" type="java.lang.Integer"/>
@@ -680,6 +680,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="X&#xe1;c nh&#x1ead;n m&#x1b0;&#x1ee3;n"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Muon_btConfimrMuonActionPerformed"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="330" y="260" width="130" height="-1"/>
