@@ -106,6 +106,8 @@ public class Manager extends javax.swing.JFrame {
         Muon_txtTenSachTimKiem = new javax.swing.JTextField();
         Muon_lbSach = new javax.swing.JLabel();
         Muon_btXacNhan = new javax.swing.JButton();
+        Muon_btConfimrMuon = new javax.swing.JButton();
+        Muon_HuyMuon = new javax.swing.JButton();
         TraSach = new javax.swing.JPanel();
         TraSach_lbSLTra = new javax.swing.JLabel();
         TraSach_txtSLTra = new javax.swing.JTextField();
@@ -228,7 +230,7 @@ public class Manager extends javax.swing.JFrame {
         TimKiem_btTim.setBounds(650, 130, 110, 40);
 
         TimKiem_btMuon.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        TimKiem_btMuon.setText("Mượn sách");
+        TimKiem_btMuon.setText("Lấy thông tin");
         TimKiem_btMuon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TimKiem_btMuonActionPerformed(evt);
@@ -298,17 +300,14 @@ public class Manager extends javax.swing.JFrame {
 
         Muon_tbDSMuon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
-                "Tên sách", "Số lượng mượn"
+                "Mã sách", "Tên sách", "Số lượng mượn"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -461,6 +460,24 @@ public class Manager extends javax.swing.JFrame {
         Muon.add(Muon_btXacNhan);
         Muon_btXacNhan.setBounds(920, 260, 100, 30);
 
+        Muon_btConfimrMuon.setText("Xác nhận mượn");
+        Muon_btConfimrMuon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Muon_btConfimrMuonActionPerformed(evt);
+            }
+        });
+        Muon.add(Muon_btConfimrMuon);
+        Muon_btConfimrMuon.setBounds(330, 260, 130, 23);
+
+        Muon_HuyMuon.setText("Hủy mượn");
+        Muon_HuyMuon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Muon_HuyMuonActionPerformed(evt);
+            }
+        });
+        Muon.add(Muon_HuyMuon);
+        Muon_HuyMuon.setBounds(200, 260, 120, 23);
+
         jTabbedPane1.addTab("Mượn sách", Muon);
 
         TraSach.setLayout(null);
@@ -516,17 +533,14 @@ public class Manager extends javax.swing.JFrame {
 
         TraSach_tbDSTra.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
-                "Tên sách", "Số lượng trả"
+                "Mã sách", "Tên sách", "Số lượng trả"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -545,10 +559,7 @@ public class Manager extends javax.swing.JFrame {
 
         TraSach_tbDSMuon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Mã Sách", "Tên Sách", "Số lượng", "Ngày mượn", "Ngày trả"
@@ -577,6 +588,11 @@ public class Manager extends javax.swing.JFrame {
         TraSach_txtMaSachTimKiem.setBounds(750, 50, 180, 26);
 
         TraSach_btTimKiemSach.setText("Tìm Kiếm");
+        TraSach_btTimKiemSach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TraSach_btTimKiemSachActionPerformed(evt);
+            }
+        });
         TraSach.add(TraSach_btTimKiemSach);
         TraSach_btTimKiemSach.setBounds(780, 230, 90, 30);
 
@@ -631,10 +647,7 @@ public class Manager extends javax.swing.JFrame {
 
         TruyVan_tbDonMuon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Mã mượn", "Tên khách hàng", "Tên sách", "Số lượng mượn", "Ngày mượn", "Ngày trả"
@@ -1087,6 +1100,18 @@ public class Manager extends javax.swing.JFrame {
         // Chuyển sang tab Tra
         TraSach_txtMaKH.setText(maKH);
         TraSach_txtTenKH.setText(tenKH);
+        DefaultTableModel model = (DefaultTableModel) TraSach_tbDSMuon.getModel();
+        for (Muon muon : managerController.GetMuonByMa(maKH)) {
+            model.addRow(new Object[]{
+                muon.getMaSach(),
+                managerController.GetSachByMa(muon.getMaSach()).getTenSach(),
+                muon.getSoLuong(),
+                muon.getNgayMuon(),
+                muon.getNgayTra()
+            });
+            
+        }
+        
         
         tabManager.setSelectedIndex(0);
     }//GEN-LAST:event_TimKiem_btMuonActionPerformed
@@ -1157,6 +1182,7 @@ public class Manager extends javax.swing.JFrame {
         }
 
         // Lấy dữ liệu từ kho
+        String maSach = Muon_tbSach.getValueAt(selected, 0).toString();
         String tenSach = Muon_tbSach.getValueAt(selected, 1).toString();
         int soLuongKho = Integer.parseInt(Muon_tbSach.getValueAt(selected, 2).toString());
 
@@ -1169,6 +1195,7 @@ public class Manager extends javax.swing.JFrame {
             // Thêm vào bảng DS Mượn
             DefaultTableModel model = (DefaultTableModel) Muon_tbDSMuon.getModel();
             model.addRow(new Object[] {
+                maSach,
                 tenSach,
                 soLuongMuon
             });
@@ -1365,6 +1392,62 @@ public class Manager extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TraSach_btActionPerformed
 
+    private void TraSach_btTimKiemSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TraSach_btTimKiemSachActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TraSach_btTimKiemSachActionPerformed
+
+    private void Muon_HuyMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Muon_HuyMuonActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel DSMuon =
+            (DefaultTableModel) this.Muon_tbDSMuon.getModel();
+        DefaultTableModel Muon_tbSach =
+            (DefaultTableModel) this.Muon_tbSach.getModel();
+        
+        // Lấy mã sách từ bảng DS Mượn
+        String maSach = DSMuon.getValueAt(Muon_tbDSMuon.getSelectedRow(), 0).toString();
+        
+        //Thêm lại số lượng sách vào kho
+        // Lấy số lượng sách mượn từ bảng DS Mượn
+        int soLuongMuon = Integer.parseInt(DSMuon.getValueAt(Muon_tbDSMuon.getSelectedRow(), 2).toString());
+        
+        // Cập nhật số lượng sách trong bảng Sách
+        for (int i = 0; i < Muon_tbSach.getRowCount(); i++) {
+            if (Muon_tbSach.getValueAt(i, 0).toString().equals(maSach)) {
+                int soLuongHienTai = Integer.parseInt(Muon_tbSach.getValueAt(i, 2).toString());
+                Muon_tbSach.setValueAt(soLuongHienTai + soLuongMuon, i, 2);
+                break;
+            }
+        }
+
+        // Xóa sách khỏi bảng DS Mượn
+        DSMuon.removeRow(Muon_tbDSMuon.getSelectedRow());
+    }//GEN-LAST:event_Muon_HuyMuonActionPerformed
+
+    private void Muon_btConfimrMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Muon_btConfimrMuonActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel DSMuon =
+            (DefaultTableModel) this.Muon_tbDSMuon.getModel();
+        if(DSMuon.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(this, "Danh sách mượn trống!");
+            return;
+        }
+        String maKH = Muon_txtMaKH.getText().trim();
+
+        if(maKH.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập mã khách hàng!");
+            return;
+        }
+        // Thêm dữ liệu vào database
+        for(int i = 0; i < DSMuon.getRowCount(); i++) {
+            String maSach = DSMuon.getValueAt(i, 0).toString();
+            int soLuong = Integer.parseInt(DSMuon.getValueAt(i, 2).toString());
+            // Thêm dữ liệu vào database
+            managerController.MuonSach(new Muon(" ", maKH, maSach, soLuong, LocalDate.now().toString(), LocalDate.now().plusMonths(3).toString()), tk.getUsername());
+        }
+        Muon_tbDSMuon.removeAll();
+
+    }//GEN-LAST:event_Muon_btConfimrMuonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1408,7 +1491,9 @@ public class Manager extends javax.swing.JFrame {
     private javax.swing.JTextField Info_txtSDT;
     private javax.swing.JTextField Info_txtUsername;
     private javax.swing.JPanel Muon;
+    private javax.swing.JButton Muon_HuyMuon;
     private javax.swing.JButton Muon_bt;
+    private javax.swing.JButton Muon_btConfimrMuon;
     private javax.swing.JButton Muon_btTimKiemSach;
     private javax.swing.JButton Muon_btXacNhan;
     private javax.swing.JComboBox<String> Muon_cbTimTheo;
