@@ -40,6 +40,14 @@ public class ManagerController {
         }
         return list;
     }
+
+    public Sach GetSachByMa(String MaSach) {
+        try {
+            return ss.GetSachByMa(MaSach);
+        } catch (Exception e) {
+        }
+        return null;
+    }
     
     //____________// #khách hàng
     KhachHangService khs = new KhachHangService();

@@ -172,7 +172,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="14" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="M&#x1b0;&#x1ee3;n s&#xe1;ch"/>
+                    <Property name="text" type="java.lang.String" value="L&#x1ea5;y th&#xf4;ng tin"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TimKiem_btMuonActionPerformed"/>
@@ -321,13 +321,19 @@
                 <Component class="javax.swing.JTable" name="Muon_tbDSMuon">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="2" rowCount="4">
+                      <Table columnCount="3" rowCount="0">
+                        <Column editable="true" title="M&#xe3; s&#xe1;ch" type="java.lang.String"/>
                         <Column editable="true" title="T&#xea;n s&#xe1;ch" type="java.lang.String"/>
                         <Column editable="true" title="S&#x1ed1; l&#x1b0;&#x1ee3;ng m&#x1b0;&#x1ee3;n" type="java.lang.Integer"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
                           <Editor/>
@@ -670,6 +676,32 @@
                 </Constraint>
               </Constraints>
             </Component>
+            <Component class="javax.swing.JButton" name="Muon_btConfimrMuon">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="X&#xe1;c nh&#x1ead;n m&#x1b0;&#x1ee3;n"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Muon_btConfimrMuonActionPerformed"/>
+              </Events>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="330" y="260" width="130" height="-1"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JButton" name="Muon_HuyMuon">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="H&#x1ee7;y m&#x1b0;&#x1ee3;n"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Muon_HuyMuonActionPerformed"/>
+              </Events>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="200" y="260" width="120" height="-1"/>
+                </Constraint>
+              </Constraints>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="TraSach">
@@ -819,13 +851,19 @@
                 <Component class="javax.swing.JTable" name="TraSach_tbDSTra">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="2" rowCount="4">
+                      <Table columnCount="3" rowCount="0">
+                        <Column editable="true" title="M&#xe3; s&#xe1;ch" type="java.lang.String"/>
                         <Column editable="true" title="T&#xea;n s&#xe1;ch" type="java.lang.String"/>
                         <Column editable="true" title="S&#x1ed1; l&#x1b0;&#x1ee3;ng tr&#x1ea3;" type="java.lang.Integer"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
                           <Editor/>
@@ -873,7 +911,7 @@
                 <Component class="javax.swing.JTable" name="TraSach_tbDSMuon">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="5" rowCount="4">
+                      <Table columnCount="5" rowCount="0">
                         <Column editable="true" title="M&#xe3; S&#xe1;ch" type="java.lang.String"/>
                         <Column editable="true" title="T&#xea;n S&#xe1;ch" type="java.lang.String"/>
                         <Column editable="true" title="S&#x1ed1; l&#x1b0;&#x1ee3;ng" type="java.lang.Integer"/>
@@ -946,6 +984,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="T&#xec;m Ki&#x1ebf;m"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TraSach_btTimKiemSachActionPerformed"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="780" y="230" width="90" height="30"/>
@@ -1099,7 +1140,7 @@
                 <Component class="javax.swing.JTable" name="TruyVan_tbDonMuon">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="6" rowCount="4">
+                      <Table columnCount="6" rowCount="0">
                         <Column editable="true" title="M&#xe3; m&#x1b0;&#x1ee3;n" type="java.lang.String"/>
                         <Column editable="true" title="T&#xea;n kh&#xe1;ch h&#xe0;ng" type="java.lang.String"/>
                         <Column editable="true" title="T&#xea;n s&#xe1;ch" type="java.lang.String"/>
