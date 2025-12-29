@@ -1,5 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<parameters>
-  <setParameter name="IIS Web Application Name" value="THUVIEN_API" />
-  <setParameter name="TESTEntities-Web.config Connection String" value="metadata=res://*/Models.Sach.csdl|res://*/Models.Sach.ssdl|res://*/Models.Sach.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=DESKTOP-R0NKBQ5\MSSQLSERVER01;initial catalog=TEST;persist security info=True;user id=sa;password=123;trustservercertificate=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" />
-</parameters>
