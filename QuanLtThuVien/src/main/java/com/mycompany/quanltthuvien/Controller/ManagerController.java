@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.mycompany.quanltthuvien.Model.KhachHang;
 import com.mycompany.quanltthuvien.Model.Muon;
+import com.mycompany.quanltthuvien.Model.Sach;
 import com.mycompany.quanltthuvien.Service.KhachHangService;
 import com.mycompany.quanltthuvien.Service.MuonService;
 import com.mycompany.quanltthuvien.Service.SachService;
@@ -20,14 +21,24 @@ public class ManagerController {
         return Ma;
     }
     //_____________//#Sách
-    SachService sachService = new SachService();
+    SachService ss = new SachService();
     //Hủy sách
     public boolean RemoveSomeSach(String MaSach, int SoLuongXoa, String username) {
         try {
-            return sachService.RemoveSomeSach(MaSach, SoLuongXoa,username);
+            return ss.RemoveSomeSach(MaSach, SoLuongXoa,username);
         } catch (Exception e) {
         }
         return false;
+    }
+
+    public ArrayList<Sach> GetAllSach() {
+        ArrayList<Sach> list = new ArrayList<>();
+        try {
+            list = ss.GetAllSach();
+            return list;
+        } catch (Exception e) {
+        }
+        return list;
     }
     
     //____________// #khách hàng
