@@ -40,9 +40,10 @@ public class Manager extends javax.swing.JFrame {
         initComponents();
         setSize(1124, 768); // hoặc kích thước bạn muốn
         setLocationRelativeTo(null);
-        ManagerController mg = new ManagerController();
-        loadTableKH(mg.GetAllKhachHang());
-        loadTableBanDoc(mg.GetAllKhachHang());
+
+        loadTableKH(managerController.GetAllKhachHang());
+        loadTableBanDoc(managerController.GetAllKhachHang());
+        loadTableKhoSach();
     }
     
     TaiKhoan tk = new TaiKhoan("null ", "null", "null", "0912345678", "null");
@@ -951,11 +952,10 @@ public class Manager extends javax.swing.JFrame {
     }
     
     private void loadTableKhoSach()  {
-        try {
             DefaultTableModel model = (DefaultTableModel) Muon_tbSach.getModel();
             model.setRowCount(0);
             
-            ArrayList<Sach> list = sachService.GetAllSach();
+            ArrayList<Sach> list = managerController.GetAllSach();
             
             for(Sach s : list) {
                 model.addRow(new Object[] {
@@ -964,11 +964,6 @@ public class Manager extends javax.swing.JFrame {
                     s.getSoLuong()
                 });
             }
-        } catch (IOException ex) {
-            Logger.getLogger(Manager.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Manager.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
     
     private void loadTableKH(ArrayList<KhachHang> list) {
