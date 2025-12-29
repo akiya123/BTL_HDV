@@ -1,0 +1,115 @@
+// Source code is decompiled from a .class file using FernFlower decompiler (from Intellij IDEA).
+package com.mycompany.quanltthuvien.View;
+
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.LayoutManager;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.JToggleButton;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
+public class Login extends JFrame {
+   private static final Logger logger = Logger.getLogger(Login.class.getName());
+   private JLabel jLabel1;
+   private JLabel jLabel2;
+   private JLabel jLabel3;
+   private JLabel jLabel4;
+   private JPanel jPanel1;
+   private JToggleButton jToggleButton1;
+   private JPasswordField txt_pass;
+   private JTextField txt_username;
+
+   public Login() {
+      this.setSize(800, 600);
+      this.setLocationRelativeTo((Component)null);
+      this.initComponents();
+   }
+
+   private void initComponents() {
+      this.jPanel1 = new JPanel();
+      this.jLabel1 = new JLabel();
+      this.jLabel2 = new JLabel();
+      this.txt_username = new JTextField();
+      this.jLabel3 = new JLabel();
+      this.jLabel4 = new JLabel();
+      this.txt_pass = new JPasswordField();
+      this.jToggleButton1 = new JToggleButton();
+      this.setDefaultCloseOperation(3);
+      this.setBackground(new Color(0, 255, 255));
+      this.getContentPane().setLayout((LayoutManager)null);
+      this.jPanel1.setBackground(new Color(204, 255, 255));
+      this.jPanel1.setLayout((LayoutManager)null);
+      this.jLabel1.setFont(new Font("Serif", 0, 48));
+      this.jLabel1.setText("Đăng Nhập");
+      this.jPanel1.add(this.jLabel1);
+      this.jLabel1.setBounds(90, 100, 310, 62);
+      this.jLabel2.setFont(new Font("Segoe UI", 0, 18));
+      this.jLabel2.setText("Tên tài khoản:");
+      this.jPanel1.add(this.jLabel2);
+      this.jLabel2.setBounds(40, 190, 130, 25);
+      this.jPanel1.add(this.txt_username);
+      this.txt_username.setBounds(160, 190, 218, 34);
+      this.jLabel3.setBackground(new Color(255, 204, 204));
+      this.jLabel3.setFont(new Font("Times New Roman", 0, 14));
+      this.jLabel3.setText("Thư viện HAUI");
+      this.jPanel1.add(this.jLabel3);
+      this.jLabel3.setBounds(160, 90, 130, 16);
+      this.jLabel4.setFont(new Font("Segoe UI", 0, 18));
+      this.jLabel4.setText("Mật khẩu:");
+      this.jPanel1.add(this.jLabel4);
+      this.jLabel4.setBounds(40, 240, 130, 25);
+      this.txt_pass.setText("jPasswordField1");
+      this.jPanel1.add(this.txt_pass);
+      this.txt_pass.setBounds(160, 240, 220, 40);
+      this.jToggleButton1.setFont(new Font("Segoe UI", 0, 24));
+      this.jToggleButton1.setText("Đăng nhập");
+      this.jToggleButton1.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent var1) {
+            Login.this.jToggleButton1ActionPerformed(var1);
+         }
+      });
+      this.jPanel1.add(this.jToggleButton1);
+      this.jToggleButton1.setBounds(120, 350, 190, 50);
+      this.getContentPane().add(this.jPanel1);
+      this.jPanel1.setBounds(0, -10, 560, 590);
+      this.pack();
+   }
+
+   private void jToggleButton1ActionPerformed(ActionEvent var1) {
+      String var2 = this.txt_username.getText();
+      String var3 = this.txt_pass.toString();
+      System.out.println(var3);
+   }
+
+   public static void main(String[] var0) {
+      try {
+         UIManager.LookAndFeelInfo[] var1 = UIManager.getInstalledLookAndFeels();
+         int var2 = var1.length;
+
+         for(int var3 = 0; var3 < var2; ++var3) {
+            UIManager.LookAndFeelInfo var4 = var1[var3];
+            if ("Nimbus".equals(var4.getName())) {
+               UIManager.setLookAndFeel(var4.getClassName());
+               break;
+            }
+         }
+      } catch (UnsupportedLookAndFeelException | ReflectiveOperationException var5) {
+         logger.log(Level.SEVERE, (String)null, var5);
+      }
+
+      EventQueue.invokeLater(() -> {
+         (new Login()).setVisible(true);
+      });
+   }
+}
