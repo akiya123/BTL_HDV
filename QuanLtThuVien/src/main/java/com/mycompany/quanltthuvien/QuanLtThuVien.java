@@ -4,7 +4,7 @@
 
 package com.mycompany.quanltthuvien;
 
-import com.mycompany.quanltthuvien.View.Manager;
+import com.mycompany.quanltthuvien.View.Login;
 
 /**
  *
@@ -13,7 +13,7 @@ import com.mycompany.quanltthuvien.View.Manager;
 public class QuanLtThuVien {
 
     public static void main(String[] args) {
-        Manager mg = new Manager();
+        Login mg = new Login();
         mg.setVisible(true);
     }
 }
