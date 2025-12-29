@@ -230,7 +230,7 @@ public class Manager extends javax.swing.JFrame {
         TimKiem_btTim.setBounds(650, 130, 110, 40);
 
         TimKiem_btMuon.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        TimKiem_btMuon.setText("Mượn sách");
+        TimKiem_btMuon.setText("Lấy thông tin");
         TimKiem_btMuon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TimKiem_btMuonActionPerformed(evt);
@@ -533,10 +533,7 @@ public class Manager extends javax.swing.JFrame {
 
         TraSach_tbDSTra.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Mã sách", "Tên sách", "Số lượng trả"
@@ -562,10 +559,7 @@ public class Manager extends javax.swing.JFrame {
 
         TraSach_tbDSMuon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Mã Sách", "Tên Sách", "Số lượng", "Ngày mượn", "Ngày trả"
@@ -653,10 +647,7 @@ public class Manager extends javax.swing.JFrame {
 
         TruyVan_tbDonMuon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Mã mượn", "Tên khách hàng", "Tên sách", "Số lượng mượn", "Ngày mượn", "Ngày trả"
@@ -1109,6 +1100,18 @@ public class Manager extends javax.swing.JFrame {
         // Chuyển sang tab Tra
         TraSach_txtMaKH.setText(maKH);
         TraSach_txtTenKH.setText(tenKH);
+        DefaultTableModel model = (DefaultTableModel) TraSach_tbDSMuon.getModel();
+        for (Muon muon : managerController.GetMuonByMa(maKH)) {
+            model.addRow(new Object[]{
+                muon.getMaSach(),
+                managerController.GetSachByMa(muon.getMaSach()).getTenSach(),
+                muon.getSoLuong(),
+                muon.getNgayMuon(),
+                muon.getNgayTra()
+            });
+            
+        }
+        
         
         tabManager.setSelectedIndex(0);
     }//GEN-LAST:event_TimKiem_btMuonActionPerformed
