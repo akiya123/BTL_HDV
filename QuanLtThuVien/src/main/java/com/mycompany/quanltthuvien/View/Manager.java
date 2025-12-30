@@ -1552,7 +1552,22 @@ public class Manager extends javax.swing.JFrame {
         // Xóa sách khỏi bảng DS Mượn
         DSMuon.removeRow(Muon_tbDSMuon.getSelectedRow());
     }//GEN-LAST:event_Muon_HuyMuonActionPerformed
-
+    
+    private void LoadTableDaMuon(String MaKH){
+        DefaultTableModel model = (DefaultTableModel) TraSach_tbDSMuon.getModel();
+        model.setRowCount(0);
+        for (Muon muon : managerController.GetMuonByMa(MaKH)) {
+            model.addRow(new Object[]{
+                muon.getMaSach(),
+                managerController.GetSachByMa(muon.getMaSach()).getTenSach(),
+                muon.getSoLuong(),
+                muon.getNgayMuon(),
+                muon.getNgayTra()
+            });
+            
+        }
+    }
+    
     private void Muon_btConfimrMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Muon_btConfimrMuonActionPerformed
         // TODO add your handling code here:
         DefaultTableModel DSMuon =
@@ -1574,20 +1589,9 @@ public class Manager extends javax.swing.JFrame {
             // Thêm dữ liệu vào database
             managerController.MuonSach(new Muon(" ", maKH, maSach, soLuong, LocalDate.now().toString(), LocalDate.now().plusMonths(3).toString()), tk.getUsername());
         }
-        System.out.println("done");
-        Muon_tbDSMuon.removeAll();
-        DefaultTableModel model = (DefaultTableModel) TraSach_tbDSMuon.getModel();
-        for (Muon muon : managerController.GetMuonByMa(maKH)) {
-            model.addRow(new Object[]{
-                muon.getMaSach(),
-                managerController.GetSachByMa(muon.getMaSach()).getTenSach(),
-                muon.getSoLuong(),
-                muon.getNgayMuon(),
-                muon.getNgayTra()
-            });
-            
-        }
-
+        
+        DSMuon.setRowCount(0);
+        LoadTableDaMuon(maKH);
     }//GEN-LAST:event_Muon_btConfimrMuonActionPerformed
 
     private void TruyVan_lbQuaHanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_lbQuaHanActionPerformed
