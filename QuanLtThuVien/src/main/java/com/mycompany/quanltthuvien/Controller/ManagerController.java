@@ -104,6 +104,12 @@ public class ManagerController {
         return false;
     }
 
+    public static void main(String[] args) {
+        ManagerController mc = new ManagerController();
+        System.out.println(mc.AddKhachHang(new KhachHang("", "Nguyen Van B", "0987654321")));
+        System.out.println("Done");
+    }
+
     //Sửa khách hàng
     public boolean UpdateKhachHang(KhachHang khachHang) {
         try {
