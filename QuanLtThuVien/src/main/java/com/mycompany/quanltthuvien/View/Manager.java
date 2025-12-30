@@ -9,6 +9,7 @@ import com.mycompany.quanltthuvien.Model.Muon;
 import com.mycompany.quanltthuvien.Model.Sach;
 import com.mycompany.quanltthuvien.Controller.ManagerController;
 import com.mycompany.quanltthuvien.Model.TaiKhoan;
+import com.mycompany.quanltthuvien.Model.TheLoai;
 import com.mycompany.quanltthuvien.Service.SachService;
 import com.mycompany.quanltthuvien.Service.TaiKhoanService;
 
@@ -152,22 +153,6 @@ public class Manager extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         TruyVan_tbDonMuon = new javax.swing.JTable();
         TruyVan_bt = new javax.swing.JButton();
-        TruyVan_txtNamMuon = new javax.swing.JTextField();
-        TruyVan_txtNgayMuon = new javax.swing.JTextField();
-        TruyVan_txtThangMuon = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        TruyVan_txtNgayTra = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        TruyVan_txtThangTra = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        TruyVan_txtNamTra = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
         TruyVan_lbQuaHan = new javax.swing.JButton();
         TruyVan_lbLayTT = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -317,11 +302,11 @@ public class Manager extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã sách", "Tên sách", "Số lượng mượn"
+                "Mã sách", "Tên sách", "Tác giả", "Số lượng mượn"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -689,77 +674,6 @@ public class Manager extends javax.swing.JFrame {
         });
         TruyVan.add(TruyVan_bt);
         TruyVan_bt.setBounds(780, 40, 210, 80);
-        TruyVan.add(TruyVan_txtNamMuon);
-        TruyVan_txtNamMuon.setBounds(380, 110, 70, 30);
-        TruyVan.add(TruyVan_txtNgayMuon);
-        TruyVan_txtNgayMuon.setBounds(220, 110, 50, 30);
-        TruyVan.add(TruyVan_txtThangMuon);
-        TruyVan_txtThangMuon.setBounds(300, 110, 50, 30);
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel1.setText("/");
-        TruyVan.add(jLabel1);
-        jLabel1.setBounds(360, 100, 14, 40);
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel2.setText("/");
-        TruyVan.add(jLabel2);
-        jLabel2.setBounds(280, 100, 14, 40);
-
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
-            }
-        });
-        TruyVan.add(jTextField5);
-        jTextField5.setBounds(220, 110, 50, 30);
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel3.setText("/");
-        TruyVan.add(jLabel3);
-        jLabel3.setBounds(280, 100, 14, 40);
-
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
-            }
-        });
-        TruyVan.add(jTextField6);
-        jTextField6.setBounds(300, 110, 50, 30);
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel4.setText("/");
-        TruyVan.add(jLabel4);
-        jLabel4.setBounds(360, 100, 14, 40);
-
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
-            }
-        });
-        TruyVan.add(jTextField7);
-        jTextField7.setBounds(380, 110, 70, 30);
-        TruyVan.add(TruyVan_txtNgayTra);
-        TruyVan_txtNgayTra.setBounds(540, 110, 50, 30);
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel5.setText("/");
-        TruyVan.add(jLabel5);
-        jLabel5.setBounds(600, 100, 14, 40);
-        TruyVan.add(TruyVan_txtThangTra);
-        TruyVan_txtThangTra.setBounds(620, 110, 50, 30);
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel6.setText("/");
-        TruyVan.add(jLabel6);
-        jLabel6.setBounds(680, 100, 14, 40);
-        TruyVan.add(TruyVan_txtNamTra);
-        TruyVan_txtNamTra.setBounds(700, 110, 70, 30);
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel7.setText("đến");
-        TruyVan.add(jLabel7);
-        jLabel7.setBounds(470, 100, 90, 48);
 
         TruyVan_lbQuaHan.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         TruyVan_lbQuaHan.setText("Quá hạn Trả");
@@ -1107,18 +1021,6 @@ public class Manager extends javax.swing.JFrame {
 
     }//GEN-LAST:event_TruyVan_btActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
-
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
-
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -1282,7 +1184,8 @@ public class Manager extends javax.swing.JFrame {
         // Lấy dữ liệu từ kho
         String maSach = Muon_tbSach.getValueAt(selected, 0).toString();
         String tenSach = Muon_tbSach.getValueAt(selected, 1).toString();
-        int soLuongKho = Integer.parseInt(Muon_tbSach.getValueAt(selected, 2).toString());
+        String tacGia = Muon_tbSach.getValueAt(selected, 3).toString();
+        int soLuongKho = Integer.parseInt(Muon_tbSach.getValueAt(selected, 4).toString());
 
         // So sánh trong kho
         int soLuongCon = soLuongKho - soLuongMuon;
@@ -1295,6 +1198,7 @@ public class Manager extends javax.swing.JFrame {
             model.addRow(new Object[] {
                 maSach,
                 tenSach,
+                tacGia,
                 soLuongMuon
             });
             // Trừ số lượng trong kho
@@ -1356,13 +1260,17 @@ public class Manager extends javax.swing.JFrame {
                             });
                         }                              }
                 case "Thể Loại" ->                     {
-                        String maTL = Muon_txtTheLoaiTimKiem.getText().trim();
-                        if (maTL.isEmpty()) {
+                        String tl = Muon_txtTheLoaiTimKiem.getText().trim();
+                        ArrayList<TheLoai> arr = managerController.GetAllTheLoai();
+                        if (tl.isEmpty()) {
                             JOptionPane.showMessageDialog(this,
-                                    "Vui lòng nhập mã thể loại!");
+                                    "Vui lòng nhập tên thể loại!");
                             return;
-                        }           ArrayList<Sach> list =
-                                sachService.GetSachByTheLoai(maTL);
+                        }           ArrayList<Sach> list = new ArrayList<Sach>();
+                        
+                        foreach(){
+                    
+                }
                         if (list == null || list.isEmpty()) {
                             JOptionPane.showMessageDialog(this,
                                     "Không tìm thấy sách theo thể loại!");
@@ -1680,25 +1588,12 @@ public class Manager extends javax.swing.JFrame {
     private javax.swing.JButton TruyVan_lbLayTT;
     private javax.swing.JButton TruyVan_lbQuaHan;
     private javax.swing.JTable TruyVan_tbDonMuon;
-    private javax.swing.JTextField TruyVan_txtNamMuon;
-    private javax.swing.JTextField TruyVan_txtNamTra;
-    private javax.swing.JTextField TruyVan_txtNgayMuon;
-    private javax.swing.JTextField TruyVan_txtNgayTra;
-    private javax.swing.JTextField TruyVan_txtThangMuon;
-    private javax.swing.JTextField TruyVan_txtThangTra;
     private javax.swing.JLabel info_lbSDT;
     private javax.swing.JLabel info_lbTen;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -1714,9 +1609,6 @@ public class Manager extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     // End of variables declaration//GEN-END:variables
 }
