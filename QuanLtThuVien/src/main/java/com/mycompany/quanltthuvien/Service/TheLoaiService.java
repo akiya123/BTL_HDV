@@ -109,4 +109,31 @@ public class TheLoaiService {
         TheLoai theLoai = new TheLoai(maTheLoai, tenTheLoai);
         return theLoai;
     }
+
+    //Tìm thể loại theo tên
+    public ArrayList<TheLoai> GetTheLoaiByTen(String tenTheLoai) throws IOException, InterruptedException
+    {
+        String url = baseUrl + "TheLoai?TenTheLoai=" + URLEncoder.encode(tenTheLoai, StandardCharsets.UTF_8);
+
+        HttpRequest getRequest = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .GET()
+                .build();
+        
+        response = client.send(getRequest, HttpResponse.BodyHandlers.ofString());
+        ArrayList<TheLoai> danhSachTheLoai = new ArrayList<>();
+        JSONArray jsonArray = new JSONArray(response.body());
+        
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject obj = jsonArray.getJSONObject(i);
+
+            String maTheLoai = obj.optString("MaTheLoai", "");
+            tenTheLoai = obj.optString("TenTheLoai", "");
+
+            TheLoai theLoai = new TheLoai(maTheLoai, tenTheLoai);
+            danhSachTheLoai.add(theLoai);
+        }
+        
+        return danhSachTheLoai;
+    }
 }

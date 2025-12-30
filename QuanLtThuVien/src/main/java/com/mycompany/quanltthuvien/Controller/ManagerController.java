@@ -25,11 +25,11 @@ public class ManagerController {
     }
     //_____________//#Thể loại
     TheLoaiService tl = new TheLoaiService();
-    //Lấy hết thể loại
-    public ArrayList<TheLoai> GetAllTheLoai() {
+    //Lấy thể loại theo tên
+    public ArrayList<TheLoai> GetTheLoaiByTen(String TenTheLoai) {
         ArrayList<TheLoai> list = new ArrayList<>();
         try {
-            list = tl.GetAllTheLoai();
+            list = tl.GetTheLoaiByTen(TenTheLoai);
             return list;
         } catch (Exception e) {
         }
