@@ -633,11 +633,6 @@ public class Manager extends javax.swing.JFrame {
 
         TraSach_btXacNhan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         TraSach_btXacNhan.setText("Xác nhận");
-        TraSach_btXacNhan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TraSach_btXacNhanActionPerformed(evt);
-            }
-        });
         TraSach.add(TraSach_btXacNhan);
         TraSach_btXacNhan.setBounds(960, 260, 100, 40);
 
@@ -1351,6 +1346,8 @@ public class Manager extends javax.swing.JFrame {
 
     private void TraSach_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TraSach_btActionPerformed
         // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_TraSach_btActionPerformed
 
     private void TraSach_btTimKiemSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TraSach_btTimKiemSachActionPerformed
