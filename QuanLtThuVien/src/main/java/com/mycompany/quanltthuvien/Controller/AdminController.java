@@ -113,7 +113,7 @@ public class AdminController {
     public ArrayList<TheLoai> GetTheLoaiByTen(String TenTheLoai) {
         ArrayList<TheLoai> list = new ArrayList<>();
         try {
-            list = tl.GetTheLoaiByTen(TenTheLoai);
+            list = tls.GetTheLoaiByTen(TenTheLoai);
             return list;
         } catch (Exception e) {
         }
