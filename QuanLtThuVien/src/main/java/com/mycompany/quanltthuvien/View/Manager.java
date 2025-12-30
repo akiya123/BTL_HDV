@@ -158,6 +158,7 @@ public class Manager extends javax.swing.JFrame {
         BanDoc_lbTenBanDoc = new javax.swing.JLabel();
         BanDoc_btXoa = new javax.swing.JButton();
         BanDoc_btThem = new javax.swing.JButton();
+        BanDoc_btXacNhan = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         Info_lbTK = new javax.swing.JLabel();
         Info_txtUsername = new javax.swing.JTextField();
@@ -787,6 +788,15 @@ public class Manager extends javax.swing.JFrame {
         BanDoc.add(BanDoc_btThem);
         BanDoc_btThem.setBounds(530, 30, 130, 30);
 
+        BanDoc_btXacNhan.setText("Xác nhận");
+        BanDoc_btXacNhan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BanDoc_btXacNhanActionPerformed(evt);
+            }
+        });
+        BanDoc.add(BanDoc_btXacNhan);
+        BanDoc_btXacNhan.setBounds(820, 180, 100, 40);
+
         jTabbedPane1.addTab("Bạn đọc", BanDoc);
 
         Info_lbTK.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
@@ -969,18 +979,108 @@ public class Manager extends javax.swing.JFrame {
 
     private void BanDoc_btSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BanDoc_btSuaActionPerformed
         // TODO add your handling code here:
+        int row = BanDoc_tbBanDoc.getSelectedRow();
+ 
+        // 1. Kiểm tra đã chọn bạn đọc chưa
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this,
+                    "Vui lòng chọn bạn đọc cần sửa!");
+            return;
+        }
+
+
+        // 2. Kiểm tra dữ liệu nhập
+        if (BanDoc_txtTenBanDoc.getText().trim().isEmpty() ||
+                BanDoc_txtSDT.getText().trim().isEmpty()) {
+
+            JOptionPane.showMessageDialog(this,
+                    "Vui lòng nhập đầy đủ dữ liệu!");
+            return;
+        }
+
+        // 3. Hỏi xác nhận
+        int confirm = JOptionPane.showConfirmDialog(
+                this,
+                "Xác nhận sửa thông tin?",
+                "Xác nhận",
+                JOptionPane.YES_NO_OPTION
+        );
+
+        if (confirm != JOptionPane.YES_OPTION) return;
+
+        // 4. LẤY MÃ KH (KHÔNG ĐƯỢC THAY ĐỔI)
+        String maKH = BanDoc_txtMa.getText().trim();
+
+        // 5. TẠO ĐỐI TƯỢNG KHACHHANG
+        KhachHang kh = new KhachHang();
+        kh.setMaKH(maKH);  // BẮT BUỘC
+        kh.setTenKH(BanDoc_txtTenBanDoc.getText().trim());
+        kh.setSdtKH(BanDoc_txtSDT.getText().trim());
+
+        // 6. GỌI CONTROLLER → UPDATE DB
+        boolean result = managerController.UpdateKhachHang(kh);
+
+        if (!result) {
+            JOptionPane.showMessageDialog(this,
+                    "Cập nhật bạn đọc thất bại!");
+            return;
+        }
+        else {
+            DefaultTableModel model =
+                (DefaultTableModel) BanDoc_tbBanDoc.getModel();
+
+        model.setValueAt(kh.getTenKH(), row, 1);
+        model.setValueAt(kh.getSdtKH(), row, 2);
+        
+        JOptionPane.showMessageDialog(this,
+                "Cập nhật bạn đọc thành công!");
+        
+        loadTableKH(managerController.GetAllKhachHang());
+        }
+        
+
+        // 7. DB OK → CẬP NHẬT JTable
+        
+
+        resetUIBanDoc();
     }//GEN-LAST:event_BanDoc_btSuaActionPerformed
 
     private void BanDoc_btXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BanDoc_btXoaActionPerformed
         // TODO add your handling code here:
+        int row = BanDoc_tbBanDoc.getSelectedRow();
+        
+        if(row < 0) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn bạn đọc cần xóa!");
+            return;
+        }
+        
+        int confirm = JOptionPane.showConfirmDialog(this, "Xác nhận xóa bạn đọc này?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+        
+        if(confirm != JOptionPane.YES_OPTION) return;
+        
+        // Gọi Controller xóa DB
+        String maKH = BanDoc_tbBanDoc.getValueAt(row, 0).toString();
+        boolean result = managerController.DeleteKhachHang(maKH);
+        
+        if(!result) {
+            JOptionPane.showMessageDialog(this, "Xóa bạn đọc thất bại!");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) BanDoc_tbBanDoc.getModel();
+        model.removeRow(row);
+        
+        JOptionPane.showMessageDialog(this, "Xóa bạn đọc thành công!");
+        
+        loadTableKH(managerController.GetAllKhachHang());
+
+        resetUIBanDoc();
     }//GEN-LAST:event_BanDoc_btXoaActionPerformed
     
     private void resetUIBanDoc() {
         BanDoc_txtMa.setText("");
         BanDoc_txtTenBanDoc.setText("");
         BanDoc_txtSDT.setText("");
-        BanDoc_txtTenBanDoc.setEnabled(false);
-        BanDoc_txtSDT.setEnabled(false);
     }
     
     private void BanDoc_btThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BanDoc_btThemActionPerformed
@@ -1007,15 +1107,24 @@ public class Manager extends javax.swing.JFrame {
             return;
         }
         
-        String maString = managerController.RandomMa();
+        KhachHang kh = new KhachHang();
+        kh.setTenKH(BanDoc_txtTenBanDoc.getText().trim());
+        kh.setSdtKH(BanDoc_txtSDT.getText().trim());
+        
+        boolean result = managerController.AddKhachHang(kh);
+        if(!result) {
+            JOptionPane.showMessageDialog(this, "Thêm bạn đọc thất bại!");
+            return;
+        }
         
         DefaultTableModel model = (DefaultTableModel) BanDoc_tbBanDoc.getModel();
-        
         model.addRow(new Object[] {
-            maString,
-            BanDoc_txtTenBanDoc.getText().trim(),
-            BanDoc_txtSDT.getText().trim()
-        });
+            kh.getMaKH(),
+            kh.getTenKH(),
+            kh.getSdtKH()
+        }); 
+        
+        JOptionPane.showMessageDialog(this, "Thêm bạn đọc thành công!");
         
         //Reset giao diện
         resetUIBanDoc();
@@ -1505,6 +1614,24 @@ public class Manager extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TraSach_txtNgayMuonActionPerformed
 
+    private void BanDoc_btXacNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BanDoc_btXacNhanActionPerformed
+        // TODO add your handling code here:
+        int row = BanDoc_tbBanDoc.getSelectedRow();
+ 
+        // 1. Kiểm tra đã chọn bạn đọc chưa
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this,
+                    "Vui lòng chọn bạn đọc để thực hiện!");
+            return;
+        }
+        String maKH = BanDoc_tbBanDoc.getValueAt(row, 0).toString();
+        String tenKH = BanDoc_tbBanDoc.getValueAt(row, 1).toString();
+        String soDT = BanDoc_tbBanDoc.getValueAt(row, 2).toString();
+        BanDoc_txtMa.setText(maKH);
+        BanDoc_txtTenBanDoc.setText(tenKH);
+        BanDoc_txtSDT.setText(soDT);
+    }//GEN-LAST:event_BanDoc_btXacNhanActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1544,6 +1671,7 @@ public class Manager extends javax.swing.JFrame {
     private javax.swing.JPanel BanDoc;
     private javax.swing.JButton BanDoc_btSua;
     private javax.swing.JButton BanDoc_btThem;
+    private javax.swing.JButton BanDoc_btXacNhan;
     private javax.swing.JButton BanDoc_btXoa;
     private javax.swing.JLabel BanDoc_lbMa;
     private javax.swing.JLabel BanDoc_lbSDT;

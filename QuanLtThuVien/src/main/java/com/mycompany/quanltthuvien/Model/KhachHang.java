@@ -16,10 +16,16 @@ public class KhachHang {
     private String SdtKH;
     private static final Pattern PHONE_PATTERN = Pattern.compile("^[0-9]{10}$");
 
+    
+    
     public KhachHang(String MaKH, String TenKH, String SdtKH) {
         this.MaKH = MaKH;
         this.TenKH = TenKH;
         setSdtKH(SdtKH);
+    }
+
+    public KhachHang() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     public String getMaKH() {
