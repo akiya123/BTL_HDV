@@ -47,7 +47,7 @@ public class Manager extends javax.swing.JFrame {
         setLocationRelativeTo(null);
 
         loadTableKH(managerController.GetAllKhachHang());
-        loadTableBanDoc(managerController.GetAllKhachHang());
+        loadTableBanDoc();
         loadTableKhoSach();
     }
     
@@ -113,6 +113,7 @@ public class Manager extends javax.swing.JFrame {
         Muon_btXacNhan = new javax.swing.JButton();
         Muon_btConfimrMuon = new javax.swing.JButton();
         Muon_HuyMuon = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         TraSach = new javax.swing.JPanel();
         TraSach_lbSLTra = new javax.swing.JLabel();
         TraSach_txtSLTra = new javax.swing.JTextField();
@@ -158,6 +159,8 @@ public class Manager extends javax.swing.JFrame {
         BanDoc_lbTenBanDoc = new javax.swing.JLabel();
         BanDoc_btXoa = new javax.swing.JButton();
         BanDoc_btThem = new javax.swing.JButton();
+        BanDoc_btXacNhan = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         Info_lbTK = new javax.swing.JLabel();
         Info_txtUsername = new javax.swing.JTextField();
@@ -467,6 +470,16 @@ public class Manager extends javax.swing.JFrame {
         });
         Muon.add(Muon_HuyMuon);
         Muon_HuyMuon.setBounds(200, 260, 120, 23);
+
+        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButton2.setText("Hiển thị");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        Muon.add(jButton2);
+        jButton2.setBounds(800, 260, 110, 30);
 
         jTabbedPane1.addTab("Mượn sách", Muon);
 
@@ -782,6 +795,24 @@ public class Manager extends javax.swing.JFrame {
         BanDoc.add(BanDoc_btThem);
         BanDoc_btThem.setBounds(530, 30, 130, 30);
 
+        BanDoc_btXacNhan.setText("Xác nhận");
+        BanDoc_btXacNhan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BanDoc_btXacNhanActionPerformed(evt);
+            }
+        });
+        BanDoc.add(BanDoc_btXacNhan);
+        BanDoc_btXacNhan.setBounds(820, 180, 100, 40);
+
+        jButton1.setText("Làm mới");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        BanDoc.add(jButton1);
+        jButton1.setBounds(710, 180, 90, 40);
+
         jTabbedPane1.addTab("Bạn đọc", BanDoc);
 
         Info_lbTK.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
@@ -931,10 +962,10 @@ public class Manager extends javax.swing.JFrame {
         }
     }
     
-    private void loadTableBanDoc(ArrayList<KhachHang> list){
+    private void loadTableBanDoc(){
         DefaultTableModel model = (DefaultTableModel) BanDoc_tbBanDoc.getModel();
         model.setRowCount(0);
-        
+        ArrayList<KhachHang> list = managerController.GetAllKhachHang();
         for(KhachHang kh : list) {
             model.addRow(new Object[] {
                 kh.getMaKH(),
@@ -942,6 +973,7 @@ public class Manager extends javax.swing.JFrame {
                 kh.getSdtKH()
             });
         }
+        loadTableKH(managerController.GetAllKhachHang());
     }
     
     private void TruyVan_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_btActionPerformed
@@ -964,32 +996,114 @@ public class Manager extends javax.swing.JFrame {
 
     private void BanDoc_btSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BanDoc_btSuaActionPerformed
         // TODO add your handling code here:
+        int row = BanDoc_tbBanDoc.getSelectedRow();
+ 
+        // 1. Kiểm tra đã chọn bạn đọc chưa
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this,
+                    "Vui lòng chọn bạn đọc cần sửa!");
+            return;
+        }
+
+
+        // 2. Kiểm tra dữ liệu nhập
+        if (BanDoc_txtTenBanDoc.getText().trim().isEmpty() ||
+                BanDoc_txtSDT.getText().trim().isEmpty()) {
+
+            JOptionPane.showMessageDialog(this,
+                    "Vui lòng nhập đầy đủ dữ liệu!");
+            return;
+        }
+
+        // 3. Hỏi xác nhận
+        int confirm = JOptionPane.showConfirmDialog(
+                this,
+                "Xác nhận sửa thông tin?",
+                "Xác nhận",
+                JOptionPane.YES_NO_OPTION
+        );
+
+        if (confirm != JOptionPane.YES_OPTION) return;
+
+        // 4. LẤY MÃ KH (KHÔNG ĐƯỢC THAY ĐỔI)
+        String maKH = BanDoc_txtMa.getText().trim();
+
+        // 5. GỌI CONTROLLER → UPDATE DB
+        boolean result = managerController.UpdateKhachHang(
+                new KhachHang(
+                        maKH,
+                        BanDoc_txtTenBanDoc.getText().trim(),
+                        BanDoc_txtSDT.getText().trim()
+                )
+        );
+
+        if (!result) {
+            JOptionPane.showMessageDialog(this,
+                    "Cập nhật bạn đọc thất bại!");
+            return;
+        }
+        
+
+        // 7. DB OK → CẬP NHẬT JTable
+        LoadTableBanDoc();
+
+        resetUIBanDoc();
     }//GEN-LAST:event_BanDoc_btSuaActionPerformed
 
     private void BanDoc_btXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BanDoc_btXoaActionPerformed
         // TODO add your handling code here:
+        int row = BanDoc_tbBanDoc.getSelectedRow();
+        
+        if(row < 0) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn bạn đọc cần xóa!");
+            return;
+        }
+        
+        int confirm = JOptionPane.showConfirmDialog(this, "Xác nhận xóa bạn đọc này?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+        
+        if(confirm != JOptionPane.YES_OPTION) return;
+        
+        // Gọi Controller xóa DB
+        String maKH = BanDoc_tbBanDoc.getValueAt(row, 0).toString();
+        boolean result = managerController.DeleteKhachHang(maKH);
+        
+        if(!result) {
+            JOptionPane.showMessageDialog(this, "Xóa bạn đọc thất bại!");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) BanDoc_tbBanDoc.getModel();
+        model.removeRow(row);
+        
+        JOptionPane.showMessageDialog(this, "Xóa bạn đọc thành công!");
+        
+        loadTableKH(managerController.GetAllKhachHang());
+
+        resetUIBanDoc();
     }//GEN-LAST:event_BanDoc_btXoaActionPerformed
     
     private void resetUIBanDoc() {
         BanDoc_txtMa.setText("");
         BanDoc_txtTenBanDoc.setText("");
         BanDoc_txtSDT.setText("");
-        BanDoc_txtTenBanDoc.setEnabled(false);
-        BanDoc_txtSDT.setEnabled(false);
+    }
+    
+    private void LoadTableBanDoc(){
+        DefaultTableModel model = (DefaultTableModel) BanDoc_tbBanDoc.getModel();
+        model.setRowCount(0);
+        ArrayList<KhachHang> arr = managerController.GetAllKhachHang();
+        for(KhachHang kh : arr){
+                model.addRow(new Object[] {
+            kh.getMaKH(),
+            kh.getTenKH(),
+            kh.getSdtKH()
+        });
+        }
+ 
     }
     
     private void BanDoc_btThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BanDoc_btThemActionPerformed
-        // TODO add your handling code here:
-//        String maKH = BanDoc_txtMa.getText().trim();
-//        String tenKH = BanDoc_txtTenBanDoc.getText().trim();
-//        String sdtKH = BanDoc_txtSDT.getText().trim();
-//        BanDoc_txtMa.setText("");
-//        BanDoc_txtTenBanDoc.setText("");
-//        BanDoc_txtSDT.setText("");
-//        
-//        BanDoc_txtTenBanDoc.setEnabled(true);
-//        BanDoc_txtSDT.setEnabled(true);
-        
+ 
         if(BanDoc_txtTenBanDoc.getText().trim().isEmpty() || BanDoc_txtSDT.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ dữ liệu!");
             return;
@@ -997,21 +1111,36 @@ public class Manager extends javax.swing.JFrame {
         
         // Hộp thoại xác nhận
         int confirm = JOptionPane.showConfirmDialog(this, "Xác nhận thêm bạn đọc này?", "Xác nhận", JOptionPane.YES_NO_OPTION);
-        
+        if(managerController.GetKhachHangByMa(BanDoc_txtMa.getText().trim()) != null) {
+            KhachHang kh = managerController.GetKhachHangByMa(BanDoc_txtMa.getText());
+            BanDoc_txtMa.setText(kh.getMaKH());
+            BanDoc_txtTenBanDoc.setText(kh.getTenKH());
+            BanDoc_txtSDT.setText(kh.getSdtKH());
+            JOptionPane.showMessageDialog(this, "Mã bạn đọc đã tồn tại!");
+            return;
+        }
+        if(managerController.GetKhachHangBySdt(BanDoc_txtSDT.getText().trim()) != null) {
+            KhachHang kh = managerController.GetKhachHangBySdt(BanDoc_txtSDT.getText());
+            BanDoc_txtMa.setText(kh.getMaKH());
+            BanDoc_txtTenBanDoc.setText(kh.getTenKH());
+            BanDoc_txtSDT.setText(kh.getSdtKH());
+            JOptionPane.showMessageDialog(this, "Số điện thoại đã tồn tại!");
+            return;
+        }
         if(confirm != JOptionPane.YES_OPTION) {
             return;
         }
         
-        String maString = managerController.RandomMa();
+        if(!managerController.AddKhachHang(new KhachHang(
+                "",
+                BanDoc_txtTenBanDoc.getText().trim(),
+                BanDoc_txtSDT.getText().trim())) ) {
+            JOptionPane.showMessageDialog(this, "Thêm bạn đọc thất bại!");
+            return;
+        }
         
-        DefaultTableModel model = (DefaultTableModel) BanDoc_tbBanDoc.getModel();
-        
-        model.addRow(new Object[] {
-            maString,
-            BanDoc_txtTenBanDoc.getText().trim(),
-            BanDoc_txtSDT.getText().trim()
-        });
-        
+        JOptionPane.showMessageDialog(this, "Thêm bạn đọc thành công!");
+        loadTableBanDoc();
         //Reset giao diện
         resetUIBanDoc();
     }//GEN-LAST:event_BanDoc_btThemActionPerformed
@@ -1036,7 +1165,7 @@ public class Manager extends javax.swing.JFrame {
                     return;
                 }   model.addRow(new Object[]{
                     khachHang.getMaKH(),    
-                    khachHang.getSdtKH(),
+                    khachHang.getTenKH(),
                     khachHang.getSdtKH()
                 });
             }
@@ -1409,13 +1538,13 @@ public class Manager extends javax.swing.JFrame {
         
         //Thêm lại số lượng sách vào kho
         // Lấy số lượng sách mượn từ bảng DS Mượn
-        int soLuongMuon = Integer.parseInt(DSMuon.getValueAt(Muon_tbDSMuon.getSelectedRow(), 2).toString());
+        int soLuongMuon = Integer.parseInt(DSMuon.getValueAt(Muon_tbDSMuon.getSelectedRow(), 3).toString());
         
         // Cập nhật số lượng sách trong bảng Sách
         for (int i = 0; i < Muon_tbSach.getRowCount(); i++) {
             if (Muon_tbSach.getValueAt(i, 0).toString().equals(maSach)) {
-                int soLuongHienTai = Integer.parseInt(Muon_tbSach.getValueAt(i, 2).toString());
-                Muon_tbSach.setValueAt(soLuongHienTai + soLuongMuon, i, 2);
+                int soLuongHienTai = Integer.parseInt(Muon_tbSach.getValueAt(i, 4).toString());
+                Muon_tbSach.setValueAt(soLuongHienTai + soLuongMuon, i, 4);
                 break;
             }
         }
@@ -1514,6 +1643,34 @@ public class Manager extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TraSach_txtNgayMuonActionPerformed
 
+    private void BanDoc_btXacNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BanDoc_btXacNhanActionPerformed
+        // TODO add your handling code here:
+        int row = BanDoc_tbBanDoc.getSelectedRow();
+ 
+        // 1. Kiểm tra đã chọn bạn đọc chưa
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this,
+                    "Vui lòng chọn bạn đọc để thực hiện!");
+            return;
+        }
+        String maKH = BanDoc_tbBanDoc.getValueAt(row, 0).toString();
+        String tenKH = BanDoc_tbBanDoc.getValueAt(row, 1).toString();
+        String soDT = BanDoc_tbBanDoc.getValueAt(row, 2).toString();
+        BanDoc_txtMa.setText(maKH);
+        BanDoc_txtTenBanDoc.setText(tenKH);
+        BanDoc_txtSDT.setText(soDT);
+    }//GEN-LAST:event_BanDoc_btXacNhanActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        resetUIBanDoc();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        loadTableKhoSach();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1553,6 +1710,7 @@ public class Manager extends javax.swing.JFrame {
     private javax.swing.JPanel BanDoc;
     private javax.swing.JButton BanDoc_btSua;
     private javax.swing.JButton BanDoc_btThem;
+    private javax.swing.JButton BanDoc_btXacNhan;
     private javax.swing.JButton BanDoc_btXoa;
     private javax.swing.JLabel BanDoc_lbMa;
     private javax.swing.JLabel BanDoc_lbSDT;
@@ -1636,6 +1794,8 @@ public class Manager extends javax.swing.JFrame {
     private javax.swing.JTable TruyVan_tbDonMuon;
     private javax.swing.JLabel info_lbSDT;
     private javax.swing.JLabel info_lbTen;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
