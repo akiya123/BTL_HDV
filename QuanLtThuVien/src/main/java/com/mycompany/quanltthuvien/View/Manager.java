@@ -49,16 +49,6 @@ public class Manager extends javax.swing.JFrame {
         loadTableKH(managerController.GetAllKhachHang());
         loadTableBanDoc(managerController.GetAllKhachHang());
         loadTableKhoSach();
-
-        LocalDate today = LocalDate.now();
-
-        TruyVan_txtNgayMuon.setText(String.valueOf(today.getDayOfMonth()));
-        TruyVan_txtThangMuon.setText(String.valueOf(today.getMonthValue()));
-        TruyVan_txtNamMuon.setText(String.valueOf(today.getYear() - 3));
-
-        TruyVan_txtNgayTra.setText(String.valueOf(today.getDayOfMonth()));
-        TruyVan_txtThangTra.setText(String.valueOf(today.getMonthValue()));
-        TruyVan_txtNamTra.setText(String.valueOf(today.getYear()));
     }
     
     TaiKhoan tk = new TaiKhoan("null ", "null", "null", "0912345678", "null");
@@ -939,86 +929,23 @@ public class Manager extends javax.swing.JFrame {
             });
         }
     }
-
-    private boolean CheckTryVanDate() {
-        String ngayMuon = TruyVan_txtNgayMuon.getText().trim();
-        String thangMuon = TruyVan_txtThangMuon.getText().trim();
-        String namMuon = TruyVan_txtNamMuon.getText().trim();
-        
-        String ngayTra = TruyVan_txtNgayTra.getText().trim();
-        String thangTra = TruyVan_txtThangTra.getText().trim();
-        String namTra = TruyVan_txtNamTra.getText().trim();
-        
-        if(ngayMuon.isEmpty() || thangMuon.isEmpty() || namMuon.isEmpty() ||
-           ngayTra.isEmpty() || thangTra.isEmpty() || namTra.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin ngày tháng năm!");
-            return false;
-        }
-        
-        try {
-            int d1 = Integer.parseInt(ngayMuon);
-            int m1 = Integer.parseInt(thangMuon);
-            int y1 = Integer.parseInt(namMuon);
-            
-            int d2 = Integer.parseInt(ngayTra);
-            int m2 = Integer.parseInt(thangTra);
-            int y2 = Integer.parseInt(namTra);
-            
-            if(m1 > m2 || y1 > y2 ){
-                JOptionPane.showMessageDialog(this, "Lỗi thứ tự ngày tháng năm!");
-            }
-
-            if(m1 < 1 || m1 > 12 || m2 < 1 || m2 > 12 ||
-               y1 < 0 || y2 < 0) {
-                JOptionPane.showMessageDialog(this, "Ngày tháng năm không hợp lệ!");
-                return false;
-            }
-            //Kiểm tra ngày hợp lệ theo tháng
-            int[] daysInMonth = {31, (y1 % 4 == 0 && y1 % 100 != 0) || (y1 % 400 == 0) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-            if(d1 < 1 || d1 > daysInMonth[m1 - 1] || d2 < 1 || d2 > daysInMonth[m2 - 1]) {
-                JOptionPane.showMessageDialog(this, "Ngày không hợp lệ!");
-                return false;
-            }
-            
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Ngày tháng năm phải là số!");
-            return false;
-        }
-        
-        return true;
-    }
     
     private void TruyVan_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_btActionPerformed
         // TODO add your handling code here:
-        if(!CheckTryVanDate()) {
-            return;
-        }
-
-        Date ngayMuon = new Date(
-            Integer.parseInt(TruyVan_txtNamMuon.getText().trim()),
-            Integer.parseInt(TruyVan_txtThangMuon.getText().trim()),
-            Integer.parseInt(TruyVan_txtNgayMuon.getText().trim())
-        );
-        Date ngayTra = new Date(
-            Integer.parseInt(TruyVan_txtNamTra.getText().trim()),
-            Integer.parseInt(TruyVan_txtThangTra.getText().trim()),
-            Integer.parseInt(TruyVan_txtNgayTra.getText().trim())
-        );
-        ArrayList<Muon> list = managerController.GetAllMuon();
+        
         DefaultTableModel model = (DefaultTableModel) TruyVan_tbDonMuon.getModel();
         model.setRowCount(0);
+        ArrayList<Muon> list = managerController.GetAllMuon();
         for(Muon m : list) {
-            if(m.getNgayMuon().before(ngayMuon) && m.getNgayTra().after(ngayTra)){
                 model.addRow(new Object[] {
-                m.getMaMuon(),
-                m.getMaKH(),
-                m.getMaSach(),
-                m.getNgayMuon(),
-                m.getNgayTra(),
-            });
-            }
+                    m.getMaMuon(),
+                    managerController.GetKhachHangByMa(m.getMaKH()).getTenKH(),
+                    managerController.GetSachByMa(m.getMaSach()).getTenSach(),
+                    m.getSoLuong(),
+                    m.getNgayMuon(),
+                    m.getNgayTra()
+                });
         }
-
     }//GEN-LAST:event_TruyVan_btActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -1268,9 +1195,12 @@ public class Manager extends javax.swing.JFrame {
                             return;
                         }           ArrayList<Sach> list = new ArrayList<Sach>();
                         
-                        foreach(){
-                    
-                }
+                        for(TheLoai t : arr) {
+                            if(t.getTenTheLoai().toLowerCase().contains(tl.toLowerCase())) {
+                                list.addAll(sachService.GetSachByTheLoai(t.getMaTheLoai()));
+                            }
+                        }
+
                         if (list == null || list.isEmpty()) {
                             JOptionPane.showMessageDialog(this,
                                     "Không tìm thấy sách theo thể loại!");
