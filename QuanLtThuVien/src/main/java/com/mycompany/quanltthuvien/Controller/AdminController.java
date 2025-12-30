@@ -109,6 +109,16 @@ public class AdminController {
 
     //______________// #Thể loại
     TheLoaiService tls = new TheLoaiService();
+    //Lấy thể loại theo tên
+    public ArrayList<TheLoai> GetTheLoaiByTen(String TenTheLoai) {
+        ArrayList<TheLoai> list = new ArrayList<>();
+        try {
+            list = tl.GetTheLoaiByTen(TenTheLoai);
+            return list;
+        } catch (Exception e) {
+        }
+        return list;
+    }
 
     //Lấy hết thể loại
     public ArrayList<TheLoai> GetGetAllTheLoaiAllTheLoai() {
