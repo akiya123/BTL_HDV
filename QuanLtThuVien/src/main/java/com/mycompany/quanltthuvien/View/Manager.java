@@ -139,6 +139,7 @@ public class Manager extends javax.swing.JFrame {
         TraSach_lbNgayMuon = new javax.swing.JLabel();
         TraSach_txtNgayMuon = new javax.swing.JTextField();
         TraSach_cbTimKiem = new javax.swing.JComboBox<>();
+        TraSach_btXacNhan = new javax.swing.JButton();
         TruyVan = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         TruyVan_tbDonMuon = new javax.swing.JTable();
@@ -539,7 +540,7 @@ public class Manager extends javax.swing.JFrame {
         jScrollPane4.setViewportView(TraSach_tbDSTra);
 
         TraSach.add(jScrollPane4);
-        jScrollPane4.setBounds(40, 300, 410, 350);
+        jScrollPane4.setBounds(40, 300, 410, 360);
 
         TraSach_lbDSTra.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         TraSach_lbDSTra.setText("Danh sách Trả");
@@ -551,7 +552,7 @@ public class Manager extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã Sách", "Tên Sách", "Số lượng", "Ngày mượn", "Ngày trả"
+                "Mã mượn", "Tên Sách", "Số lượng", "Ngày mượn", "Ngày trả"
             }
         ) {
             Class[] types = new Class [] {
@@ -629,6 +630,16 @@ public class Manager extends javax.swing.JFrame {
         });
         TraSach.add(TraSach_cbTimKiem);
         TraSach_cbTimKiem.setBounds(960, 110, 90, 26);
+
+        TraSach_btXacNhan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        TraSach_btXacNhan.setText("Xác nhận");
+        TraSach_btXacNhan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TraSach_btXacNhanActionPerformed(evt);
+            }
+        });
+        TraSach.add(TraSach_btXacNhan);
+        TraSach_btXacNhan.setBounds(960, 260, 100, 40);
 
         jTabbedPane1.addTab("Trả Sách", TraSach);
 
@@ -1510,6 +1521,7 @@ public class Manager extends javax.swing.JFrame {
     private javax.swing.JPanel TraSach;
     private javax.swing.JButton TraSach_bt;
     private javax.swing.JButton TraSach_btTimKiemSach;
+    private javax.swing.JButton TraSach_btXacNhan;
     private javax.swing.JComboBox<String> TraSach_cbTimKiem;
     private javax.swing.JLabel TraSach_lbDSMuon;
     private javax.swing.JLabel TraSach_lbDSTra;
