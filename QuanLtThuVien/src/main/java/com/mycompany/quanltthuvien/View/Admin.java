@@ -40,8 +40,6 @@ public class Admin extends javax.swing.JFrame {
         Sach_txtMaSach = new javax.swing.JTextPane();
         jScrollPane3 = new javax.swing.JScrollPane();
         Sach_tbSach = new javax.swing.JTable();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        Sach_tbTheLoai = new javax.swing.JTable();
         Sach_lbTheLoai = new javax.swing.JLabel();
         Sach_butThem = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -54,6 +52,9 @@ public class Admin extends javax.swing.JFrame {
         Sach_butSua = new javax.swing.JButton();
         Sach_butHienThi = new javax.swing.JButton();
         Sach_cbTimTheo = new javax.swing.JComboBox<>();
+        jScrollPane17 = new javax.swing.JScrollPane();
+        Sach_txtTacGia = new javax.swing.JTextPane();
+        Sach_lbTenSach1 = new javax.swing.JLabel();
         TheLoai = new javax.swing.JPanel();
         TheLoai_butThem = new javax.swing.JButton();
         TheLoai_butSua = new javax.swing.JButton();
@@ -131,17 +132,17 @@ public class Admin extends javax.swing.JFrame {
 
         Sach_tbSach.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Mã Sách", "Tên Sách", "Số lượng", "Thể loại"
+                "Mã Sách", "Tên Sách", "Số lượng", "Tác giả", "Thể loại"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -149,27 +150,6 @@ public class Admin extends javax.swing.JFrame {
             }
         });
         jScrollPane3.setViewportView(Sach_tbSach);
-
-        Sach_tbTheLoai.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
-            },
-            new String [] {
-                "Thể loại"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane4.setViewportView(Sach_tbTheLoai);
 
         Sach_lbTheLoai.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Sach_lbTheLoai.setText("Thể loại:");
@@ -217,6 +197,11 @@ public class Admin extends javax.swing.JFrame {
 
         Sach_cbTimTheo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tim theo tên", "Tim theo mã", "Tim theo thể loại" }));
 
+        jScrollPane17.setViewportView(Sach_txtTacGia);
+
+        Sach_lbTenSach1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Sach_lbTenSach1.setText("Tác giả:");
+
         javax.swing.GroupLayout SachLayout = new javax.swing.GroupLayout(Sach);
         Sach.setLayout(SachLayout);
         SachLayout.setHorizontalGroup(
@@ -224,6 +209,11 @@ public class Admin extends javax.swing.JFrame {
             .addGroup(SachLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(SachLayout.createSequentialGroup()
+                        .addComponent(Sach_lbTenSach1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(SachLayout.createSequentialGroup()
                         .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(SachLayout.createSequentialGroup()
@@ -256,10 +246,8 @@ public class Admin extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(Sach_butHienThi))
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 753, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                        .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Sach_butLamMoi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                        .addComponent(Sach_butLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33))))
         );
         SachLayout.setVerticalGroup(
@@ -283,7 +271,11 @@ public class Admin extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(Sach_lbTheLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane17)
+                    .addComponent(Sach_lbTenSach1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
                 .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(Sach_butTimKiem)
@@ -291,9 +283,7 @@ public class Admin extends javax.swing.JFrame {
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Sach_cbTimTheo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane4)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Sach_butLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(15, Short.MAX_VALUE))
@@ -395,7 +385,7 @@ public class Admin extends javax.swing.JFrame {
                         .addGroup(TheLoaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(TheLoai_butXoa)
                             .addComponent(TheLoai_butHienThi))))
-                .addContainerGap(412, Short.MAX_VALUE))
+                .addContainerGap(411, Short.MAX_VALUE))
         );
         TheLoaiLayout.setVerticalGroup(
             TheLoaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -710,7 +700,7 @@ public class Admin extends javax.swing.JFrame {
         LichSuGiaoDichLayout.setHorizontalGroup(
             LichSuGiaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LichSuGiaoDichLayout.createSequentialGroup()
-                .addGap(0, 48, Short.MAX_VALUE)
+                .addGap(0, 47, Short.MAX_VALUE)
                 .addGroup(LichSuGiaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(LichSuGiaoDichLayout.createSequentialGroup()
                         .addGap(140, 140, 140)
@@ -972,12 +962,13 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> Sach_cbTimTheo;
     private javax.swing.JLabel Sach_lbSoLuong;
     private javax.swing.JLabel Sach_lbTenSach;
+    private javax.swing.JLabel Sach_lbTenSach1;
     private javax.swing.JLabel Sach_lbTheLoai;
     private javax.swing.JTable Sach_tbSach;
-    private javax.swing.JTable Sach_tbTheLoai;
     private javax.swing.JTextPane Sach_tfTimKiem;
     private javax.swing.JTextPane Sach_tfTimKiem1;
     private javax.swing.JTextPane Sach_txtMaSach;
+    private javax.swing.JTextPane Sach_txtTacGia;
     private javax.swing.JTextPane Sach_txtTenSach;
     private javax.swing.JPanel TaiKhoan;
     private javax.swing.JButton TaiKhoan__butSua;
@@ -1029,9 +1020,9 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane15;
     private javax.swing.JScrollPane jScrollPane16;
+    private javax.swing.JScrollPane jScrollPane17;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;

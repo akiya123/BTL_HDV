@@ -1,13 +1,16 @@
 package com.mycompany.quanltthuvien.Controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import com.mycompany.quanltthuvien.Model.KhachHang;
 import com.mycompany.quanltthuvien.Model.Muon;
 import com.mycompany.quanltthuvien.Model.Sach;
+import com.mycompany.quanltthuvien.Model.TheLoai;
 import com.mycompany.quanltthuvien.Service.KhachHangService;
 import com.mycompany.quanltthuvien.Service.MuonService;
 import com.mycompany.quanltthuvien.Service.SachService;
+import com.mycompany.quanltthuvien.Service.TheLoaiService;
 
 public class ManagerController {
 
@@ -20,6 +23,32 @@ public class ManagerController {
         }
         return Ma;
     }
+    //_____________//#Thể loại
+    TheLoaiService tl = new TheLoaiService();
+    //Lấy hết thể loại
+    public ArrayList<TheLoai> GetAllTheLoai() {
+        ArrayList<TheLoai> list = new ArrayList<>();
+        try {
+            list = tl.GetAllTheLoai();
+            return list;
+        } catch (Exception e) {
+        }
+        return list;
+    }
+    //Tìm theo mã
+    public TheLoai GetTheLoaiByMa(String MaTheLoai) {
+                try {
+                    return tl.GetTheLoaiByMa(MaTheLoai);
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                return null;
+    }
+
     //_____________//#Sách
     SachService ss = new SachService();
     //Hủy sách
