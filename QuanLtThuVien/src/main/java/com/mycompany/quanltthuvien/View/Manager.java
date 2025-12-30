@@ -677,6 +677,11 @@ public class Manager extends javax.swing.JFrame {
 
         TruyVan_lbLayTT.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         TruyVan_lbLayTT.setText("Lấy thông tin");
+        TruyVan_lbLayTT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TruyVan_lbLayTTActionPerformed(evt);
+            }
+        });
         TruyVan.add(TruyVan_lbLayTT);
         TruyVan_lbLayTT.setBounds(360, 40, 190, 40);
 
@@ -958,6 +963,9 @@ public class Manager extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        String maKH = jTextField3.getText().trim();
+        String tenKH = jTextField4.getText().trim();
+        String sdtKH = jTextField8.getText().trim();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void TimKiem_btTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimKiem_btTimActionPerformed
@@ -1408,6 +1416,15 @@ public class Manager extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_TruyVan_lbQuaHanActionPerformed
+
+    private void TruyVan_lbLayTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_lbLayTTActionPerformed
+        // TODO add your handling code here:
+        Info info = new Info();
+        Muon muon = managerController.GetMuonByMaMuon(TruyVan_tbDonMuon.getValueAt(TruyVan_tbDonMuon.getSelectedRow(), 0).toString());
+        KhachHang kh = managerController.GetKhachHangByMa(muon.getMaKH());
+        info.Get(kh.getTenKH(), kh.getSdtKH());
+        info.setVisible(true);
+    }//GEN-LAST:event_TruyVan_lbLayTTActionPerformed
 
     /**
      * @param args the command line arguments
