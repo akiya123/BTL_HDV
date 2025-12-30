@@ -35,6 +35,17 @@ public class ManagerController {
         }
         return list;
     }
+
+    //Lấy hết thể loại
+    public ArrayList<TheLoai> GetAllTheLoai() {
+        ArrayList<TheLoai> list = new ArrayList<>();
+        try {
+            list = tl.GetAllTheLoai();
+            return list;
+        } catch (Exception e) {
+        }
+        return list;
+    }
     //Tìm theo mã
     public TheLoai GetTheLoaiByMa(String MaTheLoai) {
                 try {
