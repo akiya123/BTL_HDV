@@ -1143,7 +1143,7 @@ public class Manager extends javax.swing.JFrame {
                 soLuongMuon
             });
             // Trừ số lượng trong kho
-            Muon_tbSach.setValueAt(soLuongCon, selected, 2);
+            Muon_tbSach.setValueAt(soLuongCon, selected, 4);
         }
 
         // Reset input
@@ -1398,11 +1398,23 @@ public class Manager extends javax.swing.JFrame {
         // Thêm dữ liệu vào database
         for(int i = 0; i < DSMuon.getRowCount(); i++) {
             String maSach = DSMuon.getValueAt(i, 0).toString();
-            int soLuong = Integer.parseInt(DSMuon.getValueAt(i, 2).toString());
+            int soLuong = Integer.parseInt(DSMuon.getValueAt(i, 3).toString());
             // Thêm dữ liệu vào database
             managerController.MuonSach(new Muon(" ", maKH, maSach, soLuong, LocalDate.now().toString(), LocalDate.now().plusMonths(3).toString()), tk.getUsername());
         }
+        System.out.println("done");
         Muon_tbDSMuon.removeAll();
+        DefaultTableModel model = (DefaultTableModel) TraSach_tbDSMuon.getModel();
+        for (Muon muon : managerController.GetMuonByMa(maKH)) {
+            model.addRow(new Object[]{
+                muon.getMaSach(),
+                managerController.GetSachByMa(muon.getMaSach()).getTenSach(),
+                muon.getSoLuong(),
+                muon.getNgayMuon(),
+                muon.getNgayTra()
+            });
+            
+        }
 
     }//GEN-LAST:event_Muon_btConfimrMuonActionPerformed
 
