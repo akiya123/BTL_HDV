@@ -40,15 +40,22 @@ public class AdminController {
     //Thêm sách
     public boolean AddSach(Sach sach) {
         try {
-            do {
-                sach.setMaSach("S"+RandomMa());             
-            } while (ss.GetSachByMa(sach.getMaSach()) != null);
+            ArrayList<Sach> list = GetAllSach();
+            for (Sach s : list) {
+                sach.setMaSach("S"+RandomMa());
+                if(!s.getMaSach().equals(sach.getMaSach())) {
+                    break;
+                }
+            }
+            System.out.println("Debug MaSach:");
+            System.out.println(sach.getMaSach());          
             return ss.AddSach(sach);
         } catch (Exception e) {
+            System.out.println("Lỗi ở AdminController - AddSach");
         }
         return false;
     }
-
+    
     //Thêm số sách
     public boolean AddMoreSach(String MaSach, int SoLuong){
         try {
@@ -121,7 +128,7 @@ public class AdminController {
     }
 
     //Lấy hết thể loại
-    public ArrayList<TheLoai> GetGetAllTheLoai() {
+    public ArrayList<TheLoai> GetAllTheLoai() {
         ArrayList<TheLoai> list = new ArrayList<>();
         try {
             list = tls.GetAllTheLoai();
@@ -134,11 +141,18 @@ public class AdminController {
     //Thêm thể loại
     public boolean AddTheLoai(TheLoai theLoai) {
         try {
-            do { 
-                theLoai.setMaTheLoai("TL"+RandomMa());             
-            } while (tls.GetTheLoaiByMa(theLoai.getMaTheLoai()) != null);
+           ArrayList<TheLoai> list = GetAllTheLoai();
+            for (TheLoai tl : list) {
+                theLoai.setMaTheLoai("TL"+RandomMa());
+                if(!tl.getMaTheLoai().equals(theLoai.getMaTheLoai())) {
+                    break;
+                }
+            }
+            System.out.println("Debug MaSach:");
+            System.out.println(theLoai.getMaTheLoai());
             return tls.AddTheLoai(theLoai);
         } catch (Exception e) {
+            System.out.println("Lỗi ở AdminController - AddTheLoai");
         }
         return false;
     }
@@ -157,6 +171,7 @@ public class AdminController {
         try {
             return tls.UpdateTheLoai(theLoai);
         } catch (Exception e) {
+            System.out.println("Lỗi ở AdminController - UpdateTheLoai");
         }
         return false;
     }

@@ -141,6 +141,10 @@ public class Manager extends javax.swing.JFrame {
         TraSach_txtNgayMuon = new javax.swing.JTextField();
         TraSach_cbTimKiem = new javax.swing.JComboBox<>();
         TraSach_btXacNhan = new javax.swing.JButton();
+        TraSach_btHienThi = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         TruyVan = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         TruyVan_tbDonMuon = new javax.swing.JTable();
@@ -651,8 +655,40 @@ public class Manager extends javax.swing.JFrame {
 
         TraSach_btXacNhan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         TraSach_btXacNhan.setText("Xác nhận");
+        TraSach_btXacNhan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TraSach_btXacNhanActionPerformed(evt);
+            }
+        });
         TraSach.add(TraSach_btXacNhan);
-        TraSach_btXacNhan.setBounds(960, 250, 90, 30);
+        TraSach_btXacNhan.setBounds(980, 260, 90, 30);
+
+        TraSach_btHienThi.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        TraSach_btHienThi.setText("Hiển thị");
+        TraSach_btHienThi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TraSach_btHienThiActionPerformed(evt);
+            }
+        });
+        TraSach.add(TraSach_btHienThi);
+        TraSach_btHienThi.setBounds(880, 260, 90, 30);
+
+        jButton3.setText("Xác nhận trả");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        TraSach.add(jButton3);
+        jButton3.setBounds(350, 250, 100, 30);
+
+        jButton4.setText("Hủy trả");
+        TraSach.add(jButton4);
+        jButton4.setBounds(280, 250, 70, 30);
+
+        jButton5.setText("Mất sách");
+        TraSach.add(jButton5);
+        jButton5.setBounds(190, 250, 90, 30);
 
         jTabbedPane1.addTab("Trả Sách", TraSach);
 
@@ -1518,7 +1554,67 @@ public class Manager extends javax.swing.JFrame {
 
     private void TraSach_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TraSach_btActionPerformed
         // TODO add your handling code here:
-        
+        // Kiểm tra xem đã tồn tại bạn đọc chưa
+        String maKH = TraSach_txtMaKH.getText().trim();
+        String tenKH = TraSach_txtTenKH.getText().trim();
+        if("".equals(maKH) || "".equals(tenKH)) {
+            JOptionPane.showMessageDialog(this, "Không tìm thấy bạn đọc, không thể tiến hành trả sách!");
+            return;
+        }
+
+        // Kiểm tra xem đã chọn sách chưa
+        int selected = TraSach_tbDSMuon.getSelectedRow();
+        int row = Muon_tbSach.getSelectedRow();
+
+        if(selected == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn sách trong kho!");
+            return;
+        }
+
+        // Kiểm tra số lượng mượn
+        String soLuongText = TraSach_txtSLTra.getText().trim();
+        if(soLuongText.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập số lượng mượn!");
+            return;
+        }
+
+        int soLuongTra;
+        try {
+            soLuongTra = Integer.parseInt(soLuongText);
+            if(soLuongTra <= 0) throw new NumberFormatException();
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng định dạng số!");
+            return;
+        }
+
+        // Lấy dữ liệu từ bảng Mượn
+        String maMuon = TraSach_tbDSMuon.getValueAt(selected, 0).toString();
+        String tenSach = TraSach_tbDSMuon.getValueAt(selected, 1).toString();
+        String tacGia = TraSach_tbDSMuon.getValueAt(selected, 3).toString();
+        int soLuongMuon = Integer.parseInt(TraSach_tbDSMuon.getValueAt(selected, 2).toString());
+        int soLuongKho = Integer.parseInt(Muon_tbSach.getValueAt(row, 4).toString());
+
+        // So sánh trong kho
+//        int soLuongCon = soLuongKho + soLuongTra;
+//        if(soLuongTra > soLuongMuon) {
+//            JOptionPane.showMessageDialog(this, "Số lượng bạn nhập đã vượt quá số lượng đã mượn!");
+//        }
+//        else {
+//            // Thêm vào bảng DS Trả
+//            DefaultTableModel model = (DefaultTableModel) Muon_tbDSMuon.getModel();
+//            model.addRow(new Object[] {
+//                maSach,
+//                tenSach,
+//                tacGia,
+//                soLuongMuon
+//            });
+//            // Trừ số lượng trong kho
+//            Muon_tbSach.setValueAt(soLuongCon, selected, 4);
+//        }
+//
+//        // Reset input
+//        Muon_txtSLMuon.setText("");
+
         
     }//GEN-LAST:event_TraSach_btActionPerformed
 
@@ -1675,6 +1771,16 @@ public class Manager extends javax.swing.JFrame {
         loadTableKhoSach();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void TraSach_btHienThiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TraSach_btHienThiActionPerformed
+        // TODO add your handling code here:
+        String maKH = BanDoc_txtMa.getText();
+        loadTableSachDaMuon(maKH);
+    }//GEN-LAST:event_TraSach_btHienThiActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1769,6 +1875,7 @@ public class Manager extends javax.swing.JFrame {
     private javax.swing.JTextField TimKiem_txtTenKH;
     private javax.swing.JPanel TraSach;
     private javax.swing.JButton TraSach_bt;
+    private javax.swing.JButton TraSach_btHienThi;
     private javax.swing.JButton TraSach_btTimKiemSach;
     private javax.swing.JButton TraSach_btXacNhan;
     private javax.swing.JComboBox<String> TraSach_cbTimKiem;
@@ -1800,6 +1907,9 @@ public class Manager extends javax.swing.JFrame {
     private javax.swing.JLabel info_lbTen;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;

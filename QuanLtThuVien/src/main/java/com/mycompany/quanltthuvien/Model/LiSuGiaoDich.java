@@ -14,6 +14,7 @@ import java.util.Date;
 public class LiSuGiaoDich {
     private String MaGD;
     private String Username;
+    private String MaKH;
     private Date NgayGD;
     private String MaSach;
     private int SoLuong;
@@ -21,9 +22,10 @@ public class LiSuGiaoDich {
 
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-    public LiSuGiaoDich(String MaGD, String Username, String NgayGD, String MaSach, int SoLuong, String TrangThai) {
+    public LiSuGiaoDich(String MaGD, String Username,String MaKH, String NgayGD, String MaSach, int SoLuong, String TrangThai) {
         this.MaGD = MaGD;
         this.Username = Username;
+        this.MaKH = MaKH;
         setNgayGD(NgayGD);
         this.MaSach = MaSach;
         this.SoLuong = SoLuong;
@@ -80,6 +82,14 @@ public class LiSuGiaoDich {
 
     public void setTrangThai(String TrangThai) {
         this.TrangThai = TrangThai;
+    }
+
+    public String getMaKH() {
+        return MaKH;
+    }
+
+    public void setMaKH(String MaKH) {
+        this.MaKH = MaKH;
     }
     
 }

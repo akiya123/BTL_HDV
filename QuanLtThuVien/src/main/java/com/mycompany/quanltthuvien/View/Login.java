@@ -117,7 +117,15 @@ public class Login extends javax.swing.JFrame {
         if(role != null){
             if(role.contains("AD")){
                 Admin ad = new Admin();
-                ad.Get(username);
+                try {
+                    ad.GetUsername(username);
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
                 ad.setVisible(true);
                 this.dispose();
             }else if(role.contains("MG")){

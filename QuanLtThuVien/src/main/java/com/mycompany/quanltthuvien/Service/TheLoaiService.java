@@ -61,8 +61,7 @@ public class TheLoaiService {
 
     // Xóa thể loại
     public boolean DeleteTheLoai(String maTheLoai) throws IOException, InterruptedException {
-        String url = baseUrl + "TheLoai/DeleteTheLoai?" +
-        "MaTheLoai=" + maTheLoai;
+        String url = baseUrl + "TheLoai?MaTheLoai=" + maTheLoai.trim();
 
         HttpRequest deleteRequest = HttpRequest.newBuilder()
                 .uri(URI.create(url))

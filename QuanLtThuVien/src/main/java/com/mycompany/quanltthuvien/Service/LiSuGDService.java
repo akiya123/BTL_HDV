@@ -36,12 +36,13 @@ public class LiSuGDService {
 
             String maGD = obj.optString("MaGD", "");
             String username = obj.optString("Username", "");
+            String maKH = obj.optString("MaKH", "");
             String ngayGD = obj.optString("NgayGD", "");
             String maSach = obj.optString("MaSach", "");
             int soLuong = obj.optInt("SoLuong", 0);
             String trangThai = obj.optString("TrangThai", "");
 
-            LiSuGiaoDich liSuGiaoDich = new LiSuGiaoDich(maGD, username, ngayGD, maSach, soLuong, trangThai);
+            LiSuGiaoDich liSuGiaoDich = new LiSuGiaoDich(maGD, username, maKH, ngayGD, maSach, soLuong, trangThai);
             danhSachLiSuGD.add(liSuGiaoDich);
 
         }
@@ -66,12 +67,13 @@ public class LiSuGDService {
             JSONObject obj = jsonArray.getJSONObject(i);
 
             String maGD = obj.optString("MaGD", "");
+            String maKH = obj.optString("MaKH", "");
             String ngayGD = obj.optString("NgayGD", "");
             String maSach = obj.optString("MaSach", "");
             int soLuong = obj.optInt("SoLuong", 0);
             String trangThai = obj.optString("TrangThai", "");
 
-            LiSuGiaoDich liSuGiaoDich = new LiSuGiaoDich(maGD, username, ngayGD, maSach, soLuong, trangThai);
+            LiSuGiaoDich liSuGiaoDich = new LiSuGiaoDich(maGD, username, maKH, ngayGD, maSach, soLuong, trangThai);
             danhSachLiSuGD.add(liSuGiaoDich);
 
         }
@@ -97,11 +99,12 @@ public class LiSuGDService {
 
             String maGD = obj.optString("MaGD", "");
             String username = obj.optString("Username", "");
+            String maKH = obj.optString("MaKH", "");
             String ngayGD = obj.optString("NgayGD", "");
             int soLuong = obj.optInt("SoLuong", 0);
             String trangThai = obj.optString("TrangThai", "");
 
-            LiSuGiaoDich liSuGiaoDich = new LiSuGiaoDich(maGD, username, ngayGD, maSach, soLuong, trangThai);
+            LiSuGiaoDich liSuGiaoDich = new LiSuGiaoDich(maGD, username, maKH, ngayGD, maSach, soLuong, trangThai);
             danhSachLiSuGD.add(liSuGiaoDich);
 
         }
@@ -130,12 +133,13 @@ public class LiSuGDService {
 
             String maGD = obj.optString("MaGD", "");
             String username = obj.optString("Username", "");
+            String maKH = obj.optString("MaKH", "");
             String ngayGD = obj.optString("NgayGD", "");
             String maSach = obj.optString("MaSach", "");
             int soLuong = obj.optInt("SoLuong", 0);
             String trangThai = obj.optString("TrangThai", "");
 
-            LiSuGiaoDich liSuGiaoDich = new LiSuGiaoDich(maGD, username, ngayGD, maSach, soLuong, trangThai);
+            LiSuGiaoDich liSuGiaoDich = new LiSuGiaoDich(maGD, username, maKH, ngayGD, maSach, soLuong, trangThai);
             danhSachLiSuGD.add(liSuGiaoDich);
         }
         return danhSachLiSuGD;
@@ -160,11 +164,12 @@ public class LiSuGDService {
 
             String maGD = obj.optString("MaGD", "");
             String username = obj.optString("Username", "");
+            String maKH = obj.optString("MaKH", "");
             String ngayGD = obj.optString("NgayGD", "");
             String maSach = obj.optString("MaSach", "");
             int soLuong = obj.optInt("SoLuong", 0);
 
-            LiSuGiaoDich liSuGiaoDich = new LiSuGiaoDich(maGD, username, ngayGD, maSach, soLuong, trangThai);
+            LiSuGiaoDich liSuGiaoDich = new LiSuGiaoDich(maGD, username, maKH, ngayGD, maSach, soLuong, trangThai);
             danhSachLiSuGD.add(liSuGiaoDich);
         }
         return danhSachLiSuGD;
