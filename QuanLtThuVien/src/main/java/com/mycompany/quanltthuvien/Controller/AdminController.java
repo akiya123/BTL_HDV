@@ -188,10 +188,7 @@ public class AdminController {
     //______________// #Tài khoản
     TaiKhoanService tks = new TaiKhoanService();
     //Thêm tài khoản mới
-    public boolean AddTaiKhoanManager(String username,String Pass, String ComfirmPass,String TenTK,String SdtTK) {
-        if(!Pass.equals(ComfirmPass)){
-            return false;
-        }
+    public boolean AddTaiKhoanManager(String username,String Pass,String TenTK,String SdtTK) {
         TaiKhoan TK = new TaiKhoan(username, Pass, "MG", SdtTK, TenTK);
 
         try {
@@ -208,6 +205,14 @@ public class AdminController {
         } catch (Exception e) {
         }
         return false;
+    }
+
+    public TaiKhoan GetTaiKhoan(String username) {
+        try {
+            return tks.GetTaiKhoan(username);
+        } catch (Exception e) {
+        }
+        return null;
     }
 
     //Sửa tài khoản

@@ -195,7 +195,7 @@ public class Admin extends javax.swing.JFrame {
         jScrollPane12 = new javax.swing.JScrollPane();
         TaiKhoan_txtMatKhau = new javax.swing.JTextPane();
         jScrollPane13 = new javax.swing.JScrollPane();
-        Sach_tfTimKiem1 = new javax.swing.JTextPane();
+        TaiKhoan_txtUsername = new javax.swing.JTextPane();
         Sach_butTimKiem1 = new javax.swing.JButton();
         Sach_butHienThi1 = new javax.swing.JButton();
         jScrollPane7 = new javax.swing.JScrollPane();
@@ -579,7 +579,7 @@ public class Admin extends javax.swing.JFrame {
 
         jScrollPane12.setViewportView(TaiKhoan_txtMatKhau);
 
-        jScrollPane13.setViewportView(Sach_tfTimKiem1);
+        jScrollPane13.setViewportView(TaiKhoan_txtUsername);
 
         Sach_butTimKiem1.setText("Tìm kiếm");
         Sach_butTimKiem1.addActionListener(new java.awt.event.ActionListener() {
@@ -1124,8 +1124,41 @@ public class Admin extends javax.swing.JFrame {
         LoadTheLoaiTable(result);
     }//GEN-LAST:event_TheLoai_butTimKiemActionPerformed
 
+    public boolean TaiKhoanIsEmty(){
+        if(TaiKhoan_txtUsername.getText().equals("") || TaiKhoan_txtMatKhau.getText().equals("") || TaiKhoan_txtTenTK.getText().equals("") || TaiKhoan_txtSDT.getText().equals("")){
+            return true;
+        }
+        return false;
+    }
+    public void TaiKhoanClear(){
+        TaiKhoan_txtUsername.setText("");
+        TaiKhoan_txtMatKhau.setText("");
+        TaiKhoan_txtTenTK.setText("");
+        TaiKhoan_txtSDT.setText("");
+    }
     private void TaiKhoan__butThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaiKhoan__butThemActionPerformed
         // TODO add your handling code here:
+        if(TaiKhoanIsEmty()){
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập thông tin");
+            return;
+        }
+        String usnername = TaiKhoan_txtUsername.getText();
+        if(adminController.GetTaiKhoan(usnername) != null){
+            JOptionPane.showMessageDialog(this, "Tên đăng nhập đã tồn tại");
+            return;
+        }
+        String pass = TaiKhoan_txtMatKhau.getText();
+        String tenTK = TaiKhoan_txtTenTK.getText();
+        String sdtTK = TaiKhoan_txtSDT.getText();
+        if(!sdtTK.matches("\\d+")){
+            JOptionPane.showMessageDialog(this, "Số điện thoại phải là số");
+            return;
+        }
+        // adminController.AddTaiKhoan(new TaiKhoan(usnername, pass, "MG", sdtTK, tenTK));
+        adminController.AddTaiKhoanManager(usnername, pass , tenTK, sdtTK);
+        LoadTaiKhoan(adminController.GetAllTaiKhoan());
+        TaiKhoanClear();
+        
     }//GEN-LAST:event_TaiKhoan__butThemActionPerformed
 
     private void TaiKhoan__butSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaiKhoan__butSuaActionPerformed
@@ -1138,6 +1171,25 @@ public class Admin extends javax.swing.JFrame {
 
     private void Sach_butTimKiem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butTimKiem1ActionPerformed
         // TODO add your handling code here:
+        if(TaiKhoanIsEmty()){
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập thông tin");
+            return;
+        }
+        String usnername = TaiKhoan_txtUsername.getText();
+        if(usnername.equals("")){
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập tên đăng nhập");
+            return;
+        }
+
+        TaiKhoan tk = adminController.GetTaiKhoan(usnername);
+        if(tk == null){
+            JOptionPane.showMessageDialog(this, "Tên đăng nhập không tồn tại");
+            return;
+        }
+        TaiKhoan_txtTenTaiKhoan.setText(tk.getUsername());
+        TaiKhoan_txtMatKhau.setText(tk.getPass());
+        TaiKhoan_txtTenTK.setText(tk.getTenTK());
+        TaiKhoan_txtSDT.setText(tk.getSdtTK());
     }//GEN-LAST:event_Sach_butTimKiem1ActionPerformed
 
     private void Sach_butHienThi1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butHienThi1ActionPerformed
@@ -1296,7 +1348,6 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JTable Sach_tbSach;
     private javax.swing.JTable Sach_tbTheLoai;
     private javax.swing.JTextPane Sach_tfTimKiem;
-    private javax.swing.JTextPane Sach_tfTimKiem1;
     private javax.swing.JTextPane Sach_txtSoLuong;
     private javax.swing.JTextPane Sach_txtTacGia;
     private javax.swing.JTextPane Sach_txtTenSach;
@@ -1315,6 +1366,7 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JTextPane TaiKhoan_txtSDT;
     private javax.swing.JTextPane TaiKhoan_txtTenTK;
     private javax.swing.JTextPane TaiKhoan_txtTenTaiKhoan;
+    private javax.swing.JTextPane TaiKhoan_txtUsername;
     private javax.swing.JPanel TheLoai;
     private javax.swing.JButton TheLoai_butSua;
     private javax.swing.JButton TheLoai_butThem;
