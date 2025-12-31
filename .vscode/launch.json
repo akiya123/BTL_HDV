@@ -6,6 +6,34 @@
     "configurations": [
         {
             "type": "java",
+            "name": "TheLoaiService",
+            "request": "launch",
+            "mainClass": "com.mycompany.quanltthuvien.Service.TheLoaiService",
+            "projectName": "QuanLtThuVien"
+        },
+        {
+            "type": "java",
+            "name": "SachService",
+            "request": "launch",
+            "mainClass": "com.mycompany.quanltthuvien.Service.SachService",
+            "projectName": "QuanLtThuVien"
+        },
+        {
+            "type": "java",
+            "name": "AdminController",
+            "request": "launch",
+            "mainClass": "com.mycompany.quanltthuvien.Controller.AdminController",
+            "projectName": "QuanLtThuVien"
+        },
+        {
+            "type": "java",
+            "name": "Admin",
+            "request": "launch",
+            "mainClass": "com.mycompany.quanltthuvien.View.Admin",
+            "projectName": "QuanLtThuVien"
+        },
+        {
+            "type": "java",
             "name": "Login",
             "request": "launch",
             "mainClass": "com.mycompany.quanltthuvien.View.Login",

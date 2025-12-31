@@ -4,6 +4,7 @@
  */
 package com.mycompany.quanltthuvien.View;
 
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -11,9 +12,11 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import com.mycompany.quanltthuvien.Controller.AdminController;
+import com.mycompany.quanltthuvien.Model.LiSuGiaoDich;
 import com.mycompany.quanltthuvien.Model.Sach;
 import com.mycompany.quanltthuvien.Model.TaiKhoan;
 import com.mycompany.quanltthuvien.Model.TheLoai;
+import com.mycompany.quanltthuvien.Service.TaiKhoanService;
 
 /**
  *
@@ -32,8 +35,19 @@ public class Admin extends javax.swing.JFrame {
         setSize(1024, 768); // hoặc kích thước bạn muốn
         setLocationRelativeTo(null);
         LoadSachTable(adminController.GetAllSach());
-        LoadSachTheLoai(adminController.GetGetAllTheLoai());
-        LoadTheLoaiTable(adminController.GetGetAllTheLoai());
+        LoadSachTheLoai(adminController.GetAllTheLoai());
+        LoadTheLoaiTable(adminController.GetAllTheLoai());
+        LoadTaiKhoan(adminController.GetAllTaiKhoan());
+        LoaTryVan(adminController.GetAllLichSuGiaoDich());
+    }
+
+    TaiKhoan tk = new TaiKhoan("null ", "null", "null", "0912345678", "null");
+    
+    public void GetUsername(String usernameLogin) throws InterruptedException, IOException {
+            TaiKhoanService taiKhoanService = new TaiKhoanService();
+            tk = taiKhoanService.GetTaiKhoan(usernameLogin);
+            info_TenTK.setText(tk.getTenTK());
+            info_SDT.setText(tk.getSdtTK());
     }
 
     private void LoadSachTable(ArrayList<Sach> listSach) {
@@ -48,6 +62,17 @@ public class Admin extends javax.swing.JFrame {
                 adminController.GetTheLoaiByMa(listSach.get(i).getMaTheLoai()).getTenTheLoai()
             });
         }
+    }
+
+    private String GetMaTheLoai(String TheLoai){
+
+        for (TheLoai tl : adminController.GetAllTheLoai()) {
+            if(tl.getTenTheLoai().equals(TheLoai)){
+                return tl.getMaTheLoai();
+            }
+            
+        }
+        return "EROR";
     }
 
     private void LoadSachTheLoai(ArrayList<TheLoai> listSach){
@@ -71,9 +96,9 @@ public class Admin extends javax.swing.JFrame {
     }
 
     private String vaitro(String role){
-        if(role.equals("AD")){
+        if(role.trim().equals("AD")){
             return "Admin";
-        }else if(role.equals("MG")) {
+        }else if(role.trim().equals("MG")) {
             return "Mangager";
         }
         return "EROR";
@@ -88,6 +113,21 @@ public class Admin extends javax.swing.JFrame {
                 listTaiKhoan.get(i).getPass(),
                 listTaiKhoan.get(i).getSdtTK(),
                 vaitro(listTaiKhoan.get(i).getRole())
+            });
+        }
+    }
+
+    private void LoaTryVan(ArrayList<LiSuGiaoDich> listTV){
+        DefaultTableModel model = (DefaultTableModel) TruyVan_Lsu.getModel();
+        model.setRowCount(0);
+        for(int i = 0; i < listTV.size(); i++){
+            model.addRow(new Object[]{
+                listTV.get(i).getMaGD(),
+                listTV.get(i).getUsername(),
+                listTV.get(i).getMaKH(),
+                listTV.get(i).getNgayGD(),
+                listTV.get(i).getSoLuong(),
+                listTV.get(i).getTrangThai()
             });
         }
     }
@@ -118,7 +158,6 @@ public class Admin extends javax.swing.JFrame {
         Sach_tfTimKiem = new javax.swing.JTextPane();
         Sach_butXoa = new javax.swing.JButton();
         Sach_butTimKiem = new javax.swing.JButton();
-        Sach_butLamMoi = new javax.swing.JButton();
         Sach_butSua = new javax.swing.JButton();
         Sach_butHienThi = new javax.swing.JButton();
         Sach_cbTimTheo = new javax.swing.JComboBox<>();
@@ -130,6 +169,8 @@ public class Admin extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         Sach_TxtTenTheloai = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        Sach_butLamMoi = new javax.swing.JButton();
         TheLoai = new javax.swing.JPanel();
         TheLoai_butThem = new javax.swing.JButton();
         TheLoai_butSua = new javax.swing.JButton();
@@ -140,7 +181,6 @@ public class Admin extends javax.swing.JFrame {
         jScrollPane10 = new javax.swing.JScrollPane();
         TheLoai_tfTimKiem = new javax.swing.JTextPane();
         TheLoai_butTimKiem = new javax.swing.JButton();
-        TheLoai_butHienThi = new javax.swing.JButton();
         TheLoai_cbTimTheo = new javax.swing.JComboBox<>();
         jScrollPane8 = new javax.swing.JScrollPane();
         TheLoai_tbTheLoai = new javax.swing.JTable();
@@ -240,6 +280,11 @@ public class Admin extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        Sach_tbSach.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SachSelect(evt);
+            }
+        });
         jScrollPane3.setViewportView(Sach_tbSach);
 
         Sach.add(jScrollPane3);
@@ -259,6 +304,7 @@ public class Admin extends javax.swing.JFrame {
         Sach.add(Sach_butThem);
         Sach_butThem.setBounds(335, 21, 72, 23);
 
+        Sach_txtTheLoai.setEditable(false);
         jScrollPane5.setViewportView(Sach_txtTheLoai);
 
         Sach.add(jScrollPane5);
@@ -287,15 +333,6 @@ public class Admin extends javax.swing.JFrame {
         Sach.add(Sach_butTimKiem);
         Sach_butTimKiem.setBounds(469, 179, 79, 23);
 
-        Sach_butLamMoi.setText("Làm mới");
-        Sach_butLamMoi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Sach_butLamMoiActionPerformed(evt);
-            }
-        });
-        Sach.add(Sach_butLamMoi);
-        Sach_butLamMoi.setBounds(1325, 686, 142, 32);
-
         Sach_butSua.setText("Sửa");
         Sach_butSua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -309,7 +346,7 @@ public class Admin extends javax.swing.JFrame {
         Sach.add(Sach_butHienThi);
         Sach_butHienThi.setBounds(1247, 179, 72, 23);
 
-        Sach_cbTimTheo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tim theo tên", "Tim theo mã", "Tim theo thể loại" }));
+        Sach_cbTimTheo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tìm theo tên", "Tìm theo mã", "Tìm theo thể loại" }));
         Sach.add(Sach_cbTimTheo);
         Sach_cbTimTheo.setBounds(30, 179, 124, 22);
 
@@ -367,7 +404,25 @@ public class Admin extends javax.swing.JFrame {
             }
         });
         Sach.add(Sach_TxtTenTheloai);
-        Sach_TxtTenTheloai.setBounds(800, 80, 190, 22);
+        Sach_TxtTenTheloai.setBounds(810, 22, 190, 30);
+
+        jButton1.setText("Tìm kếm");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        Sach.add(jButton1);
+        jButton1.setBounds(850, 60, 110, 30);
+
+        Sach_butLamMoi.setText("làm mới");
+        Sach_butLamMoi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Sach_butLamMoiActionPerformed(evt);
+            }
+        });
+        Sach.add(Sach_butLamMoi);
+        Sach_butLamMoi.setBounds(340, 130, 75, 23);
 
         AdminCT.addTab("Sách", Sach);
         Sach.getAccessibleContext().setAccessibleName("");
@@ -409,8 +464,6 @@ public class Admin extends javax.swing.JFrame {
             }
         });
 
-        TheLoai_butHienThi.setText("Hiển thị");
-
         TheLoai_cbTimTheo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tìm theo mã", "Tìm theo tên" }));
 
         TheLoai_tbTheLoai.setModel(new javax.swing.table.DefaultTableModel(
@@ -430,6 +483,11 @@ public class Admin extends javax.swing.JFrame {
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        TheLoai_tbTheLoai.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TheLoaiSelect(evt);
             }
         });
         jScrollPane8.setViewportView(TheLoai_tbTheLoai);
@@ -462,9 +520,7 @@ public class Admin extends javax.swing.JFrame {
                             .addComponent(TheLoai_butSua)
                             .addComponent(TheLoai_butTimKiem))
                         .addGap(18, 18, 18)
-                        .addGroup(TheLoaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TheLoai_butXoa)
-                            .addComponent(TheLoai_butHienThi))))
+                        .addComponent(TheLoai_butXoa)))
                 .addContainerGap(411, Short.MAX_VALUE))
         );
         TheLoaiLayout.setVerticalGroup(
@@ -480,9 +536,7 @@ public class Admin extends javax.swing.JFrame {
                     .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(TheLoaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(TheLoaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(TheLoai_butTimKiem)
-                        .addComponent(TheLoai_butHienThi))
+                    .addComponent(TheLoai_butTimKiem)
                     .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TheLoai_cbTimTheo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
@@ -928,10 +982,38 @@ public class Admin extends javax.swing.JFrame {
 
     private void Sach_butThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butThemActionPerformed
         // TODO add your handling code here:
+        if(SachIsEmty()){
+            return;
+        }
+        String tenSach = Sach_txtTenSach.getText();
+        int soLuong = Integer.parseInt(Sach_txtSoLuong.getText());
+        String theLoai = GetMaTheLoai(Sach_txtTheLoai.getText());
+        
+        String tacGia = Sach_txtTacGia.getText();
+        ArrayList<Sach> listSach = adminController.GetAllSach();
+         for(Sach sach : listSach){
+            if(sach.getTenSach().equals(tenSach)&& sach.getTacGia().equals(tacGia)&& sach.getMaTheLoai().equals(theLoai)){
+                int confirm = JOptionPane.showConfirmDialog(this, "Đầu sách đã tồn tại bạn có muốn thêm số lượng?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+                if(confirm == JOptionPane.YES_OPTION){
+                    adminController.AddMoreSach(sach.getMaSach(), soLuong);
+                }else{
+                    adminController.AddSach(new Sach(" ",tenSach,soLuong, tacGia,theLoai));
+                }
+                break;
+            }
+        }
+        LoadSachTable(adminController.GetAllSach());
     }//GEN-LAST:event_Sach_butThemActionPerformed
 
     private void Sach_butXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butXoaActionPerformed
         // TODO add your handling code here:
+        if(SachIsEmty()){
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn sách cần xóa");
+            return;
+        }
+        System.out.println(MaSachVoid);
+        adminController.DeleteSach(MaSachVoid);
+        LoadSachTable(adminController.GetAllSach());
     }//GEN-LAST:event_Sach_butXoaActionPerformed
 
     private boolean SachIsEmty(){
@@ -942,45 +1024,104 @@ public class Admin extends javax.swing.JFrame {
     }
     private void Sach_butTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butTimKiemActionPerformed
         // TODO add your handling code here:
+        String keyword = Sach_tfTimKiem.getText();
+        if(keyword.equals("")){
+            LoadSachTable(adminController.GetAllSach());
+            return;
+        }
+        //Combo box
+        String searchBy = Sach_cbTimTheo.getSelectedItem().toString();
+        ArrayList<Sach> result = new ArrayList<>();
+        if(searchBy.equals("Tìm theo tên")){
+            result = adminController.GetSachByTenSach(keyword);
+        }else if(searchBy.equals("Tìm theo mã")){
+            MaSachVoid = keyword;
+            Sach sach = adminController.GetSachByMa(keyword);
+            if(sach != null){
+                result.add(sach);
+            }
+        }else if(searchBy.equals("Tìm theo thể loại")){
+            result = adminController.GetSachByTheLoai(keyword);
+        }
+        LoadSachTable(result);
     }//GEN-LAST:event_Sach_butTimKiemActionPerformed
 
-    private void Sach_butLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butLamMoiActionPerformed
-        // TODO add your handling code here:
-        if(SachIsEmty()){
-            JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin sách!");
-        } else {
-            Sach_txtTenSach.setText("");
-            Sach_txtSoLuong.setText("");
-            Sach_txtTheLoai.setText("");
-            Sach_txtTacGia.setText("");
+    private boolean TheLoaiIsEmty(){
+        if(TheLoai_txtTheLoai.getText().equals("")){
+            return true;
         }
-        String tenSach = Sach_txtTenSach.getText();
-        String theLoai = Sach_txtTheLoai.getText();
-        String tacGia = Sach_txtTacGia.getText();
-        ArrayList<Sach> listSach = adminController.GetSachByTenSach(tenSach);
-        for(int i = 0; i < listSach.size(); i++){
-            if()
-        }
-    }//GEN-LAST:event_Sach_butLamMoiActionPerformed
-
-    private void Sach_butSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butSuaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Sach_butSuaActionPerformed
-
+        return false;
+    }
+    String MaTheLoaiVoid = "";
     private void TheLoai_butThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TheLoai_butThemActionPerformed
         // TODO add your handling code here:
+        if(TheLoaiIsEmty()){
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập thể loại");
+            return;
+        }
+
+        ArrayList<TheLoai> listTheLoai = adminController.GetAllTheLoai();;
+        for(TheLoai tl : listTheLoai){
+            if(tl.getTenTheLoai().trim().toLowerCase().equals(TheLoai_txtTheLoai.getText().trim().toLowerCase())){
+                JOptionPane.showMessageDialog(this, "Thể loại đã tồn tại");
+                return;
+            }
+        }
+        adminController.AddTheLoai(new TheLoai(" ", TheLoai_txtTheLoai.getText()));
+        LoadTheLoaiTable(adminController.GetAllTheLoai());
+
     }//GEN-LAST:event_TheLoai_butThemActionPerformed
 
     private void TheLoai_butSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TheLoai_butSuaActionPerformed
         // TODO add your handling code here:
+        if(TheLoaiIsEmty()){
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập thể loại");
+            return;
+        }
+        for (TheLoai elem : adminController.GetAllTheLoai()) {
+            if (elem.getTenTheLoai().trim().toLowerCase().equals(TheLoai_txtTheLoai.getText().trim().toLowerCase())) {
+                JOptionPane.showMessageDialog(this, "Thể loại đã tồn tại");
+                return;
+            }
+            
+        }
+        adminController.UpdateTheLoai(new TheLoai(MaTheLoaiVoid, TheLoai_txtTheLoai.getText()));
+        LoadTheLoaiTable(adminController.GetAllTheLoai());
     }//GEN-LAST:event_TheLoai_butSuaActionPerformed
 
     private void TheLoai_butXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TheLoai_butXoaActionPerformed
         // TODO add your handling code here:
+        if(TheLoaiIsEmty()){
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn thể loại cần xóa");
+            return;
+        }
+        adminController.DeleteTheLoai(MaTheLoaiVoid);
+        LoadTheLoaiTable(adminController.GetAllTheLoai());
     }//GEN-LAST:event_TheLoai_butXoaActionPerformed
 
     private void TheLoai_butTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TheLoai_butTimKiemActionPerformed
         // TODO add your handling code here:
+        String keyword = TheLoai_tfTimKiem.getText();
+        if(keyword.equals("")){
+            LoadTheLoaiTable(adminController.GetAllTheLoai());
+            return;
+        }
+        String searchBy = TheLoai_cbTimTheo.getSelectedItem().toString();
+        ArrayList<TheLoai> result = new ArrayList<>();
+        if(searchBy.equals("Tìm theo tên")){
+            for(TheLoai tl : adminController.GetAllTheLoai()){
+                if(tl.getTenTheLoai().trim().toLowerCase().contains(keyword.trim().toLowerCase())){
+                    result.add(tl);
+                }
+            }
+        }else if(searchBy.equals("Tìm theo mã")){
+            MaTheLoaiVoid = keyword;
+            TheLoai tl = adminController.GetTheLoaiByMa(keyword);
+            if(tl != null){
+                result.add(tl);
+            }
+        }
+        LoadTheLoaiTable(result);
     }//GEN-LAST:event_TheLoai_butTimKiemActionPerformed
 
     private void TaiKhoan__butThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaiKhoan__butThemActionPerformed
@@ -1052,12 +1193,62 @@ public class Admin extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        String TenTL= Sach_tbTheLoai.getValueAt(Sach_tbTheLoai.getSelectedRow(), 0).toString();
+        Sach_txtTheLoai.setText(TenTL);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void Sach_TxtTenTheloaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Sach_TxtTenTheloaiMouseClicked
         // TODO add your handling code here:
         Sach_txtTheLoai.setText("");
     }//GEN-LAST:event_Sach_TxtTenTheloaiMouseClicked
+
+    private void Sach_butLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butLamMoiActionPerformed
+        // TODO add your handling code here:
+        Sach_txtTenSach.setText("");
+        Sach_txtSoLuong.setText("");
+        Sach_txtTheLoai.setText("");
+        Sach_txtTacGia.setText("");
+
+    }//GEN-LAST:event_Sach_butLamMoiActionPerformed
+
+    private String MaSachVoid = "";
+    private void SachSelect(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SachSelect
+        // TODO add your handling code here:
+        int selectedRow = Sach_tbSach.getSelectedRow();
+        if (selectedRow >= 0) {
+            MaSachVoid = Sach_tbSach.getValueAt(selectedRow, 0).toString();
+            Sach_txtTenSach.setText(Sach_tbSach.getValueAt(selectedRow, 1).toString());
+            Sach_txtSoLuong.setText(Sach_tbSach.getValueAt(selectedRow,2).toString());
+            Sach_txtTheLoai.setText(Sach_tbSach.getValueAt(selectedRow, 4).toString());
+            Sach_txtTacGia.setText(Sach_tbSach.getValueAt(selectedRow, 3).toString());
+        }
+    }//GEN-LAST:event_SachSelect
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String theloai = Sach_TxtTenTheloai.getText().trim().toLowerCase();
+        ArrayList<TheLoai> listSachTheLoai = new ArrayList<>() ;
+        for (TheLoai elem : adminController.GetAllTheLoai()) {
+            if (elem.getTenTheLoai().trim().toLowerCase().contains(theloai)) {
+                listSachTheLoai.add(elem);
+            }
+        }
+        LoadSachTheLoai(listSachTheLoai);
+    }//GEN-LAST:event_jButton1ActionPerformed
+    
+    private void TheLoaiSelect(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TheLoaiSelect
+        // TODO add your handling code here:
+        int selectedRow = TheLoai_tbTheLoai.getSelectedRow();
+        if (selectedRow >= 0) {
+            MaTheLoaiVoid = TheLoai_tbTheLoai.getValueAt(selectedRow, 0).toString();
+            TheLoai_txtTheLoai.setText(TheLoai_tbTheLoai.getValueAt(selectedRow, 1).toString());
+        }
+    }//GEN-LAST:event_TheLoaiSelect
+
+    private void Sach_butSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butSuaActionPerformed
+        // TODO add your handling code here:
+        System.out.println(""+MaSachVoid);
+    }//GEN-LAST:event_Sach_butSuaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1125,7 +1316,6 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JTextPane TaiKhoan_txtTenTK;
     private javax.swing.JTextPane TaiKhoan_txtTenTaiKhoan;
     private javax.swing.JPanel TheLoai;
-    private javax.swing.JButton TheLoai_butHienThi;
     private javax.swing.JButton TheLoai_butSua;
     private javax.swing.JButton TheLoai_butThem;
     private javax.swing.JButton TheLoai_butTimKiem;
@@ -1146,6 +1336,7 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JTextField TruyVan_txtThangTra;
     private javax.swing.JTextField info_SDT;
     private javax.swing.JTextField info_TenTK;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;

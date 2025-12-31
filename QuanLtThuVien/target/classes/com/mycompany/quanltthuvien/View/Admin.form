@@ -173,6 +173,9 @@
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="SachSelect"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -213,6 +216,9 @@
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
                 <Component class="javax.swing.JTextPane" name="Sach_txtTheLoai">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>
@@ -258,19 +264,6 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="Sach_butLamMoi">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="L&#xe0;m m&#x1edb;i"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Sach_butLamMoiActionPerformed"/>
-              </Events>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="1325" y="686" width="142" height="32"/>
-                </Constraint>
-              </Constraints>
-            </Component>
             <Component class="javax.swing.JButton" name="Sach_butSua">
               <Properties>
                 <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
@@ -298,9 +291,9 @@
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="3">
-                    <StringItem index="0" value="Tim theo t&#xea;n"/>
-                    <StringItem index="1" value="Tim theo m&#xe3;"/>
-                    <StringItem index="2" value="Tim theo th&#x1ec3; lo&#x1ea1;i"/>
+                    <StringItem index="0" value="T&#xec;m theo t&#xea;n"/>
+                    <StringItem index="1" value="T&#xec;m theo m&#xe3;"/>
+                    <StringItem index="2" value="T&#xec;m theo th&#x1ec3; lo&#x1ea1;i"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -407,7 +400,33 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="800" y="80" width="190" height="-1"/>
+                  <AbsoluteConstraints x="810" y="22" width="190" height="30"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="T&#xec;m k&#x1ebf;m"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+              </Events>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="850" y="60" width="110" height="30"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JButton" name="Sach_butLamMoi">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="l&#xe0;m m&#x1edb;i"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Sach_butLamMoiActionPerformed"/>
+              </Events>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="340" y="130" width="75" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -457,10 +476,7 @@
                                   <Component id="TheLoai_butTimKiem" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="TheLoai_butXoa" min="-2" max="-2" attributes="0"/>
-                                  <Component id="TheLoai_butHienThi" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="TheLoai_butXoa" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="411" max="32767" attributes="0"/>
@@ -482,10 +498,7 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="TheLoai_butTimKiem" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="TheLoai_butHienThi" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="TheLoai_butTimKiem" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jScrollPane10" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="TheLoai_cbTimTheo" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -557,11 +570,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TheLoai_butTimKiemActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="TheLoai_butHienThi">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Hi&#x1ec3;n th&#x1ecb;"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JComboBox" name="TheLoai_cbTimTheo">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
@@ -608,6 +616,9 @@
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="TheLoaiSelect"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
