@@ -633,11 +633,6 @@ public class Manager extends javax.swing.JFrame {
 
         TraSach_btXacNhan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         TraSach_btXacNhan.setText("Xác nhận");
-        TraSach_btXacNhan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TraSach_btXacNhanActionPerformed(evt);
-            }
-        });
         TraSach.add(TraSach_btXacNhan);
         TraSach_btXacNhan.setBounds(960, 260, 100, 40);
 

@@ -330,6 +330,11 @@ public class Admin extends javax.swing.JFrame {
         });
 
         TheLoai_butHienThi.setText("Hiển thị");
+        TheLoai_butHienThi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TheLoai_butHienThiActionPerformed(evt);
+            }
+        });
 
         TheLoai_cbTimTheo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tìm theo mã", "Tìm theo tên" }));
 
@@ -921,6 +926,10 @@ public class Admin extends javax.swing.JFrame {
         lg.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_Logout
+
+    private void TheLoai_butHienThiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TheLoai_butHienThiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TheLoai_butHienThiActionPerformed
 
     /**
      * @param args the command line arguments
