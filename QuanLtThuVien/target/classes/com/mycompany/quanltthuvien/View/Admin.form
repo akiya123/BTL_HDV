@@ -512,6 +512,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Hi&#x1ec3;n th&#x1ecb;"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TheLoai_butHienThiActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="TheLoai_cbTimTheo">
               <Properties>
