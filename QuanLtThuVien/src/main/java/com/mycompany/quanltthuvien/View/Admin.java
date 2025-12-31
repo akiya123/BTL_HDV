@@ -5,7 +5,7 @@
 package com.mycompany.quanltthuvien.View;
 
 import com.mycompany.quanltthuvien.Model.*;
-import com.mycompany.quanltthuvien.Service.*;
+import com.mycompany.quanltthuvien.Controller.AdminController;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
@@ -20,27 +20,21 @@ public class Admin extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Admin.class.getName());
     
-
-    private SachService sachService;
-    private TheLoaiService theLoaiService;
-    private TaiKhoanService taiKhoanService;
-    private LiSuGDService liSuGDService;
+    // Sử dụng AdminController
+    private AdminController adminController;
 
     public Admin() {
         initComponents();
         setSize(1024, 768);
         setLocationRelativeTo(null);
         
-
-        sachService = new SachService();
-        theLoaiService = new TheLoaiService();
-        taiKhoanService = new TaiKhoanService();
-        liSuGDService = new LiSuGDService();
+        // Khởi tạo Controller
+        adminController = new AdminController();
         
-
+        // Load dữ liệu ban đầu
         loadAllData();
         
-
+        // Thêm listener cho bảng
         addTableListeners();
     }
     
@@ -49,9 +43,12 @@ public class Admin extends javax.swing.JFrame {
         loadTheLoaiData();
         loadTaiKhoanData();
     }
- private void loadSachData() {
+
+    // ==================== QUẢN LÝ SÁCH ====================
+    
+    private void loadSachData() {
         try {
-            List<Sach> dsSach = sachService.GetAllSach();
+            ArrayList<Sach> dsSach = adminController.GetAllSach();
             DefaultTableModel model = (DefaultTableModel) Sach_tbSach.getModel();
             model.setRowCount(0);
             
@@ -66,169 +63,8 @@ public class Admin extends javax.swing.JFrame {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Lỗi khi tải dữ liệu sách: " + e.getMessage());
+            logger.log(java.util.logging.Level.SEVERE, "Error loading books", e);
         }
-    }
-    
-    private void Sach_butThemActionPerformed(java.awt.event.ActionEvent evt) {
-        try {
-            String tenSach = Sach_txtTenSach.getText().trim();
-            String soLuongStr = Sach_txtMaSach.getText().trim();
-            String theLoai = jTextPane1.getText().trim();
-            String tacGia = Sach_txtTacGia.getText().trim();
-            
-            if (tenSach.isEmpty() || soLuongStr.isEmpty() || theLoai.isEmpty() || tacGia.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin!");
-                return;
-            }
-            
-            int soLuong;
-            try {
-                soLuong = Integer.parseInt(soLuongStr);
-                if (soLuong < 0) {
-                    JOptionPane.showMessageDialog(this, "Số lượng phải là số dương!");
-                    return;
-                }
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "Số lượng phải là số nguyên!");
-                return;
-            }
-            
-            Sach sach = new Sach();
-            sach.setTenSach(tenSach);
-            sach.setSoLuong(soLuong);
-            sach.setMaTheLoai(theLoai);
-            sach.setTacGia(tacGia);
-            
-            if (sachService.themSach(sach)) {
-                JOptionPane.showMessageDialog(this, "Thêm sách thành công!");
-                loadSachData();
-                clearSachForm();
-            } else {
-                JOptionPane.showMessageDialog(this, "Thêm sách thất bại!");
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Lỗi: " + e.getMessage());
-        }
-    }
-    
-    private void Sach_butSuaActionPerformed(java.awt.event.ActionEvent evt) {
-        try {
-            int selectedRow = Sach_tbSach.getSelectedRow();
-            if (selectedRow == -1) {
-                JOptionPane.showMessageDialog(this, "Vui lòng chọn sách cần sửa!");
-                return;
-            }
-            
-            String maSach = Sach_tbSach.getValueAt(selectedRow, 0).toString();
-            String tenSach = Sach_txtTenSach.getText().trim();
-            String soLuongStr = Sach_txtMaSach.getText().trim();
-            String theLoai = jTextPane1.getText().trim();
-            String tacGia = Sach_txtTacGia.getText().trim();
-            
-            if (tenSach.isEmpty() || soLuongStr.isEmpty() || theLoai.isEmpty() || tacGia.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin!");
-                return;
-            }
-            
-            int soLuong;
-            try {
-                soLuong = Integer.parseInt(soLuongStr);
-                if (soLuong < 0) {
-                    JOptionPane.showMessageDialog(this, "Số lượng phải là số dương!");
-                    return;
-                }
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "Số lượng phải là số nguyên!");
-                return;
-            }
-            
-            Sach sach = new Sach(maSach, tenSach, soLuong, tacGia, theLoai);
-            
-            if (sachService.suaSach(sach)) {
-                JOptionPane.showMessageDialog(this, "Cập nhật sách thành công!");
-                loadSachData();
-                clearSachForm();
-            } else {
-                JOptionPane.showMessageDialog(this, "Cập nhật sách thất bại!");
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Lỗi: " + e.getMessage());
-        }
-    }
-    
-    private void Sach_butXoaActionPerformed(java.awt.event.ActionEvent evt) {
-        try {
-            int selectedRow = Sach_tbSach.getSelectedRow();
-            if (selectedRow == -1) {
-                JOptionPane.showMessageDialog(this, "Vui lòng chọn sách cần xóa!");
-                return;
-            }
-            
-            String maSach = Sach_tbSach.getValueAt(selectedRow, 0).toString();
-            String tenSach = Sach_tbSach.getValueAt(selectedRow, 1).toString();
-            
-            int confirm = JOptionPane.showConfirmDialog(this, 
-                "Bạn có chắc chắn muốn xóa sách '" + tenSach + "'?", 
-                "Xác nhận xóa", 
-                JOptionPane.YES_NO_OPTION);
-            
-            if (confirm == JOptionPane.YES_OPTION) {
-                if (sachService.xoaSach(maSach)) {
-                    JOptionPane.showMessageDialog(this, "Xóa sách thành công!");
-                    loadSachData();
-                    clearSachForm();
-                } else {
-                    JOptionPane.showMessageDialog(this, "Xóa sách thất bại!");
-                }
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Lỗi: " + e.getMessage());
-        }
-    }
-    
-    private void Sach_butTimKiemActionPerformed(java.awt.event.ActionEvent evt) {
-        try {
-            String keyword = Sach_tfTimKiem.getText().trim();
-            String searchType = Sach_cbTimTheo.getSelectedItem().toString();
-            
-            if (keyword.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Vui lòng nhập từ khóa tìm kiếm!");
-                return;
-            }
-            
-            List<Sach> dsSach = null;
-            if (searchType.contains("tên")) {
-                dsSach = sachService.timKiemTheoTen(keyword);
-            } else if (searchType.contains("mã")) {
-                dsSach = sachService.timKiemTheoMa(keyword);
-            } else if (searchType.contains("thể loại")) {
-                dsSach = sachService.timKiemTheoTheLoai(keyword);
-            }
-            
-            DefaultTableModel model = (DefaultTableModel) Sach_tbSach.getModel();
-            model.setRowCount(0);
-            
-            if (dsSach != null && !dsSach.isEmpty()) {
-                for (Sach sach : dsSach) {
-                    model.addRow(new Object[]{
-                        sach.getMaSach(),
-                        sach.getTenSach(),
-                        sach.getSoLuong(),
-                        sach.getTacGia(),
-                        sach.getMaTheLoai()
-                    });
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Không tìm thấy kết quả!");
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Lỗi: " + e.getMessage());
-        }
-    }
-    
-    private void Sach_butLamMoiActionPerformed(java.awt.event.ActionEvent evt) {
-        clearSachForm();
-        loadSachData();
     }
     
     private void clearSachForm() {
@@ -239,10 +75,11 @@ public class Admin extends javax.swing.JFrame {
         Sach_tfTimKiem.setText("");
     }
 
+    // ==================== QUẢN LÝ THỂ LOẠI ====================
     
     private void loadTheLoaiData() {
         try {
-            List<TheLoai> dsTheLoai = theLoaiService.getAllTheLoai();
+            ArrayList<TheLoai> dsTheLoai = adminController.GetGetAllTheLoaiAllTheLoai();
             DefaultTableModel model = (DefaultTableModel) TheLoai_tbTheLoai.getModel();
             model.setRowCount(0);
             
@@ -254,286 +91,38 @@ public class Admin extends javax.swing.JFrame {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Lỗi khi tải dữ liệu thể loại: " + e.getMessage());
+            logger.log(java.util.logging.Level.SEVERE, "Error loading categories", e);
         }
     }
-    
-    private void TheLoai_butThemActionPerformed(java.awt.event.ActionEvent evt) {
-        try {
-            String tenTheLoai = TheLoai_txtTheLoai.getText().trim();
-            
-            if (tenTheLoai.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Vui lòng nhập tên thể loại!");
-                return;
-            }
-            
-            TheLoai theLoai = new TheLoai();
-            theLoai.setTenTheLoai(tenTheLoai);
-            
-            if (theLoaiService.themTheLoai(theLoai)) {
-                JOptionPane.showMessageDialog(this, "Thêm thể loại thành công!");
-                loadTheLoaiData();
-                clearTheLoaiForm();
-            } else {
-                JOptionPane.showMessageDialog(this, "Thêm thể loại thất bại!");
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Lỗi: " + e.getMessage());
-        }
-    }
-    
-    private void TheLoai_butSuaActionPerformed(java.awt.event.ActionEvent evt) {
-        try {
-            int selectedRow = TheLoai_tbTheLoai.getSelectedRow();
-            if (selectedRow == -1) {
-                JOptionPane.showMessageDialog(this, "Vui lòng chọn thể loại cần sửa!");
-                return;
-            }
-            
-            String maTheLoai = TheLoai_tbTheLoai.getValueAt(selectedRow, 0).toString();
-            String tenTheLoai = TheLoai_txtTheLoai.getText().trim();
-            
-            if (tenTheLoai.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Vui lòng nhập tên thể loại!");
-                return;
-            }
-            
-            TheLoai theLoai = new TheLoai(maTheLoai, tenTheLoai);
-            
-            if (theLoaiService.suaTheLoai(theLoai)) {
-                JOptionPane.showMessageDialog(this, "Cập nhật thể loại thành công!");
-                loadTheLoaiData();
-                clearTheLoaiForm();
-            } else {
-                JOptionPane.showMessageDialog(this, "Cập nhật thể loại thất bại!");
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Lỗi: " + e.getMessage());
-        }
-    }
-    
-    private void TheLoai_butXoaActionPerformed(java.awt.event.ActionEvent evt) {
-        try {
-            int selectedRow = TheLoai_tbTheLoai.getSelectedRow();
-            if (selectedRow == -1) {
-                JOptionPane.showMessageDialog(this, "Vui lòng chọn thể loại cần xóa!");
-                return;
-            }
-            
-            String maTheLoai = TheLoai_tbTheLoai.getValueAt(selectedRow, 0).toString();
-            String tenTheLoai = TheLoai_tbTheLoai.getValueAt(selectedRow, 1).toString();
-            
-            int confirm = JOptionPane.showConfirmDialog(this, 
-                "Bạn có chắc chắn muốn xóa thể loại '" + tenTheLoai + "'?", 
-                "Xác nhận xóa", 
-                JOptionPane.YES_NO_OPTION);
-            
-            if (confirm == JOptionPane.YES_OPTION) {
-                if (theLoaiService.xoaTheLoai(maTheLoai)) {
-                    JOptionPane.showMessageDialog(this, "Xóa thể loại thành công!");
-                    loadTheLoaiData();
-                    clearTheLoaiForm();
-                } else {
-                    JOptionPane.showMessageDialog(this, "Xóa thể loại thất bại!");
-                }
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Lỗi: " + e.getMessage());
-        }
-    }
-    
-    private void TheLoai_butTimKiemActionPerformed(java.awt.event.ActionEvent evt) {
-        try {
-            String keyword = TheLoai_tfTimKiem.getText().trim();
-            String searchType = TheLoai_cbTimTheo.getSelectedItem().toString();
-            
-            if (keyword.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Vui lòng nhập từ khóa tìm kiếm!");
-                return;
-            }
-            
-            List<TheLoai> dsTheLoai = null;
-            if (searchType.contains("mã")) {
-                dsTheLoai = theLoaiService.timKiemTheoMa(keyword);
-            } else if (searchType.contains("tên")) {
-                dsTheLoai = theLoaiService.timKiemTheoTen(keyword);
-            }
-            
-            DefaultTableModel model = (DefaultTableModel) TheLoai_tbTheLoai.getModel();
-            model.setRowCount(0);
-            
-            if (dsTheLoai != null && !dsTheLoai.isEmpty()) {
-                for (TheLoai tl : dsTheLoai) {
-                    model.addRow(new Object[]{
-                        tl.getMaTheLoai(),
-                        tl.getTenTheLoai()
-                    });
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Không tìm thấy kết quả!");
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Lỗi: " + e.getMessage());
-        }
-    }
+
     
     private void clearTheLoaiForm() {
         TheLoai_txtTheLoai.setText("");
         TheLoai_tfTimKiem.setText("");
     }
 
-
+    // ==================== QUẢN LÝ TÀI KHOẢN ====================
     
     private void loadTaiKhoanData() {
         try {
-            List<TaiKhoan> dsTaiKhoan = taiKhoanService.getAllTaiKhoan();
+            ArrayList<TaiKhoan> dsTaiKhoan = adminController.GetAllTaiKhoan();
             DefaultTableModel model = (DefaultTableModel) TaiKhoan_tbTaiKhoan.getModel();
             model.setRowCount(0);
             
             for (TaiKhoan tk : dsTaiKhoan) {
                 model.addRow(new Object[]{
                     tk.getUsername(),
-                    tk.getPassword(),
-                    tk.getSoDienThoai(),
-                    tk.getTenKhachHang()
+                    tk.getPass(),
+                    tk.getSdtTK(),
+                    tk.getTenTK()
                 });
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Lỗi khi tải dữ liệu tài khoản: " + e.getMessage());
+            logger.log(java.util.logging.Level.SEVERE, "Error loading accounts", e);
         }
     }
-    
-    private void TaiKhoan__butThemActionPerformed(java.awt.event.ActionEvent evt) {
-        try {
-            String username = TaiKhoan_txtTenTaiKhoan.getText().trim();
-            String password = TaiKhoan_txtMatKhau.getText().trim();
-            String tenKH = TaiKhoan_txtTenTK.getText().trim();
-            String sdt = TaiKhoan_txtSDT.getText().trim();
-            
-            if (username.isEmpty() || password.isEmpty() || tenKH.isEmpty() || sdt.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin!");
-                return;
-            }
-            
-            if (!sdt.matches("\\d{10,11}")) {
-                JOptionPane.showMessageDialog(this, "Số điện thoại không hợp lệ (10-11 chữ số)!");
-                return;
-            }
-            
-            TaiKhoan taiKhoan = new TaiKhoan(username, password, sdt, tenKH);
-            
-            if (taiKhoanService.themTaiKhoan(taiKhoan)) {
-                JOptionPane.showMessageDialog(this, "Thêm tài khoản thành công!");
-                loadTaiKhoanData();
-                clearTaiKhoanForm();
-            } else {
-                JOptionPane.showMessageDialog(this, "Thêm tài khoản thất bại! Username có thể đã tồn tại.");
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Lỗi: " + e.getMessage());
-        }
-    }
-    
-    private void TaiKhoan__butSuaActionPerformed(java.awt.event.ActionEvent evt) {
-        try {
-            int selectedRow = TaiKhoan_tbTaiKhoan.getSelectedRow();
-            if (selectedRow == -1) {
-                JOptionPane.showMessageDialog(this, "Vui lòng chọn tài khoản cần sửa!");
-                return;
-            }
-            
-            String username = TaiKhoan_txtTenTaiKhoan.getText().trim();
-            String password = TaiKhoan_txtMatKhau.getText().trim();
-            String tenKH = TaiKhoan_txtTenTK.getText().trim();
-            String sdt = TaiKhoan_txtSDT.getText().trim();
-            
-            if (username.isEmpty() || password.isEmpty() || tenKH.isEmpty() || sdt.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin!");
-                return;
-            }
-            
-            if (!sdt.matches("\\d{10,11}")) {
-                JOptionPane.showMessageDialog(this, "Số điện thoại không hợp lệ (10-11 chữ số)!");
-                return;
-            }
-            
-            TaiKhoan taiKhoan = new TaiKhoan(username, password, sdt, tenKH);
-            
-            if (taiKhoanService.suaTaiKhoan(taiKhoan)) {
-                JOptionPane.showMessageDialog(this, "Cập nhật tài khoản thành công!");
-                loadTaiKhoanData();
-                clearTaiKhoanForm();
-            } else {
-                JOptionPane.showMessageDialog(this, "Cập nhật tài khoản thất bại!");
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Lỗi: " + e.getMessage());
-        }
-    }
-    
-    private void TaiKhoan__butXoaActionPerformed(java.awt.event.ActionEvent evt) {
-        try {
-            int selectedRow = TaiKhoan_tbTaiKhoan.getSelectedRow();
-            if (selectedRow == -1) {
-                JOptionPane.showMessageDialog(this, "Vui lòng chọn tài khoản cần xóa!");
-                return;
-            }
-            
-            String username = TaiKhoan_tbTaiKhoan.getValueAt(selectedRow, 0).toString();
-            
-            int confirm = JOptionPane.showConfirmDialog(this, 
-                "Bạn có chắc chắn muốn xóa tài khoản '" + username + "'?", 
-                "Xác nhận xóa", 
-                JOptionPane.YES_NO_OPTION);
-            
-            if (confirm == JOptionPane.YES_OPTION) {
-                if (taiKhoanService.xoaTaiKhoan(username)) {
-                    JOptionPane.showMessageDialog(this, "Xóa tài khoản thành công!");
-                    loadTaiKhoanData();
-                    clearTaiKhoanForm();
-                } else {
-                    JOptionPane.showMessageDialog(this, "Xóa tài khoản thất bại!");
-                }
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Lỗi: " + e.getMessage());
-        }
-    }
-    
-    private void Sach_butTimKiem1ActionPerformed(java.awt.event.ActionEvent evt) {
-        try {
-            String keyword = Sach_tfTimKiem1.getText().trim();
-            
-            if (keyword.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Vui lòng nhập tên tài khoản!");
-                return;
-            }
-            
-            List<TaiKhoan> dsTaiKhoan = taiKhoanService.timKiemTheoUsername(keyword);
-            
-            DefaultTableModel model = (DefaultTableModel) TaiKhoan_tbTaiKhoan.getModel();
-            model.setRowCount(0);
-            
-            if (dsTaiKhoan != null && !dsTaiKhoan.isEmpty()) {
-                for (TaiKhoan tk : dsTaiKhoan) {
-                    model.addRow(new Object[]{
-                        tk.getUsername(),
-                        tk.getPassword(),
-                        tk.getSoDienThoai(),
-                        tk.getTenKhachHang()
-                    });
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Không tìm thấy kết quả!");
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Lỗi: " + e.getMessage());
-        }
-    }
-    
-    private void Sach_butHienThi1ActionPerformed(java.awt.event.ActionEvent evt) {
-        loadTaiKhoanData();
-        clearTaiKhoanForm();
-    }
+
     
     private void clearTaiKhoanForm() {
         TaiKhoan_txtTenTaiKhoan.setText("");
@@ -543,100 +132,10 @@ public class Admin extends javax.swing.JFrame {
         Sach_tfTimKiem1.setText("");
     }
 
-
-    
-    private void TruyVan_btActionPerformed(java.awt.event.ActionEvent evt) {
-        try {
-            // Lấy thông tin ngày tháng năm mượn và trả
-            String ngayMuon = TruyVan_txtNgayMuon.getText().trim();
-            String thangMuon = TruyVan_txtThangMuon.getText().trim();
-            String namMuon = TruyVan_txtNamMuon.getText().trim();
-            
-            String ngayTra = TruyVan_txtNgayTra.getText().trim();
-            String thangTra = TruyVan_txtThangTra.getText().trim();
-            String namTra = TruyVan_txtNamTra.getText().trim();
-            
-            if (ngayMuon.isEmpty() || thangMuon.isEmpty() || namMuon.isEmpty() ||
-                ngayTra.isEmpty() || thangTra.isEmpty() || namTra.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin ngày!");
-                return;
-            }
-            
-            // Tạo chuỗi ngày theo format yyyy-MM-dd
-            String tuNgay = String.format("%s-%s-%s", namMuon, 
-                thangMuon.length() == 1 ? "0" + thangMuon : thangMuon,
-                ngayMuon.length() == 1 ? "0" + ngayMuon : ngayMuon);
-            
-            String denNgay = String.format("%s-%s-%s", namTra,
-                thangTra.length() == 1 ? "0" + thangTra : thangTra,
-                ngayTra.length() == 1 ? "0" + ngayTra : ngayTra);
-            
-            // Gọi service để lấy dữ liệu
-            List<LiSuGiaoDich> dsLichSu = liSuGDService.truyVanTheoKhoangThoiGian(tuNgay, denNgay);
-            
-            DefaultTableModel model = (DefaultTableModel) TruyVan_Lsu.getModel();
-            model.setRowCount(0);
-            
-            if (dsLichSu != null && !dsLichSu.isEmpty()) {
-                for (LiSuGiaoDich ls : dsLichSu) {
-                    model.addRow(new Object[]{
-                        ls.getMaGiaoDich(),
-                        ls.getUsername(),
-                        ls.getMaKhachHang(),
-                        ls.getNgayGiaoDich(),
-                        ls.getSoLuong(),
-                        ls.getTrangThai()
-                    });
-                }
-                JOptionPane.showMessageDialog(this, "Tìm thấy " + dsLichSu.size() + " giao dịch!");
-            } else {
-                JOptionPane.showMessageDialog(this, "Không tìm thấy giao dịch nào trong khoảng thời gian này!");
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Lỗi: " + e.getMessage());
-        }
-    }
-    
-    private void TruyVan_txtNamMuonActionPerformed(java.awt.event.ActionEvent evt) {
-        // Có thể để trống hoặc thêm validation
-    }
-
-    private void TruyVan_txtNgayMuonActionPerformed(java.awt.event.ActionEvent evt) {
-        // Có thể để trống hoặc thêm validation
-    }
-
-    private void TruyVan_txtThangMuonActionPerformed(java.awt.event.ActionEvent evt) {
-        // Có thể để trống hoặc thêm validation
-    }
-
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {
-        // Có thể để trống
-    }
-
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {
-        // Có thể để trống
-    }
-
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {
-        // Có thể để trống
-    }
-
-    private void TruyVan_txtNgayTraActionPerformed(java.awt.event.ActionEvent evt) {
-        // Có thể để trống
-    }
-
-    private void TruyVan_txtThangTraActionPerformed(java.awt.event.ActionEvent evt) {
-        // Có thể để trống
-    }
-
-    private void TruyVan_txtNamTraActionPerformed(java.awt.event.ActionEvent evt) {
-        // Có thể để trống
-    }
-
     // ==================== TABLE LISTENERS ====================
     
     private void addTableListeners() {
-        // Listener cho bảng Sách - Click để điền form
+        // Listener cho bảng Sách
         Sach_tbSach.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -674,22 +173,6 @@ public class Admin extends javax.swing.JFrame {
                 }
             }
         });
-    }
-
-
-    
-    private void Logout(java.awt.event.ActionEvent evt) {
-        int confirm = JOptionPane.showConfirmDialog(this, 
-            "Bạn có chắc chắn muốn đăng xuất?", 
-            "Xác nhận đăng xuất", 
-            JOptionPane.YES_NO_OPTION);
-        
-        if (confirm == JOptionPane.YES_OPTION) {
-            Login lg = new Login();
-            lg.setVisible(true);
-            this.dispose();
-        }
-    }
     }
     
     /**
@@ -1490,63 +973,517 @@ public class Admin extends javax.swing.JFrame {
 
     private void Sach_butThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butThemActionPerformed
         // TODO add your handling code here:
-
+try {
+            String tenSach = Sach_txtTenSach.getText().trim();
+            String soLuongStr = Sach_txtMaSach.getText().trim();
+            String maTheLoai = jTextPane1.getText().trim();
+            String tacGia = Sach_txtTacGia.getText().trim();
+            
+            if (tenSach.isEmpty() || soLuongStr.isEmpty() || maTheLoai.isEmpty() || tacGia.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin!");
+                return;
+            }
+            
+            int soLuong;
+            try {
+                soLuong = Integer.parseInt(soLuongStr);
+                if (soLuong < 0) {
+                    JOptionPane.showMessageDialog(this, "Số lượng phải là số dương!");
+                    return;
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Số lượng phải là số nguyên!");
+                return;
+            }
+            
+            // Tạo đối tượng Sach (mã sách sẽ tự động tạo trong Controller)
+            Sach sach = new Sach("", tenSach, soLuong, tacGia, maTheLoai);
+            
+            if (adminController.AddSach(sach)) {
+                JOptionPane.showMessageDialog(this, "Thêm sách thành công!");
+                loadSachData();
+                clearSachForm();
+            } else {
+                JOptionPane.showMessageDialog(this, "Thêm sách thất bại!");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Lỗi: " + e.getMessage());
+            logger.log(java.util.logging.Level.SEVERE, "Error adding book", e);
+        }
     }//GEN-LAST:event_Sach_butThemActionPerformed
 
     private void Sach_butXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butXoaActionPerformed
-
+        try {
+            int selectedRow = Sach_tbSach.getSelectedRow();
+            if (selectedRow == -1) {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn sách cần xóa!");
+                return;
+            }
+            
+            String maSach = Sach_tbSach.getValueAt(selectedRow, 0).toString();
+            String tenSach = Sach_tbSach.getValueAt(selectedRow, 1).toString();
+            
+            int confirm = JOptionPane.showConfirmDialog(this, 
+                "Bạn có chắc chắn muốn xóa sách '" + tenSach + "'?", 
+                "Xác nhận xóa", 
+                JOptionPane.YES_NO_OPTION);
+            
+            if (confirm == JOptionPane.YES_OPTION) {
+                if (adminController.DeleteSach(maSach)) {
+                    JOptionPane.showMessageDialog(this, "Xóa sách thành công!");
+                    loadSachData();
+                    clearSachForm();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Xóa sách thất bại!");
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Lỗi: " + e.getMessage());
+            logger.log(java.util.logging.Level.SEVERE, "Error deleting book", e);
+        }
     }//GEN-LAST:event_Sach_butXoaActionPerformed
 
     private void Sach_butTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butTimKiemActionPerformed
         // TODO add your handling code here:
+         try {
+            String keyword = Sach_tfTimKiem.getText().trim();
+            String searchType = Sach_cbTimTheo.getSelectedItem().toString();
+            
+            if (keyword.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Vui lòng nhập từ khóa tìm kiếm!");
+                return;
+            }
+            
+            ArrayList<Sach> dsSach = null;
+            
+            if (searchType.contains("tên")) {
+                dsSach = adminController.GetSachByTenSach(keyword);
+            } else if (searchType.contains("mã")) {
+                Sach sach = adminController.GetSachByMa(keyword);
+                dsSach = new ArrayList<>();
+                if (sach != null) {
+                    dsSach.add(sach);
+                }
+            } else if (searchType.contains("thể loại")) {
+                dsSach = adminController.GetSachByTheLoai(keyword);
+            }
+            
+            DefaultTableModel model = (DefaultTableModel) Sach_tbSach.getModel();
+            model.setRowCount(0);
+            
+            if (dsSach != null && !dsSach.isEmpty()) {
+                for (Sach sach : dsSach) {
+                    model.addRow(new Object[]{
+                        sach.getMaSach(),
+                        sach.getTenSach(),
+                        sach.getSoLuong(),
+                        sach.getTacGia(),
+                        sach.getMaTheLoai()
+                    });
+                }
+                JOptionPane.showMessageDialog(this, "Tìm thấy " + dsSach.size() + " kết quả!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Không tìm thấy kết quả!");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Lỗi: " + e.getMessage());
+            logger.log(java.util.logging.Level.SEVERE, "Error searching book", e);
+        }
     }//GEN-LAST:event_Sach_butTimKiemActionPerformed
 
     private void Sach_butLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butLamMoiActionPerformed
         // TODO add your handling code here:
+        clearSachForm();
+        loadSachData();
     }//GEN-LAST:event_Sach_butLamMoiActionPerformed
 
     private void Sach_butSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butSuaActionPerformed
         // TODO add your handling code here:
+        try {
+            int selectedRow = Sach_tbSach.getSelectedRow();
+            if (selectedRow == -1) {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn sách cần sửa!");
+                return;
+            }
+            
+            String maSach = Sach_tbSach.getValueAt(selectedRow, 0).toString();
+            String tenSach = Sach_txtTenSach.getText().trim();
+            String soLuongStr = Sach_txtMaSach.getText().trim();
+            String maTheLoai = jTextPane1.getText().trim();
+            String tacGia = Sach_txtTacGia.getText().trim();
+            
+            if (tenSach.isEmpty() || soLuongStr.isEmpty() || maTheLoai.isEmpty() || tacGia.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin!");
+                return;
+            }
+            
+            int soLuong;
+            try {
+                soLuong = Integer.parseInt(soLuongStr);
+                if (soLuong < 0) {
+                    JOptionPane.showMessageDialog(this, "Số lượng phải là số dương!");
+                    return;
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Số lượng phải là số nguyên!");
+                return;
+            }
+            
+            Sach sach = new Sach(maSach, tenSach, soLuong, tacGia, maTheLoai);
+            
+            if (adminController.UpdateSach(sach)) {
+                JOptionPane.showMessageDialog(this, "Cập nhật sách thành công!");
+                loadSachData();
+                clearSachForm();
+            } else {
+                JOptionPane.showMessageDialog(this, "Cập nhật sách thất bại!");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Lỗi: " + e.getMessage());
+            logger.log(java.util.logging.Level.SEVERE, "Error updating book", e);
+        }
     }//GEN-LAST:event_Sach_butSuaActionPerformed
 
     private void TheLoai_butThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TheLoai_butThemActionPerformed
         // TODO add your handling code here:
+        try {
+            String tenTheLoai = TheLoai_txtTheLoai.getText().trim();
+            
+            if (tenTheLoai.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Vui lòng nhập tên thể loại!");
+                return;
+            }
+            
+            // Mã thể loại sẽ tự động tạo trong Controller
+            TheLoai theLoai = new TheLoai("", tenTheLoai);
+            
+            if (adminController.AddTheLoai(theLoai)) {
+                JOptionPane.showMessageDialog(this, "Thêm thể loại thành công!");
+                loadTheLoaiData();
+                clearTheLoaiForm();
+            } else {
+                JOptionPane.showMessageDialog(this, "Thêm thể loại thất bại!");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Lỗi: " + e.getMessage());
+            logger.log(java.util.logging.Level.SEVERE, "Error adding category", e);
+        }
     }//GEN-LAST:event_TheLoai_butThemActionPerformed
 
     private void TheLoai_butSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TheLoai_butSuaActionPerformed
         // TODO add your handling code here:
+         try {
+            int selectedRow = TheLoai_tbTheLoai.getSelectedRow();
+            if (selectedRow == -1) {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn thể loại cần sửa!");
+                return;
+            }
+            
+            String maTheLoai = TheLoai_tbTheLoai.getValueAt(selectedRow, 0).toString();
+            String tenTheLoai = TheLoai_txtTheLoai.getText().trim();
+            
+            if (tenTheLoai.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Vui lòng nhập tên thể loại!");
+                return;
+            }
+            
+            TheLoai theLoai = new TheLoai(maTheLoai, tenTheLoai);
+            
+            if (adminController.UpdateTheLoai(theLoai)) {
+                JOptionPane.showMessageDialog(this, "Cập nhật thể loại thành công!");
+                loadTheLoaiData();
+                clearTheLoaiForm();
+            } else {
+                JOptionPane.showMessageDialog(this, "Cập nhật thể loại thất bại!");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Lỗi: " + e.getMessage());
+            logger.log(java.util.logging.Level.SEVERE, "Error updating category", e);
+        }
     }//GEN-LAST:event_TheLoai_butSuaActionPerformed
 
     private void TheLoai_butXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TheLoai_butXoaActionPerformed
         // TODO add your handling code here:
+        try {
+            int selectedRow = TheLoai_tbTheLoai.getSelectedRow();
+            if (selectedRow == -1) {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn thể loại cần xóa!");
+                return;
+            }
+            
+            String maTheLoai = TheLoai_tbTheLoai.getValueAt(selectedRow, 0).toString();
+            String tenTheLoai = TheLoai_tbTheLoai.getValueAt(selectedRow, 1).toString();
+            
+            int confirm = JOptionPane.showConfirmDialog(this, 
+                "Bạn có chắc chắn muốn xóa thể loại '" + tenTheLoai + "'?", 
+                "Xác nhận xóa", 
+                JOptionPane.YES_NO_OPTION);
+            
+            if (confirm == JOptionPane.YES_OPTION) {
+                if (adminController.DeleteTheLoai(maTheLoai)) {
+                    JOptionPane.showMessageDialog(this, "Xóa thể loại thành công!");
+                    loadTheLoaiData();
+                    clearTheLoaiForm();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Xóa thể loại thất bại!");
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Lỗi: " + e.getMessage());
+            logger.log(java.util.logging.Level.SEVERE, "Error deleting category", e);
+        }
     }//GEN-LAST:event_TheLoai_butXoaActionPerformed
 
     private void TheLoai_butTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TheLoai_butTimKiemActionPerformed
         // TODO add your handling code here:
+        try {
+            String keyword = TheLoai_tfTimKiem.getText().trim();
+            String searchType = TheLoai_cbTimTheo.getSelectedItem().toString();
+            
+            if (keyword.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Vui lòng nhập từ khóa tìm kiếm!");
+                return;
+            }
+            
+            ArrayList<TheLoai> dsTheLoai = new ArrayList<>();
+            
+            if (searchType.contains("mã")) {
+                TheLoai tl = adminController.GetTheLoaiByMa(keyword);
+                if (tl != null) {
+                    dsTheLoai.add(tl);
+                }
+            } else if (searchType.contains("tên")) {
+                // Tìm theo tên - lọc từ danh sách tất cả
+                ArrayList<TheLoai> allTheLoai = adminController.GetGetAllTheLoaiAllTheLoai();
+                for (TheLoai tl : allTheLoai) {
+                    if (tl.getTenTheLoai().toLowerCase().contains(keyword.toLowerCase())) {
+                        dsTheLoai.add(tl);
+                    }
+                }
+            }
+            
+            DefaultTableModel model = (DefaultTableModel) TheLoai_tbTheLoai.getModel();
+            model.setRowCount(0);
+            
+            if (!dsTheLoai.isEmpty()) {
+                for (TheLoai tl : dsTheLoai) {
+                    model.addRow(new Object[]{
+                        tl.getMaTheLoai(),
+                        tl.getTenTheLoai()
+                    });
+                }
+                JOptionPane.showMessageDialog(this, "Tìm thấy " + dsTheLoai.size() + " kết quả!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Không tìm thấy kết quả!");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Lỗi: " + e.getMessage());
+            logger.log(java.util.logging.Level.SEVERE, "Error searching category", e);
+        }
     }//GEN-LAST:event_TheLoai_butTimKiemActionPerformed
 
     private void TaiKhoan__butThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaiKhoan__butThemActionPerformed
         // TODO add your handling code here:
+        try {
+            String username = TaiKhoan_txtTenTaiKhoan.getText().trim();
+            String password = TaiKhoan_txtMatKhau.getText().trim();
+            String tenTK = TaiKhoan_txtTenTK.getText().trim();
+            String sdtTK = TaiKhoan_txtSDT.getText().trim();
+            
+            if (username.isEmpty() || password.isEmpty() || tenTK.isEmpty() || sdtTK.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin!");
+                return;
+            }
+            
+            if (!sdtTK.matches("\\d{10}")) {
+                JOptionPane.showMessageDialog(this, "Số điện thoại phải có đúng 10 chữ số!");
+                return;
+            }
+            
+            // Sử dụng phương thức AddTaiKhoanManager từ AdminController
+            // Truyền password 2 lần giống nhau để confirm
+            if (adminController.AddTaiKhoanManager(username, password, password, tenTK, sdtTK)) {
+                JOptionPane.showMessageDialog(this, "Thêm tài khoản thành công!");
+                loadTaiKhoanData();
+                clearTaiKhoanForm();
+            } else {
+                JOptionPane.showMessageDialog(this, "Thêm tài khoản thất bại! Username có thể đã tồn tại.");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Lỗi: " + e.getMessage());
+            logger.log(java.util.logging.Level.SEVERE, "Error adding account", e);
+        }
     }//GEN-LAST:event_TaiKhoan__butThemActionPerformed
 
     private void TaiKhoan__butSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaiKhoan__butSuaActionPerformed
         // TODO add your handling code here:
+        try {
+            int selectedRow = TaiKhoan_tbTaiKhoan.getSelectedRow();
+            if (selectedRow == -1) {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn tài khoản cần sửa!");
+                return;
+            }
+            
+            String username = TaiKhoan_txtTenTaiKhoan.getText().trim();
+            String password = TaiKhoan_txtMatKhau.getText().trim();
+            String tenTK = TaiKhoan_txtTenTK.getText().trim();
+            String sdtTK = TaiKhoan_txtSDT.getText().trim();
+            
+            if (username.isEmpty() || password.isEmpty() || tenTK.isEmpty() || sdtTK.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin!");
+                return;
+            }
+            
+            if (!sdtTK.matches("\\d{10}")) {
+                JOptionPane.showMessageDialog(this, "Số điện thoại phải có đúng 10 chữ số!");
+                return;
+            }
+            
+            if (adminController.UpdateTaiKhoan(username, password, password, tenTK, sdtTK)) {
+                JOptionPane.showMessageDialog(this, "Cập nhật tài khoản thành công!");
+                loadTaiKhoanData();
+                clearTaiKhoanForm();
+            } else {
+                JOptionPane.showMessageDialog(this, "Cập nhật tài khoản thất bại!");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Lỗi: " + e.getMessage());
+            logger.log(java.util.logging.Level.SEVERE, "Error updating account", e);
+        }
     }//GEN-LAST:event_TaiKhoan__butSuaActionPerformed
 
     private void TaiKhoan__butXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaiKhoan__butXoaActionPerformed
         // TODO add your handling code here:
+        try {
+            int selectedRow = TaiKhoan_tbTaiKhoan.getSelectedRow();
+            if (selectedRow == -1) {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn tài khoản cần xóa!");
+                return;
+            }
+            
+            String username = TaiKhoan_tbTaiKhoan.getValueAt(selectedRow, 0).toString();
+            
+            int confirm = JOptionPane.showConfirmDialog(this, 
+                "Bạn có chắc chắn muốn xóa tài khoản '" + username + "'?", 
+                "Xác nhận xóa", 
+                JOptionPane.YES_NO_OPTION);
+            
+            if (confirm == JOptionPane.YES_OPTION) {
+                if (adminController.DeleteTaiKhoan(username)) {
+                    JOptionPane.showMessageDialog(this, "Xóa tài khoản thành công!");
+                    loadTaiKhoanData();
+                    clearTaiKhoanForm();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Xóa tài khoản thất bại!");
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Lỗi: " + e.getMessage());
+            logger.log(java.util.logging.Level.SEVERE, "Error deleting account", e);
+        }
     }//GEN-LAST:event_TaiKhoan__butXoaActionPerformed
 
     private void Sach_butTimKiem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butTimKiem1ActionPerformed
         // TODO add your handling code here:
+        try {
+            String keyword = Sach_tfTimKiem1.getText().trim();
+            
+            if (keyword.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Vui lòng nhập tên tài khoản!");
+                return;
+            }
+            
+            // Tìm kiếm trong danh sách tất cả tài khoản
+            ArrayList<TaiKhoan> dsTaiKhoan = adminController.GetAllTaiKhoan();
+            ArrayList<TaiKhoan> ketQua = new ArrayList<>();
+            
+            for (TaiKhoan tk : dsTaiKhoan) {
+                if (tk.getUsername().toLowerCase().contains(keyword.toLowerCase())) {
+                    ketQua.add(tk);
+                }
+            }
+            
+            DefaultTableModel model = (DefaultTableModel) TaiKhoan_tbTaiKhoan.getModel();
+            model.setRowCount(0);
+            
+            if (!ketQua.isEmpty()) {
+                for (TaiKhoan tk : ketQua) {
+                    model.addRow(new Object[]{
+                        tk.getUsername(),
+                        tk.getPass(),
+                        tk.getSdtTK(),
+                        tk.getTenTK()
+                    });
+                }
+                JOptionPane.showMessageDialog(this, "Tìm thấy " + ketQua.size() + " kết quả!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Không tìm thấy kết quả!");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Lỗi: " + e.getMessage());
+            logger.log(java.util.logging.Level.SEVERE, "Error searching account", e);
+        }
     }//GEN-LAST:event_Sach_butTimKiem1ActionPerformed
 
     private void Sach_butHienThi1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butHienThi1ActionPerformed
         // TODO add your handling code here:
+        loadTaiKhoanData();
+        clearTaiKhoanForm();
     }//GEN-LAST:event_Sach_butHienThi1ActionPerformed
 
     private void TruyVan_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_btActionPerformed
         // TODO add your handling code here:
+        try {
+            String ngayMuon = TruyVan_txtNgayMuon.getText().trim();
+            String thangMuon = TruyVan_txtThangMuon.getText().trim();
+            String namMuon = TruyVan_txtNamMuon.getText().trim();
+            
+            String ngayTra = TruyVan_txtNgayTra.getText().trim();
+            String thangTra = TruyVan_txtThangTra.getText().trim();
+            String namTra = TruyVan_txtNamTra.getText().trim();
+            
+            if (ngayMuon.isEmpty() || thangMuon.isEmpty() || namMuon.isEmpty() ||
+                ngayTra.isEmpty() || thangTra.isEmpty() || namTra.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin ngày!");
+                return;
+            }
+            
+            // Format: yyyy-MM-dd
+            String ngayGDCuoi = String.format("%s-%s-%s", 
+                namTra,
+                thangTra.length() == 1 ? "0" + thangTra : thangTra,
+                ngayTra.length() == 1 ? "0" + ngayTra : ngayTra);
+            
+            String ngayGDDau = String.format("%s-%s-%s", 
+                namMuon,
+                thangMuon.length() == 1 ? "0" + thangMuon : thangMuon,
+                ngayMuon.length() == 1 ? "0" + ngayMuon : ngayMuon);
+            
+            // Gọi Controller
+            ArrayList<LiSuGiaoDich> dsLichSu = adminController.GetLiSuGDByNgayGD(ngayGDCuoi, ngayGDDau);
+            
+            DefaultTableModel model = (DefaultTableModel) TruyVan_Lsu.getModel();
+            model.setRowCount(0);
+            
+            if (dsLichSu != null && !dsLichSu.isEmpty()) {
+                for (LiSuGiaoDich ls : dsLichSu) {
+                    model.addRow(new Object[]{
+                        ls.getMaGD(),
+                        ls.getUsername(),
+                        ls.getMaSach(),
+                        ls.getNgayGD(),
+                        ls.getSoLuong(),
+                        ls.getTrangThai()
+                    });
+                }
+                JOptionPane.showMessageDialog(this, "Tìm thấy " + dsLichSu.size() + " giao dịch!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Không tìm thấy giao dịch nào trong khoảng thời gian này!");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Lỗi: " + e.getMessage());
+            logger.log(java.util.logging.Level.SEVERE, "Error querying transactions", e);
+        }
     }//GEN-LAST:event_TruyVan_btActionPerformed
 
     private void TruyVan_txtNamMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_txtNamMuonActionPerformed
@@ -1587,9 +1524,16 @@ public class Admin extends javax.swing.JFrame {
 
     private void Logout(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Logout
         // TODO add your handling code here:
-        Login lg = new Login();
-        lg.setVisible(true);
-        this.dispose();
+        int confirm = JOptionPane.showConfirmDialog(this, 
+            "Bạn có chắc chắn muốn đăng xuất?", 
+            "Xác nhận đăng xuất", 
+            JOptionPane.YES_NO_OPTION);
+        
+        if (confirm == JOptionPane.YES_OPTION) {
+            Login lg = new Login();
+            lg.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_Logout
 
     /**
