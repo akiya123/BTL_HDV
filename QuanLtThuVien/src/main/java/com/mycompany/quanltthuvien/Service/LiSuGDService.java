@@ -115,9 +115,9 @@ public class LiSuGDService {
     public ArrayList<LiSuGiaoDich> GetLiSuGDByNgayGD(String NgayGDCuoi, String NgayGDDau) throws IOException, InterruptedException {
         
         String url = baseUrl + "LiSuGiaoDich/GetLSuGiaoDichByNgayGD?NgayGDCuoi=" 
-        + URLEncoder.encode(NgayGDCuoi, StandardCharsets.UTF_8)
-        + "&NgayGDDau=" + URLEncoder.encode(NgayGDDau, StandardCharsets.UTF_8);
-
+        +NgayGDCuoi
+        + "&NgayGDDau=" + NgayGDDau;
+            System.out.println(url);
         HttpRequest getRequest = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .GET()

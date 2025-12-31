@@ -290,6 +290,9 @@ public class AdminController {
     public ArrayList<LiSuGiaoDich> GetLiSuGDByNgayGD(String NgayGDCuoi, String NgayGDDau) {
         ArrayList<LiSuGiaoDich> list = new ArrayList<>();
         try {
+            System.out.println("Debug GetLiSuGDByNgayGD:");
+            System.out.println(NgayGDCuoi);
+            System.out.println(NgayGDDau);
             list = lgs.GetLiSuGDByNgayGD(NgayGDCuoi, NgayGDDau);
             return list;
         } catch (Exception e) {

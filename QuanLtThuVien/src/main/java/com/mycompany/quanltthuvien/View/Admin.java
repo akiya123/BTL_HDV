@@ -41,6 +41,7 @@ public class Admin extends javax.swing.JFrame {
         LoadTheLoaiTable(adminController.GetAllTheLoai());
         LoadTaiKhoan(adminController.GetAllTaiKhoan());
         LoaTryVan(adminController.GetAllLichSuGiaoDich());
+        
         LocalDate date = LocalDate.now();
         TruyVan_txtNgayMuon.setText(date.getDayOfMonth()+"");
         TruyVan_txtThangMuon.setText(date.getMonthValue()+"");
@@ -232,7 +233,6 @@ public class Admin extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         TruyVan_txtNamTra = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        TruyVan_btLayThongTin = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
@@ -812,9 +812,6 @@ public class Admin extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel7.setText("đến");
 
-        TruyVan_btLayThongTin.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        TruyVan_btLayThongTin.setText("Lấy thông tin");
-
         javax.swing.GroupLayout LichSuGiaoDichLayout = new javax.swing.GroupLayout(LichSuGiaoDich);
         LichSuGiaoDich.setLayout(LichSuGiaoDichLayout);
         LichSuGiaoDichLayout.setHorizontalGroup(
@@ -828,15 +825,12 @@ public class Admin extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(jLabel3)
                         .addGap(6, 6, 6)
-                        .addGroup(LichSuGiaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(LichSuGiaoDichLayout.createSequentialGroup()
-                                .addComponent(TruyVan_txtThangMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabel1)
-                                .addGap(6, 6, 6)
-                                .addComponent(TruyVan_txtNamMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(TruyVan_btLayThongTin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(20, 20, 20)
+                        .addComponent(TruyVan_txtThangMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel1)
+                        .addGap(6, 6, 6)
+                        .addComponent(TruyVan_txtNamMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
                         .addGroup(LichSuGiaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(LichSuGiaoDichLayout.createSequentialGroup()
@@ -864,9 +858,7 @@ public class Admin extends javax.swing.JFrame {
                         .addComponent(TruyVan_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(42, 42, 42))
                     .addGroup(LichSuGiaoDichLayout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(TruyVan_btLayThongTin, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
+                        .addGap(111, 111, 111)
                         .addGroup(LichSuGiaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -874,13 +866,12 @@ public class Admin extends javax.swing.JFrame {
                             .addGroup(LichSuGiaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(LichSuGiaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(LichSuGiaoDichLayout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(TruyVan_txtThangTra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(LichSuGiaoDichLayout.createSequentialGroup()
                                         .addGap(10, 10, 10)
-                                        .addComponent(TruyVan_txtNamTra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(LichSuGiaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(TruyVan_txtThangTra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(TruyVan_txtNamTra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGroup(LichSuGiaoDichLayout.createSequentialGroup()
                                     .addGap(10, 10, 10)
                                     .addGroup(LichSuGiaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1209,6 +1200,18 @@ public class Admin extends javax.swing.JFrame {
 
     private void TruyVan_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_btActionPerformed
         // TODO add your handling code here:
+        String NgayMuon = TruyVan_txtNgayMuon.getText();
+        String ThangMuon = TruyVan_txtThangMuon.getText();
+        String NamMuon = TruyVan_txtNamMuon.getText();
+
+        String NgayTra = TruyVan_txtNgayTra.getText();
+        String ThangTra = TruyVan_txtThangTra.getText();
+        String NamTra = TruyVan_txtNamTra.getText();
+
+        String NgayTraFull =  NamTra + "/" + ThangTra + "/" + NgayTra;
+        String NgayMuonFull =  NamMuon + "/" + ThangMuon + "/" + NgayMuon;
+
+        LoaTryVan(adminController.GetLiSuGDByNgayGD(NgayTraFull,NgayMuonFull));
     }//GEN-LAST:event_TruyVan_btActionPerformed
 
     private void TruyVan_txtNamMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_txtNamMuonActionPerformed
@@ -1420,7 +1423,6 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JTextPane TheLoai_txtTheLoai;
     private javax.swing.JTable TruyVan_Lsu;
     private javax.swing.JButton TruyVan_bt;
-    private javax.swing.JButton TruyVan_btLayThongTin;
     private javax.swing.JTextField TruyVan_txtNamMuon;
     private javax.swing.JTextField TruyVan_txtNamTra;
     private javax.swing.JTextField TruyVan_txtNgayMuon;
