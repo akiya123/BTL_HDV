@@ -410,11 +410,6 @@ public class Admin extends javax.swing.JFrame {
         });
 
         TheLoai_butHienThi.setText("Hiển thị");
-        TheLoai_butHienThi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TheLoai_butHienThiActionPerformed(evt);
-            }
-        });
 
         TheLoai_cbTimTheo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tìm theo mã", "Tìm theo tên" }));
 
