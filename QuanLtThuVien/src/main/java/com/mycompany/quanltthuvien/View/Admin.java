@@ -188,7 +188,12 @@ public class Admin extends javax.swing.JFrame {
         TruyVan_txtNamTra = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         TruyVan_btLayThongTin = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jButton3 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        info_TenTK = new javax.swing.JTextField();
+        info_SDT = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1024, 768));
@@ -405,6 +410,11 @@ public class Admin extends javax.swing.JFrame {
         });
 
         TheLoai_butHienThi.setText("Hiển thị");
+        TheLoai_butHienThi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TheLoai_butHienThiActionPerformed(evt);
+            }
+        });
 
         TheLoai_cbTimTheo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tìm theo mã", "Tìm theo tên" }));
 
@@ -868,14 +878,41 @@ public class Admin extends javax.swing.JFrame {
         AdminCT.addTab("Truy Vấn", LichSuGiaoDich);
         LichSuGiaoDich.getAccessibleContext().setAccessibleName("");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 128)); // NOI18N
-        jButton1.setText("Đăng xuất");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jPanel1.setLayout(null);
+
+        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton3.setText("Đăng Xuất");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Logout(evt);
             }
         });
-        AdminCT.addTab("Đăng xuất", jButton1);
+        jPanel1.add(jButton3);
+        jButton3.setBounds(740, 440, 142, 39);
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel9.setText("Tên tài khoản:");
+        jPanel1.add(jLabel9);
+        jLabel9.setBounds(70, 160, 222, 48);
+
+        info_TenTK.setEditable(false);
+        info_TenTK.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        info_TenTK.setText("jTextField1");
+        jPanel1.add(info_TenTK);
+        info_TenTK.setBounds(310, 160, 600, 54);
+
+        info_SDT.setEditable(false);
+        info_SDT.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        info_SDT.setText("jTextField1");
+        jPanel1.add(info_SDT);
+        info_SDT.setBounds(310, 270, 600, 54);
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel10.setText("Số điện thoại:");
+        jPanel1.add(jLabel10);
+        jLabel10.setBounds(70, 270, 217, 48);
+
+        AdminCT.addTab("Thông tin tài khoản", jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1112,9 +1149,12 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JTextField TruyVan_txtNgayTra;
     private javax.swing.JTextField TruyVan_txtThangMuon;
     private javax.swing.JTextField TruyVan_txtThangTra;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField info_SDT;
+    private javax.swing.JTextField info_TenTK;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1122,6 +1162,8 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
