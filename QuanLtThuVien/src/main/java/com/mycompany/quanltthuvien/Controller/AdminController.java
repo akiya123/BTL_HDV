@@ -121,7 +121,7 @@ public class AdminController {
     }
 
     //Lấy hết thể loại
-    public ArrayList<TheLoai> GetGetAllTheLoaiAllTheLoai() {
+    public ArrayList<TheLoai> GetGetAllTheLoai() {
         ArrayList<TheLoai> list = new ArrayList<>();
         try {
             list = tls.GetAllTheLoai();
