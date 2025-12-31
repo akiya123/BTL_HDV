@@ -62,6 +62,18 @@ public class ManagerController {
 
     //_____________//#Sách
     SachService ss = new SachService();
+
+    //Lấy theo thể loại
+    public ArrayList<Sach> GetSachByTheLoai(String maTheLoai) {
+        ArrayList<Sach> list = new ArrayList<>();
+        try {
+            list = ss.GetSachByTheLoai(maTheLoai);
+            return list;
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
     //Hủy sách
     public boolean RemoveSomeSach(String MaSach, int SoLuongXoa, String username) {
         try {

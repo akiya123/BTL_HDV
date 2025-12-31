@@ -46,7 +46,7 @@ namespace API_QLYTHuVien.Controllers
         [HttpGet] // lấy theo thể loại
         public IEnumerable<Sach> GetSachByTheLoai(string MaTheLoai)
         {
-            return db.Saches.Where(s => s.MaTheLoai == MaTheLoai);
+            return db.Saches.Where(s => s.MaTheLoai.Contains(MaTheLoai));
         }
 
         [HttpGet] // lấy theo tên

@@ -16,6 +16,7 @@ import com.mycompany.quanltthuvien.Service.TaiKhoanService;
 import java.awt.HeadlessException;
 
 import java.io.IOException;
+import java.lang.classfile.instruction.SwitchCase;
 import java.lang.reflect.Array;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -122,7 +123,7 @@ public class Manager extends javax.swing.JFrame {
         TraSach_txtMaKH = new javax.swing.JTextField();
         TraSach_lbTenKH = new javax.swing.JLabel();
         TraSach_txtTenKH = new javax.swing.JTextField();
-        TraSach_txtTenSach = new javax.swing.JTextField();
+        TraSach_txtMaMuon = new javax.swing.JTextField();
         TraSach_lbTenSach = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         TraSach_tbDSTra = new javax.swing.JTable();
@@ -137,8 +138,6 @@ public class Manager extends javax.swing.JFrame {
         TraSach_lbDSMuon = new javax.swing.JLabel();
         TraSach_lbTheLoai = new javax.swing.JLabel();
         TraSach_txtTheLoaiTimKiem = new javax.swing.JTextField();
-        TraSach_lbNgayMuon = new javax.swing.JLabel();
-        TraSach_txtNgayMuon = new javax.swing.JTextField();
         TraSach_cbTimKiem = new javax.swing.JComboBox<>();
         TraSach_btXacNhan = new javax.swing.JButton();
         TraSach_btHienThi = new javax.swing.JButton();
@@ -284,7 +283,10 @@ public class Manager extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(TimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(TimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -528,13 +530,13 @@ public class Manager extends javax.swing.JFrame {
         TraSach.add(TraSach_txtTenKH);
         TraSach_txtTenKH.setBounds(180, 90, 221, 26);
 
-        TraSach_txtTenSach.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        TraSach_txtTenSach.setEnabled(false);
-        TraSach.add(TraSach_txtTenSach);
-        TraSach_txtTenSach.setBounds(180, 130, 221, 26);
+        TraSach_txtMaMuon.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        TraSach_txtMaMuon.setEnabled(false);
+        TraSach.add(TraSach_txtMaMuon);
+        TraSach_txtMaMuon.setBounds(180, 130, 221, 26);
 
         TraSach_lbTenSach.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        TraSach_lbTenSach.setText("Tên sách:");
+        TraSach_lbTenSach.setText("Mã Mượn:");
         TraSach.add(TraSach_lbTenSach);
         TraSach_lbTenSach.setBounds(60, 130, 120, 30);
 
@@ -543,7 +545,7 @@ public class Manager extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã sách", "Tên sách", "Số lượng trả"
+                "Mã mượn", "Tên sách", "Số lượng trả"
             }
         ) {
             Class[] types = new Class [] {
@@ -628,23 +630,8 @@ public class Manager extends javax.swing.JFrame {
         TraSach.add(TraSach_txtTheLoaiTimKiem);
         TraSach_txtTheLoaiTimKiem.setBounds(750, 130, 180, 26);
 
-        TraSach_lbNgayMuon.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        TraSach_lbNgayMuon.setText("Ngày mượn:");
-        TraSach.add(TraSach_lbNgayMuon);
-        TraSach_lbNgayMuon.setBounds(660, 170, 80, 30);
-
-        TraSach_txtNgayMuon.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        TraSach_txtNgayMuon.setEnabled(false);
-        TraSach_txtNgayMuon.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TraSach_txtNgayMuonActionPerformed(evt);
-            }
-        });
-        TraSach.add(TraSach_txtNgayMuon);
-        TraSach_txtNgayMuon.setBounds(750, 170, 180, 26);
-
         TraSach_cbTimKiem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        TraSach_cbTimKiem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã sách", "Tên sách", "Thể loại", "Ngày mượn" }));
+        TraSach_cbTimKiem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã sách", "Tên sách", "Thể loại" }));
         TraSach_cbTimKiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TraSach_cbTimKiemActionPerformed(evt);
@@ -680,15 +667,25 @@ public class Manager extends javax.swing.JFrame {
             }
         });
         TraSach.add(jButton3);
-        jButton3.setBounds(350, 250, 100, 30);
+        jButton3.setBounds(330, 250, 100, 30);
 
         jButton4.setText("Hủy trả");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         TraSach.add(jButton4);
-        jButton4.setBounds(280, 250, 70, 30);
+        jButton4.setBounds(220, 250, 90, 30);
 
         jButton5.setText("Mất sách");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         TraSach.add(jButton5);
-        jButton5.setBounds(190, 250, 90, 30);
+        jButton5.setBounds(430, 160, 80, 30);
 
         jTabbedPane1.addTab("Trả Sách", TraSach);
 
@@ -1248,17 +1245,7 @@ public class Manager extends javax.swing.JFrame {
         // Chuyển sang tab Tra
         TraSach_txtMaKH.setText(maKH);
         TraSach_txtTenKH.setText(tenKH);
-        DefaultTableModel model = (DefaultTableModel) TraSach_tbDSMuon.getModel();
-        for (Muon muon : managerController.GetMuonByMa(maKH)) {
-            model.addRow(new Object[]{
-                muon.getMaSach(),
-                managerController.GetSachByMa(muon.getMaSach()).getTenSach(),
-                muon.getSoLuong(),
-                muon.getNgayMuon(),
-                muon.getNgayTra()
-            });
-            
-        }
+        LoadTableDaMuon(maKH);
         
         
         tabManager.setSelectedIndex(0);
@@ -1513,25 +1500,16 @@ public class Manager extends javax.swing.JFrame {
                 TraSach_txtMaSachTimKiem.setEnabled(true);
                 TraSach_txtTenSachTimKiem.setEnabled(false);
                 TraSach_txtTheLoaiTimKiem.setEnabled(false);
-                TraSach_txtNgayMuon.setEnabled(false);
             }
             case 1 -> {
                 TraSach_txtMaSachTimKiem.setEnabled(false);
                 TraSach_txtTenSachTimKiem.setEnabled(true);
                 TraSach_txtTheLoaiTimKiem.setEnabled(false);
-                TraSach_txtNgayMuon.setEnabled(false);
             }
             case 2 -> {
                 TraSach_txtMaSachTimKiem.setEnabled(false);
                 TraSach_txtTenSachTimKiem.setEnabled(false);
                 TraSach_txtTheLoaiTimKiem.setEnabled(true);
-                TraSach_txtNgayMuon.setEnabled(false);
-            }
-            case 3 -> {
-                TraSach_txtMaSachTimKiem.setEnabled(false);
-                TraSach_txtTenSachTimKiem.setEnabled(false);
-                TraSach_txtTheLoaiTimKiem.setEnabled(false);
-                TraSach_txtNgayMuon.setEnabled(true);
             }
             default -> {
             }
@@ -1574,52 +1552,95 @@ public class Manager extends javax.swing.JFrame {
         // Kiểm tra số lượng mượn
         String soLuongText = TraSach_txtSLTra.getText().trim();
         if(soLuongText.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Vui lòng nhập số lượng mượn!");
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập số lượng sách trả!");
             return;
         }
 
         int soLuongTra;
+        int soLuongMuon = Integer.parseInt(TraSach_tbDSMuon.getValueAt(selected, 2).toString());
         try {
             soLuongTra = Integer.parseInt(soLuongText);
-            if(soLuongTra <= 0) throw new NumberFormatException();
+            if(soLuongTra <= 0 || soLuongTra > soLuongMuon) throw new NumberFormatException();
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng định dạng số!");
+            JOptionPane.showMessageDialog(this, "Con số không hợp lệ!");
             return;
         }
 
         // Lấy dữ liệu từ bảng Mượn
         String maMuon = TraSach_tbDSMuon.getValueAt(selected, 0).toString();
         String tenSach = TraSach_tbDSMuon.getValueAt(selected, 1).toString();
-        String tacGia = TraSach_tbDSMuon.getValueAt(selected, 3).toString();
-        int soLuongMuon = Integer.parseInt(TraSach_tbDSMuon.getValueAt(selected, 2).toString());
-        int soLuongKho = Integer.parseInt(Muon_tbSach.getValueAt(row, 4).toString());
+        TraSach_tbDSMuon.setValueAt(soLuongMuon - soLuongTra, selected, 2);
+        DefaultTableModel DSMuon =
+            (DefaultTableModel) this.TraSach_tbDSTra.getModel();
+            DSMuon.addRow(new Object[]{maMuon, tenSach, soLuongTra});
 
-        // So sánh trong kho
-//        int soLuongCon = soLuongKho + soLuongTra;
-//        if(soLuongTra > soLuongMuon) {
-//            JOptionPane.showMessageDialog(this, "Số lượng bạn nhập đã vượt quá số lượng đã mượn!");
-//        }
-//        else {
-//            // Thêm vào bảng DS Trả
-//            DefaultTableModel model = (DefaultTableModel) Muon_tbDSMuon.getModel();
-//            model.addRow(new Object[] {
-//                maSach,
-//                tenSach,
-//                tacGia,
-//                soLuongMuon
-//            });
-//            // Trừ số lượng trong kho
-//            Muon_tbSach.setValueAt(soLuongCon, selected, 4);
-//        }
-//
-//        // Reset input
-//        Muon_txtSLMuon.setText("");
-
-        
     }//GEN-LAST:event_TraSach_btActionPerformed
 
+    private void Load_TraSachtable(ArrayList<Muon> ds){
+        DefaultTableModel model = (DefaultTableModel) TraSach_tbDSMuon.getModel();
+        model.setRowCount(0);
+        for (Muon muon : ds) {
+            model.addRow(new Object[]{
+                muon.getMaMuon(),
+                managerController.GetSachByMa(muon.getMaSach()).getTenSach(),
+                muon.getSoLuong(),
+                muon.getNgayMuon(),
+                muon.getNgayTra()
+            });
+            
+        }
+    }
     private void TraSach_btTimKiemSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TraSach_btTimKiemSachActionPerformed
         // TODO add your handling code here:
+        String search = TraSach_cbTimKiem.getSelectedItem().toString();
+        ArrayList<Muon> ds = new ArrayList<>();
+        switch (search) {
+            case "Mã sách" -> {
+                String maSach = TraSach_txtMaSachTimKiem.getText().trim();
+                if (maSach.isEmpty()) {
+                            JOptionPane.showMessageDialog(this,
+                                    "Vui lòng nhập mã sách!");
+                            return;
+                        }
+                ds = managerController.GetMuonByMaSach(maSach);
+                Load_TraSachtable(ds);
+            }
+            case "Tên sách" -> {
+                String tenSach = TraSach_txtTenSachTimKiem.getText().trim();
+                if (tenSach.isEmpty()) {
+                            JOptionPane.showMessageDialog(this,
+                                    "Vui lòng nhập tên sách!");
+                            return;
+                        }
+                for(Sach s : managerController.GetAllSach()){
+                    if(s.getTenSach().contains(tenSach)){
+                        ds.addAll(managerController.GetMuonByMaSach(s.getMaSach()));
+                    }
+                }
+                Load_TraSachtable(ds);
+            }
+            case "Thể loại" -> {
+                String theLoai = TraSach_txtTheLoaiTimKiem.getText().trim().toLowerCase();
+                ArrayList<TheLoai> arr = managerController.GetAllTheLoai();
+                        if (theLoai.isEmpty()) {
+                            JOptionPane.showMessageDialog(this,
+                                    "Vui lòng nhập tên thể loại!");
+                            return;
+                        }           ArrayList<Sach> list = new ArrayList<Sach>();
+                    
+                        for(TheLoai t : arr) {
+                            if(t.getTenTheLoai().toLowerCase().contains(theLoai.toLowerCase())) {
+                                list.addAll(managerController.GetSachByTheLoai(t.getMaTheLoai()));
+                            }
+                        }
+
+                        for(Sach s : list){
+                            ds.addAll(managerController.GetMuonByMaSach(s.getMaSach()));
+                        }
+                Load_TraSachtable(ds);
+            }
+        }
+
     }//GEN-LAST:event_TraSach_btTimKiemSachActionPerformed
 
     private void Muon_HuyMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Muon_HuyMuonActionPerformed
@@ -1654,7 +1675,7 @@ public class Manager extends javax.swing.JFrame {
         model.setRowCount(0);
         for (Muon muon : managerController.GetMuonByMa(MaKH)) {
             model.addRow(new Object[]{
-                muon.getMaSach(),
+                muon.getMaMuon(),
                 managerController.GetSachByMa(muon.getMaSach()).getTenSach(),
                 muon.getSoLuong(),
                 muon.getNgayMuon(),
@@ -1733,10 +1754,10 @@ public class Manager extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn sách trong kho!");
             return;
         }
+        
+        String tenSach = TraSach_tbDSMuon.getValueAt(selected, 0).toString();
 
-        String tenSach = TraSach_tbDSMuon.getValueAt(selected, 1).toString();
-
-        TraSach_txtTenSach.setText(tenSach);
+        TraSach_txtMaMuon.setText(tenSach);
     }//GEN-LAST:event_TraSach_btXacNhanActionPerformed
 
     private void TraSach_txtNgayMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TraSach_txtNgayMuonActionPerformed
@@ -1779,7 +1800,73 @@ public class Manager extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        for(int i = 0; i < TraSach_tbDSTra.getRowCount(); i++) {
+            managerController.TraSach(
+                TraSach_tbDSTra.getValueAt(i, 0).toString(), 
+                tk.getUsername(), 
+                Integer.parseInt(TraSach_tbDSTra.getValueAt(i, 2).toString())
+        );
+        }
+        JOptionPane.showMessageDialog(this, "Trả sách thành công!");
+        
+        DefaultTableModel model = (DefaultTableModel) TraSach_tbDSTra.getModel();
+        model.setRowCount(0);
+
+        LoadTableDaMuon(TraSach_txtMaKH.getText());
     }//GEN-LAST:event_jButton3ActionPerformed
+    
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+         int selected = TraSach_tbDSMuon.getSelectedRow();
+
+        if(selected == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn sách trong kho!");
+            return;
+        }
+
+        String maMuon = TraSach_txtMaMuon.getText().trim();
+        String maKH = TraSach_txtMaKH.getText().trim();
+        String SoLuongMat = TraSach_txtSLTra.getText().trim();
+
+        if(SoLuongMat.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập số lượng sách trả!");
+            return;
+        }
+
+        int soLuongMatint;
+        int soLuongMuon = Integer.parseInt(TraSach_tbDSMuon.getValueAt(selected, 2).toString());
+        try {
+            soLuongMatint = Integer.parseInt(SoLuongMat);
+            if(soLuongMatint <= 0 || soLuongMatint > soLuongMuon) throw new NumberFormatException();
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Con số không hợp lệ!");
+            return;
+        }
+
+        managerController.MatSach(maMuon,tk.getUsername(),soLuongMatint);
+        LoadTableDaMuon(TraSach_txtMaKH.getText());
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        int select = TraSach_tbDSMuon.getSelectedRow();
+        if(select == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn sách trong kho!");
+            return;
+        }
+        String maMuon = TraSach_tbDSTra.getValueAt(select, 0).toString();
+        String SoLuong = TraSach_tbDSTra.getValueAt(select, 2).toString();
+
+        for(int i = 0; i < TraSach_tbDSMuon.getRowCount(); i++) {
+            if(TraSach_tbDSMuon.getValueAt(i, 0).toString().equals(maMuon)) {
+                TraSach_tbDSMuon.setValueAt(Integer.parseInt(SoLuong)+Integer.parseInt(TraSach_tbDSMuon.getValueAt(i, 2).toString()), i, 2);
+                break;
+            }
+        }
+        DefaultTableModel DSMuon =
+            (DefaultTableModel) this.TraSach_tbDSTra.getModel();
+        DSMuon.removeRow(select);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1883,7 +1970,6 @@ public class Manager extends javax.swing.JFrame {
     private javax.swing.JLabel TraSach_lbDSTra;
     private javax.swing.JLabel TraSach_lbMaKH;
     private javax.swing.JLabel TraSach_lbMaSach;
-    private javax.swing.JLabel TraSach_lbNgayMuon;
     private javax.swing.JLabel TraSach_lbSLTra;
     private javax.swing.JLabel TraSach_lbTenKH;
     private javax.swing.JLabel TraSach_lbTenSach;
@@ -1891,11 +1977,10 @@ public class Manager extends javax.swing.JFrame {
     private javax.swing.JTable TraSach_tbDSMuon;
     private javax.swing.JTable TraSach_tbDSTra;
     private javax.swing.JTextField TraSach_txtMaKH;
+    private javax.swing.JTextField TraSach_txtMaMuon;
     private javax.swing.JTextField TraSach_txtMaSachTimKiem;
-    private javax.swing.JTextField TraSach_txtNgayMuon;
     private javax.swing.JTextField TraSach_txtSLTra;
     private javax.swing.JTextField TraSach_txtTenKH;
-    private javax.swing.JTextField TraSach_txtTenSach;
     private javax.swing.JTextField TraSach_txtTenSachTimKiem;
     private javax.swing.JTextField TraSach_txtTheLoaiTimKiem;
     private javax.swing.JPanel TruyVan;

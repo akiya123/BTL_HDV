@@ -37,7 +37,7 @@ namespace API_QLYTHuVien.Controllers
         [HttpGet]//lấy theo MaSach
         public IEnumerable<Muon> GetMuonByMaSach(string MaSach)
         {
-            return db.Muons.Where(m => m.MaSach == MaSach);
+            return db.Muons.Where(m => m.MaSach.Contains(MaSach));
         }
         [HttpGet]//lấy theo NgayMuon
         public IEnumerable<Muon> GetMuonByNgayMuon(DateTime NgayMuon)

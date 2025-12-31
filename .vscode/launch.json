@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "ManagerController",
+            "request": "launch",
+            "mainClass": "com.mycompany.quanltthuvien.Controller.ManagerController",
+            "projectName": "QuanLtThuVien"
+        },
+        {
+            "type": "java",
             "name": "TheLoaiService",
             "request": "launch",
             "mainClass": "com.mycompany.quanltthuvien.Service.TheLoaiService",
