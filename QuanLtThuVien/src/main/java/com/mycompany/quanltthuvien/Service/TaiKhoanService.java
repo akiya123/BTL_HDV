@@ -81,7 +81,6 @@ public class TaiKhoanService {
         return danhSachTaiKhoan;
     }
 
-
     // Đăng nhập
     public boolean login(String username, String password) throws IOException, InterruptedException {
         // Encode tham số
@@ -106,22 +105,13 @@ public class TaiKhoanService {
 
     //Thêm tài khoản
     public boolean addTaiKhoan(TaiKhoan tk) throws IOException, InterruptedException {
-       HttpRequest gRequest = HttpRequest.newBuilder()
-                .uri(URI.create(baseUrl + "TaiKhoan?Username="+tk.getUsername()))
-                .header("Content-Type", "application/json")
-                .GET()
-                .build();
-        response = client.send(gRequest, HttpResponse.BodyHandlers.ofString());
-        if(response.body().equals("true")){
-            return false; // Tài khoản đã tồn tại
-        }
        String url = baseUrl + "TaiKhoan/AddTaiKhoan?" +
                     "Username=" + URLEncoder.encode(tk.getUsername(), StandardCharsets.UTF_8) +
                     "&Pass=" + URLEncoder.encode(tk.getPass(), StandardCharsets.UTF_8) +
                     "&TenTK=" + URLEncoder.encode(tk.getTenTK(), StandardCharsets.UTF_8) +
                     "&SdtTK=" + URLEncoder.encode(tk.getSdtTK(), StandardCharsets.UTF_8) +
                     "&Role=" + URLEncoder.encode(tk.getRole(), StandardCharsets.UTF_8);
-        
+        System.out.println(url);
         HttpRequest postRequest = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .POST(HttpRequest.BodyPublishers.noBody())
@@ -160,15 +150,6 @@ public class TaiKhoanService {
 
     //Sửa tài khoản
     public boolean updateTaiKhoan(TaiKhoan tk) throws IOException, InterruptedException {
-        HttpRequest gRequest = HttpRequest.newBuilder()
-                .uri(URI.create(baseUrl + "TaiKhoan?Username="+tk.getUsername()))
-                .header("Content-Type", "application/json")
-                .GET()
-                .build();
-        response = client.send(gRequest, HttpResponse.BodyHandlers.ofString());
-        if(response.body().equals("false")){
-            return false; // Tài khoản không tồn tại
-        }
         String url = baseUrl + "TaiKhoan/UpdateTaiKhoan?" +
                      "Username=" + URLEncoder.encode(tk.getUsername(), StandardCharsets.UTF_8.toString()) +
                      "&Pass=" + URLEncoder.encode(tk.getPass(), StandardCharsets.UTF_8.toString()) +

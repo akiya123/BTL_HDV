@@ -79,12 +79,12 @@ namespace API_QLYTHuVien.Controllers
         }
 
         [HttpPut]//Sửa sách
-        public bool UpdateSach(string MaSach, string TenSach, string SoLuong, string TacGia, string MaTheLoai)
+        public bool UpdateSach(string MaSach, string TenSach, int SoLuong, string TacGia, string MaTheLoai)
         {
-            Sach existingSach = db.Saches.Find(MaSach);
+            Sach existingSach = db.Saches.FirstOrDefault(s => s.MaSach.Contains(MaSach));
             if (existingSach == null) return false;
             existingSach.TenSach = TenSach;
-            existingSach.SoLuong = int.Parse(SoLuong);
+            existingSach.SoLuong = SoLuong;
             existingSach.TacGia = TacGia;
             existingSach.MaTheLoai = MaTheLoai;
             db.SaveChanges();

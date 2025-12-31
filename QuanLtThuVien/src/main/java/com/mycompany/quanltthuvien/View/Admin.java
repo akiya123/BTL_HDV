@@ -6,6 +6,7 @@ package com.mycompany.quanltthuvien.View;
 
 import java.io.IOException;
 import java.lang.reflect.Array;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -30,6 +31,7 @@ public class Admin extends javax.swing.JFrame {
      * Creates new form Admin
      */
     AdminController adminController = new AdminController();
+    
     public Admin() {
         initComponents();
         setSize(1024, 768); // hoặc kích thước bạn muốn
@@ -39,6 +41,14 @@ public class Admin extends javax.swing.JFrame {
         LoadTheLoaiTable(adminController.GetAllTheLoai());
         LoadTaiKhoan(adminController.GetAllTaiKhoan());
         LoaTryVan(adminController.GetAllLichSuGiaoDich());
+        LocalDate date = LocalDate.now();
+        TruyVan_txtNgayMuon.setText(date.getDayOfMonth()+"");
+        TruyVan_txtThangMuon.setText(date.getMonthValue()+"");
+        TruyVan_txtNamMuon.setText((date.getYear()-3)+"");
+
+        TruyVan_txtNgayTra.setText(date.getDayOfMonth()+"");
+        TruyVan_txtThangTra.setText(date.getMonthValue()+"");
+        TruyVan_txtNamTra.setText(date.getYear()+"");
     }
 
     TaiKhoan tk = new TaiKhoan("null ", "null", "null", "0912345678", "null");
@@ -215,12 +225,7 @@ public class Admin extends javax.swing.JFrame {
         TruyVan_txtNgayMuon = new javax.swing.JTextField();
         TruyVan_txtThangMuon = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
         TruyVan_txtNgayTra = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         TruyVan_txtThangTra = new javax.swing.JTextField();
@@ -614,6 +619,11 @@ public class Admin extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        TaiKhoan_tbTaiKhoan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TaiKhoan_tbTaiKhoanMouseClicked(evt);
+            }
+        });
         jScrollPane7.setViewportView(TaiKhoan_tbTaiKhoan);
 
         TaiKhoan_lbTimTheoTenTK.setText("Tìm theo tên tài khoản");
@@ -772,32 +782,8 @@ public class Admin extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setText("/");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel2.setText("/");
-
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
-            }
-        });
-
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel3.setText("/");
-
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel4.setText("/");
-
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
-            }
-        });
 
         TruyVan_txtNgayTra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -838,27 +824,17 @@ public class Admin extends javax.swing.JFrame {
                 .addGroup(LichSuGiaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(LichSuGiaoDichLayout.createSequentialGroup()
                         .addGap(140, 140, 140)
-                        .addGroup(LichSuGiaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TruyVan_txtNgayMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(TruyVan_txtNgayMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
-                        .addGroup(LichSuGiaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
+                        .addComponent(jLabel3)
                         .addGap(6, 6, 6)
                         .addGroup(LichSuGiaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(LichSuGiaoDichLayout.createSequentialGroup()
-                                .addGroup(LichSuGiaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TruyVan_txtThangMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(TruyVan_txtThangMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(10, 10, 10)
-                                .addGroup(LichSuGiaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel1))
+                                .addComponent(jLabel1)
                                 .addGap(6, 6, 6)
-                                .addGroup(LichSuGiaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TruyVan_txtNamMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(TruyVan_txtNamMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(TruyVan_btLayThongTin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(20, 20, 20)
                         .addGroup(LichSuGiaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -866,7 +842,7 @@ public class Admin extends javax.swing.JFrame {
                             .addGroup(LichSuGiaoDichLayout.createSequentialGroup()
                                 .addGap(70, 70, 70)
                                 .addComponent(TruyVan_txtNgayTra, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(10, 10, 10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel5)
                         .addGap(6, 6, 6)
                         .addComponent(TruyVan_txtThangTra, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -874,7 +850,7 @@ public class Admin extends javax.swing.JFrame {
                         .addComponent(jLabel6)
                         .addGap(6, 6, 6)
                         .addComponent(TruyVan_txtNamTra, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
+                        .addGap(8, 8, 8)
                         .addComponent(TruyVan_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 880, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 48, Short.MAX_VALUE))
@@ -885,41 +861,34 @@ public class Admin extends javax.swing.JFrame {
                 .addGroup(LichSuGiaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(LichSuGiaoDichLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(LichSuGiaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(LichSuGiaoDichLayout.createSequentialGroup()
-                                .addGap(60, 60, 60)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(LichSuGiaoDichLayout.createSequentialGroup()
-                                .addGap(70, 70, 70)
-                                .addComponent(TruyVan_txtThangTra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(LichSuGiaoDichLayout.createSequentialGroup()
-                                .addGap(60, 60, 60)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(LichSuGiaoDichLayout.createSequentialGroup()
-                                .addGap(70, 70, 70)
-                                .addComponent(TruyVan_txtNamTra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(TruyVan_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(TruyVan_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42))
                     .addGroup(LichSuGiaoDichLayout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addComponent(TruyVan_btLayThongTin, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35)
                         .addGroup(LichSuGiaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7)
-                            .addGroup(LichSuGiaoDichLayout.createSequentialGroup()
-                                .addGap(10, 10, 10)
+                            .addGroup(LichSuGiaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(LichSuGiaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TruyVan_txtNgayMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(TruyVan_txtThangMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(TruyVan_txtNamMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(TruyVan_txtNgayTra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addGap(22, 22, 22)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(LichSuGiaoDichLayout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(TruyVan_txtThangTra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(LichSuGiaoDichLayout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(TruyVan_txtNamTra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(LichSuGiaoDichLayout.createSequentialGroup()
+                                    .addGap(10, 10, 10)
+                                    .addGroup(LichSuGiaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(TruyVan_txtNgayMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(TruyVan_txtThangMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(TruyVan_txtNamMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(TruyVan_txtNgayTra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(22, 22, 22)))
                 .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 52, Short.MAX_VALUE))
         );
@@ -1125,13 +1094,16 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_TheLoai_butTimKiemActionPerformed
 
     public boolean TaiKhoanIsEmty(){
-        if(TaiKhoan_txtUsername.getText().equals("") || TaiKhoan_txtMatKhau.getText().equals("") || TaiKhoan_txtTenTK.getText().equals("") || TaiKhoan_txtSDT.getText().equals("")){
+        if(TaiKhoan_txtTenTaiKhoan.getText().equals("") || 
+        TaiKhoan_txtMatKhau.getText().equals("") || 
+        TaiKhoan_txtTenTK.getText().equals("") || 
+        TaiKhoan_txtSDT.getText().equals("")){
             return true;
         }
         return false;
     }
     public void TaiKhoanClear(){
-        TaiKhoan_txtUsername.setText("");
+        TaiKhoan_txtTenTaiKhoan.setText("");
         TaiKhoan_txtMatKhau.setText("");
         TaiKhoan_txtTenTK.setText("");
         TaiKhoan_txtSDT.setText("");
@@ -1142,11 +1114,7 @@ public class Admin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập thông tin");
             return;
         }
-        String usnername = TaiKhoan_txtUsername.getText();
-        if(adminController.GetTaiKhoan(usnername) != null){
-            JOptionPane.showMessageDialog(this, "Tên đăng nhập đã tồn tại");
-            return;
-        }
+        String usnername = TaiKhoan_txtTenTaiKhoan.getText();
         String pass = TaiKhoan_txtMatKhau.getText();
         String tenTK = TaiKhoan_txtTenTK.getText();
         String sdtTK = TaiKhoan_txtSDT.getText();
@@ -1154,8 +1122,18 @@ public class Admin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Số điện thoại phải là số");
             return;
         }
-        // adminController.AddTaiKhoan(new TaiKhoan(usnername, pass, "MG", sdtTK, tenTK));
-        adminController.AddTaiKhoanManager(usnername, pass , tenTK, sdtTK);
+        //Số điện thoại đủ 10 số
+        if(sdtTK.length() != 10){
+            JOptionPane.showMessageDialog(this, "Số điện thoại phải có 10 số");
+            return;
+        }
+        
+        if(!adminController.addTaiKhoan(usnername, pass , tenTK, sdtTK)){
+            JOptionPane.showMessageDialog(this, "Thêm tài khoản thất bại");
+            TaiKhoanClear();
+            return;
+        }
+        JOptionPane.showMessageDialog(this, "Thêm tài khoản thành công");
         LoadTaiKhoan(adminController.GetAllTaiKhoan());
         TaiKhoanClear();
         
@@ -1163,18 +1141,51 @@ public class Admin extends javax.swing.JFrame {
 
     private void TaiKhoan__butSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaiKhoan__butSuaActionPerformed
         // TODO add your handling code here:
+        if(TaiKhoanIsEmty()){
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập thông tin");
+            return;
+        }
+        String usnername = TaiKhoan_txtTenTaiKhoan.getText();
+        String pass = TaiKhoan_txtMatKhau.getText();
+        String tenTK = TaiKhoan_txtTenTK.getText();
+        String sdtTK = TaiKhoan_txtSDT.getText();
+        if(!sdtTK.matches("\\d+")){
+            JOptionPane.showMessageDialog(this, "Số điện thoại phải là số");
+            return;
+        }
+        //Số điện thoại đủ 10 số
+        if(sdtTK.length() != 10){
+            JOptionPane.showMessageDialog(this, "Số điện thoại phải có 10 số");
+            return;
+        }
+        if(!adminController.UpdateTaiKhoan(usnername, pass , tenTK, sdtTK)){
+            JOptionPane.showMessageDialog(this, "Sửa tài khoản thất bại");
+            return;
+        }
+        JOptionPane.showMessageDialog(this, "Sửa tài khoản thành công");
+        LoadTaiKhoan(adminController.GetAllTaiKhoan());
+        TaiKhoanClear();
     }//GEN-LAST:event_TaiKhoan__butSuaActionPerformed
 
     private void TaiKhoan__butXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaiKhoan__butXoaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TaiKhoan__butXoaActionPerformed
-
-    private void Sach_butTimKiem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butTimKiem1ActionPerformed
         // TODO add your handling code here:
         if(TaiKhoanIsEmty()){
             JOptionPane.showMessageDialog(this, "Vui lòng nhập thông tin");
             return;
         }
+        String usnername = TaiKhoan_txtTenTaiKhoan.getText();
+        if(!adminController.DeleteTaiKhoan(usnername)){
+            JOptionPane.showMessageDialog(this, "Xóa tài khoản thất bại");
+            TaiKhoanClear();
+            return;
+        }
+        JOptionPane.showMessageDialog(this, "Xóa tài khoản thành công");
+        LoadTaiKhoan(adminController.GetAllTaiKhoan());
+        TaiKhoanClear();
+    }//GEN-LAST:event_TaiKhoan__butXoaActionPerformed
+
+    private void Sach_butTimKiem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butTimKiem1ActionPerformed
+        // TODO add your handling code here:
         String usnername = TaiKhoan_txtUsername.getText();
         if(usnername.equals("")){
             JOptionPane.showMessageDialog(this, "Vui lòng nhập tên đăng nhập");
@@ -1211,18 +1222,6 @@ public class Admin extends javax.swing.JFrame {
     private void TruyVan_txtThangMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_txtThangMuonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TruyVan_txtThangMuonActionPerformed
-
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
-
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
-
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
 
     private void TruyVan_txtNgayTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_txtNgayTraActionPerformed
         // TODO add your handling code here:
@@ -1299,8 +1298,50 @@ public class Admin extends javax.swing.JFrame {
 
     private void Sach_butSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butSuaActionPerformed
         // TODO add your handling code here:
-        System.out.println(""+MaSachVoid);
+        if(SachIsEmty()){
+            JOptionPane.showMessageDialog(this, "Thông tin bị trống");
+            return;
+        }
+        String TheLoai = "";
+        for(TheLoai elem : adminController.GetAllTheLoai()){
+            if(elem.getTenTheLoai().trim().equals(Sach_txtTheLoai.getText().trim())){
+                TheLoai = elem.getMaTheLoai();
+            }
+        }
+        if(TheLoai.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Thể loại không tồn tại");
+            return;
+        }
+        Sach sach = new Sach(
+            MaSachVoid,
+            Sach_txtTenSach.getText(),
+            Integer.parseInt(Sach_txtSoLuong.getText()),
+            Sach_txtTacGia.getText(),
+            TheLoai
+        );
+
+        if(adminController.UpdateSach(sach)){
+            JOptionPane.showMessageDialog(this, "Sửa sách thành công");
+            LoadSachTable(adminController.GetAllSach());
+            Sach_txtTenSach.setText("");
+            Sach_txtSoLuong.setText("");
+            Sach_txtTheLoai.setText("");
+            Sach_txtTacGia.setText("");
+        }else{
+            JOptionPane.showMessageDialog(this, "Sửa sách thất bại");
+        }
     }//GEN-LAST:event_Sach_butSuaActionPerformed
+
+    private void TaiKhoan_tbTaiKhoanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TaiKhoan_tbTaiKhoanMouseClicked
+        // TODO add your handling code here:
+        int selectedRow = TaiKhoan_tbTaiKhoan.getSelectedRow();
+        if (selectedRow >= 0) {
+            TaiKhoan_txtTenTaiKhoan.setText(TaiKhoan_tbTaiKhoan.getValueAt(selectedRow, 0).toString());
+            TaiKhoan_txtMatKhau.setText(TaiKhoan_tbTaiKhoan.getValueAt(selectedRow, 1).toString());
+            TaiKhoan_txtTenTK.setText(adminController.GetTaiKhoan(TaiKhoan_txtTenTaiKhoan.getText()).getTenTK());
+            TaiKhoan_txtSDT.setText(TaiKhoan_tbTaiKhoan.getValueAt(selectedRow, 2).toString());
+        }
+    }//GEN-LAST:event_TaiKhoan_tbTaiKhoanMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1393,9 +1434,7 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1419,8 +1458,5 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 }

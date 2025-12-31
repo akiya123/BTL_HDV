@@ -188,11 +188,14 @@ public class AdminController {
     //______________// #Tài khoản
     TaiKhoanService tks = new TaiKhoanService();
     //Thêm tài khoản mới
-    public boolean AddTaiKhoanManager(String username,String Pass,String TenTK,String SdtTK) {
-        TaiKhoan TK = new TaiKhoan(username, Pass, "MG", SdtTK, TenTK);
-
+    public boolean addTaiKhoan(String username,String Pass,String TenTK,String SdtTK) {
         try {
-            return tks.addTaiKhoan(TK);
+            System.out.println("Debug addTaiKhoan:");
+            System.out.println(username);
+            System.out.println(Pass);
+            System.out.println(TenTK);
+            System.out.println(SdtTK);
+            return tks.addTaiKhoan(new TaiKhoan(username, Pass, "MG", SdtTK, TenTK));
         } catch (Exception e) {
         }
         return false;
@@ -216,10 +219,7 @@ public class AdminController {
     }
 
     //Sửa tài khoản
-    public boolean UpdateTaiKhoan(String username,String Pass, String ComfirmPass,String TenTK,String SdtTK) {
-        if(!Pass.equals(ComfirmPass)){
-            return false;
-        }
+    public boolean UpdateTaiKhoan(String username,String Pass,String TenTK,String SdtTK) {
         TaiKhoan TK = new TaiKhoan(username, Pass, "MG", SdtTK, TenTK);
         try {
             return tks.updateTaiKhoan(TK);

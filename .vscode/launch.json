@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "TaiKhoanService",
+            "request": "launch",
+            "mainClass": "com.mycompany.quanltthuvien.Service.TaiKhoanService",
+            "projectName": "QuanLtThuVien"
+        },
+        {
+            "type": "java",
             "name": "ManagerController",
             "request": "launch",
             "mainClass": "com.mycompany.quanltthuvien.Controller.ManagerController",
