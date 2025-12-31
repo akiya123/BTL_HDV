@@ -16,6 +16,8 @@ public class KhachHang {
     private String SdtKH;
     private static final Pattern PHONE_PATTERN = Pattern.compile("^[0-9]{10}$");
 
+    
+    
     public KhachHang(String MaKH, String TenKH, String SdtKH) {
         this.MaKH = MaKH;
         this.TenKH = TenKH;

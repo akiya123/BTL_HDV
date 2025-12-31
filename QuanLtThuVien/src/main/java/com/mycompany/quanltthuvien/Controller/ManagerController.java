@@ -25,6 +25,17 @@ public class ManagerController {
     }
     //_____________//#Thể loại
     TheLoaiService tl = new TheLoaiService();
+    //Lấy thể loại theo tên
+    public ArrayList<TheLoai> GetTheLoaiByTen(String TenTheLoai) {
+        ArrayList<TheLoai> list = new ArrayList<>();
+        try {
+            list = tl.GetTheLoaiByTen(TenTheLoai);
+            return list;
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
     //Lấy hết thể loại
     public ArrayList<TheLoai> GetAllTheLoai() {
         ArrayList<TheLoai> list = new ArrayList<>();
@@ -102,6 +113,12 @@ public class ManagerController {
         } catch (Exception e) {
         }
         return false;
+    }
+
+    public static void main(String[] args) {
+        ManagerController mc = new ManagerController();
+        System.out.println(mc.AddKhachHang(new KhachHang("", "Nguyen Van B", "0987654321")));
+        System.out.println("Done");
     }
 
     //Sửa khách hàng
