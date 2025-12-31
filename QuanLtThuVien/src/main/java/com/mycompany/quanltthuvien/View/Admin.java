@@ -267,7 +267,12 @@ public class Admin extends javax.swing.JFrame {
         TruyVan_txtNamTra = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         TruyVan_btLayThongTin = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        info_TenTK = new javax.swing.JTextField();
+        info_SDT = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1024, 768));
@@ -484,6 +489,11 @@ public class Admin extends javax.swing.JFrame {
         });
 
         TheLoai_butHienThi.setText("Hiển thị");
+        TheLoai_butHienThi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TheLoai_butHienThiActionPerformed(evt);
+            }
+        });
 
         TheLoai_cbTimTheo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tìm theo mã", "Tìm theo tên" }));
 
@@ -623,7 +633,7 @@ public class Admin extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Username", "Mật khẩu", "Số điện thoại", "Tên khách hàng"
+                "Username", "Mật khẩu", "Số điện thoại", "Vai trò"
             }
         ) {
             Class[] types = new Class [] {
@@ -945,14 +955,67 @@ public class Admin extends javax.swing.JFrame {
         AdminCT.addTab("Truy Vấn", LichSuGiaoDich);
         LichSuGiaoDich.getAccessibleContext().setAccessibleName("");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 128)); // NOI18N
-        jButton1.setText("Đăng xuất");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton2.setText("Đăng Xuất");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Logout(evt);
             }
         });
-        AdminCT.addTab("Đăng xuất", jButton1);
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel8.setText("Tên tài khoản:");
+
+        info_TenTK.setEditable(false);
+        info_TenTK.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        info_TenTK.setText("jTextField1");
+
+        info_SDT.setEditable(false);
+        info_SDT.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        info_SDT.setText("jTextField1");
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel9.setText("Số điện thoại:");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addGap(59, 59, 59)
+                                .addComponent(info_SDT))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(59, 59, 59)
+                                .addComponent(info_TenTK, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)))))
+                .addGap(88, 88, 88))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(165, 165, 165)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(info_TenTK, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(43, 43, 43)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(info_SDT, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 302, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70))
+        );
+
+        AdminCT.addTab("Thông tin tài khoản", jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -971,7 +1034,7 @@ public class Admin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Sach_butThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butThemActionPerformed
+    private void Logout(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Logout
         // TODO add your handling code here:
 try {
             String tenSach = Sach_txtTenSach.getText().trim();
@@ -1043,7 +1106,7 @@ try {
         }
     }//GEN-LAST:event_Sach_butXoaActionPerformed
 
-    private void Sach_butTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butTimKiemActionPerformed
+    private void TruyVan_txtThangTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_txtThangTraActionPerformed
         // TODO add your handling code here:
          try {
             String keyword = Sach_tfTimKiem.getText().trim();
@@ -1091,13 +1154,13 @@ try {
         }
     }//GEN-LAST:event_Sach_butTimKiemActionPerformed
 
-    private void Sach_butLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butLamMoiActionPerformed
+    private void TruyVan_txtNgayTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_txtNgayTraActionPerformed
         // TODO add your handling code here:
         clearSachForm();
         loadSachData();
     }//GEN-LAST:event_Sach_butLamMoiActionPerformed
 
-    private void Sach_butSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butSuaActionPerformed
+    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
         // TODO add your handling code here:
         try {
             int selectedRow = Sach_tbSach.getSelectedRow();
@@ -1144,7 +1207,7 @@ try {
         }
     }//GEN-LAST:event_Sach_butSuaActionPerformed
 
-    private void TheLoai_butThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TheLoai_butThemActionPerformed
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
         // TODO add your handling code here:
         try {
             String tenTheLoai = TheLoai_txtTheLoai.getText().trim();
@@ -1170,7 +1233,7 @@ try {
         }
     }//GEN-LAST:event_TheLoai_butThemActionPerformed
 
-    private void TheLoai_butSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TheLoai_butSuaActionPerformed
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
         // TODO add your handling code here:
          try {
             int selectedRow = TheLoai_tbTheLoai.getSelectedRow();
@@ -1202,7 +1265,7 @@ try {
         }
     }//GEN-LAST:event_TheLoai_butSuaActionPerformed
 
-    private void TheLoai_butXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TheLoai_butXoaActionPerformed
+    private void TruyVan_txtThangMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_txtThangMuonActionPerformed
         // TODO add your handling code here:
         try {
             int selectedRow = TheLoai_tbTheLoai.getSelectedRow();
@@ -1234,7 +1297,7 @@ try {
         }
     }//GEN-LAST:event_TheLoai_butXoaActionPerformed
 
-    private void TheLoai_butTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TheLoai_butTimKiemActionPerformed
+    private void TruyVan_txtNgayMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_txtNgayMuonActionPerformed
         // TODO add your handling code here:
         try {
             String keyword = TheLoai_tfTimKiem.getText().trim();
@@ -1282,7 +1345,7 @@ try {
         }
     }//GEN-LAST:event_TheLoai_butTimKiemActionPerformed
 
-    private void TaiKhoan__butThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaiKhoan__butThemActionPerformed
+    private void TruyVan_txtNamMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_txtNamMuonActionPerformed
         // TODO add your handling code here:
         try {
             String username = TaiKhoan_txtTenTaiKhoan.getText().trim();
@@ -1315,7 +1378,7 @@ try {
         }
     }//GEN-LAST:event_TaiKhoan__butThemActionPerformed
 
-    private void TaiKhoan__butSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaiKhoan__butSuaActionPerformed
+    private void TruyVan_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_btActionPerformed
         // TODO add your handling code here:
         try {
             int selectedRow = TaiKhoan_tbTaiKhoan.getSelectedRow();
@@ -1352,7 +1415,7 @@ try {
         }
     }//GEN-LAST:event_TaiKhoan__butSuaActionPerformed
 
-    private void TaiKhoan__butXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaiKhoan__butXoaActionPerformed
+    private void Sach_butHienThi1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butHienThi1ActionPerformed
         // TODO add your handling code here:
         try {
             int selectedRow = TaiKhoan_tbTaiKhoan.getSelectedRow();
@@ -1425,13 +1488,13 @@ try {
         }
     }//GEN-LAST:event_Sach_butTimKiem1ActionPerformed
 
-    private void Sach_butHienThi1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butHienThi1ActionPerformed
+    private void TaiKhoan__butXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaiKhoan__butXoaActionPerformed
         // TODO add your handling code here:
         loadTaiKhoanData();
         clearTaiKhoanForm();
     }//GEN-LAST:event_Sach_butHienThi1ActionPerformed
 
-    private void TruyVan_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_btActionPerformed
+    private void TaiKhoan__butSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaiKhoan__butSuaActionPerformed
         // TODO add your handling code here:
         try {
             String ngayMuon = TruyVan_txtNgayMuon.getText().trim();
@@ -1486,43 +1549,43 @@ try {
         }
     }//GEN-LAST:event_TruyVan_btActionPerformed
 
-    private void TruyVan_txtNamMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_txtNamMuonActionPerformed
+    private void TaiKhoan__butThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaiKhoan__butThemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TruyVan_txtNamMuonActionPerformed
+    }//GEN-LAST:event_TaiKhoan__butThemActionPerformed
 
-    private void TruyVan_txtNgayMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_txtNgayMuonActionPerformed
+    private void TheLoai_butHienThiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TheLoai_butHienThiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TruyVan_txtNgayMuonActionPerformed
+    }//GEN-LAST:event_TheLoai_butHienThiActionPerformed
 
-    private void TruyVan_txtThangMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_txtThangMuonActionPerformed
+    private void TheLoai_butTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TheLoai_butTimKiemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TruyVan_txtThangMuonActionPerformed
+    }//GEN-LAST:event_TheLoai_butTimKiemActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void TheLoai_butXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TheLoai_butXoaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_TheLoai_butXoaActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void TheLoai_butSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TheLoai_butSuaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_TheLoai_butSuaActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void TheLoai_butThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TheLoai_butThemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_TheLoai_butThemActionPerformed
 
-    private void TruyVan_txtNgayTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_txtNgayTraActionPerformed
+    private void Sach_butSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butSuaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TruyVan_txtNgayTraActionPerformed
+    }//GEN-LAST:event_Sach_butSuaActionPerformed
 
-    private void TruyVan_txtThangTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_txtThangTraActionPerformed
+    private void Sach_butLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butLamMoiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TruyVan_txtThangTraActionPerformed
+    }//GEN-LAST:event_Sach_butLamMoiActionPerformed
 
-    private void TruyVan_txtNamTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_txtNamTraActionPerformed
+    private void Sach_butTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butTimKiemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TruyVan_txtNamTraActionPerformed
+    }//GEN-LAST:event_Sach_butTimKiemActionPerformed
 
-    private void Logout(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Logout
+    private void Sach_butXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butXoaActionPerformed
         // TODO add your handling code here:
         int confirm = JOptionPane.showConfirmDialog(this, 
             "Bạn có chắc chắn muốn đăng xuất?", 
@@ -1619,7 +1682,9 @@ try {
     private javax.swing.JTextField TruyVan_txtNgayTra;
     private javax.swing.JTextField TruyVan_txtThangMuon;
     private javax.swing.JTextField TruyVan_txtThangTra;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField info_SDT;
+    private javax.swing.JTextField info_TenTK;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -1627,6 +1692,9 @@ try {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;

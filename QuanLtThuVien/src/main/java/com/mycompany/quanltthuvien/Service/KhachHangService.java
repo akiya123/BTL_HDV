@@ -44,6 +44,16 @@ public class KhachHangService {
         return danhSachKhachHang;
     }
 
+
+    public static void main(String[] args) {
+        try {
+            KhachHangService khs = new KhachHangService();
+            // khs.AddKhachHang(new KhachHang("KH001", "Nguyen Van A", "0123456789"));
+            khs.GetKhachHangBySdt("0123456789");
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
     //Thêm khách hàng
     public boolean AddKhachHang(KhachHang khachHang) throws IOException, InterruptedException {
         try {
