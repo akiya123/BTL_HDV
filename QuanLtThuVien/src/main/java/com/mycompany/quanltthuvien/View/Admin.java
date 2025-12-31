@@ -4,9 +4,16 @@
  */
 package com.mycompany.quanltthuvien.View;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+import com.mycompany.quanltthuvien.Controller.AdminController;
+import com.mycompany.quanltthuvien.Model.Sach;
 import com.mycompany.quanltthuvien.Model.TaiKhoan;
-import com.mycompany.quanltthuvien.Service.TaiKhoanService;
-import java.io.IOException;
+import com.mycompany.quanltthuvien.Model.TheLoai;
 
 /**
  *
@@ -19,25 +26,71 @@ public class Admin extends javax.swing.JFrame {
     /**
      * Creates new form Admin
      */
+    AdminController adminController = new AdminController();
     public Admin() {
         initComponents();
         setSize(1024, 768); // hoặc kích thước bạn muốn
         setLocationRelativeTo(null);
+        LoadSachTable(adminController.GetAllSach());
+        LoadSachTheLoai(adminController.GetGetAllTheLoai());
+        LoadTheLoaiTable(adminController.GetGetAllTheLoai());
     }
-    TaiKhoan tk = new TaiKhoan("null ", "null ","null ","0123456789 ","null ");
-    public void Get (String Username){
-        TaiKhoanService taiKhoanService = new TaiKhoanService();
-        try {
-            tk = taiKhoanService.GetTaiKhoan(Username);
-        } catch (IOException ex) {
-            System.getLogger(Admin.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-        } catch (InterruptedException ex) {
-            System.getLogger(Admin.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+
+    private void LoadSachTable(ArrayList<Sach> listSach) {
+        DefaultTableModel model = (DefaultTableModel) Sach_tbSach.getModel();
+        model.setRowCount(0);
+        for(int i = 0; i < listSach.size(); i++){
+            model.addRow(new Object[]{
+                listSach.get(i).getMaSach(),
+                listSach.get(i).getTenSach(),
+                listSach.get(i).getSoLuong(),
+                listSach.get(i).getTacGia(),
+                adminController.GetTheLoaiByMa(listSach.get(i).getMaTheLoai()).getTenTheLoai()
+            });
         }
-            info_TenTK.setText(tk.getTenTK());
-            info_SDT.setText(tk.getSdtTK());
     }
-            
+
+    private void LoadSachTheLoai(ArrayList<TheLoai> listSach){
+        DefaultTableModel model = (DefaultTableModel) Sach_tbTheLoai.getModel();
+        model.setRowCount(0);
+        for(int i = 0; i < listSach.size(); i++){
+            model.addRow(new Object[]{
+                listSach.get(i).getTenTheLoai()
+            });
+        }
+    }
+    private void LoadTheLoaiTable(ArrayList<TheLoai> listTheLoai) {
+        DefaultTableModel model = (DefaultTableModel) TheLoai_tbTheLoai.getModel();
+        model.setRowCount(0);
+        for(int i = 0; i < listTheLoai.size(); i++){
+            model.addRow(new Object[]{
+                listTheLoai.get(i).getMaTheLoai(),
+                listTheLoai.get(i).getTenTheLoai()
+            });
+        }
+    }
+
+    private String vaitro(String role){
+        if(role.equals("AD")){
+            return "Admin";
+        }else if(role.equals("MG")) {
+            return "Mangager";
+        }
+        return "EROR";
+    }
+
+    private void LoadTaiKhoan(ArrayList<TaiKhoan> listTaiKhoan){
+        DefaultTableModel model = (DefaultTableModel) TaiKhoan_tbTaiKhoan.getModel();
+        model.setRowCount(0);
+        for(int i = 0; i < listTaiKhoan.size(); i++){
+            model.addRow(new Object[]{
+                listTaiKhoan.get(i).getUsername(),
+                listTaiKhoan.get(i).getPass(),
+                listTaiKhoan.get(i).getSdtTK(),
+                vaitro(listTaiKhoan.get(i).getRole())
+            });
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,13 +107,13 @@ public class Admin extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         Sach_txtTenSach = new javax.swing.JTextPane();
         jScrollPane2 = new javax.swing.JScrollPane();
-        Sach_txtMaSach = new javax.swing.JTextPane();
+        Sach_txtSoLuong = new javax.swing.JTextPane();
         jScrollPane3 = new javax.swing.JScrollPane();
         Sach_tbSach = new javax.swing.JTable();
         Sach_lbTheLoai = new javax.swing.JLabel();
         Sach_butThem = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        Sach_txtTheLoai = new javax.swing.JTextPane();
         jScrollPane6 = new javax.swing.JScrollPane();
         Sach_tfTimKiem = new javax.swing.JTextPane();
         Sach_butXoa = new javax.swing.JButton();
@@ -72,6 +125,11 @@ public class Admin extends javax.swing.JFrame {
         jScrollPane17 = new javax.swing.JScrollPane();
         Sach_txtTacGia = new javax.swing.JTextPane();
         Sach_lbTenSach1 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        Sach_tbTheLoai = new javax.swing.JTable();
+        jLabel8 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        Sach_TxtTenTheloai = new javax.swing.JTextField();
         TheLoai = new javax.swing.JPanel();
         TheLoai_butThem = new javax.swing.JButton();
         TheLoai_butSua = new javax.swing.JButton();
@@ -130,27 +188,33 @@ public class Admin extends javax.swing.JFrame {
         TruyVan_txtNamTra = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         TruyVan_btLayThongTin = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        info_TenTK = new javax.swing.JTextField();
-        info_SDT = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1024, 768));
 
         Sach.setDoubleBuffered(false);
+        Sach.setLayout(null);
 
         Sach_lbTenSach.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Sach_lbTenSach.setText("Tên Sách:");
+        Sach.add(Sach_lbTenSach);
+        Sach_lbTenSach.setBounds(30, 22, 75, 22);
 
         Sach_lbSoLuong.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Sach_lbSoLuong.setText("Số lượng:");
+        Sach.add(Sach_lbSoLuong);
+        Sach_lbSoLuong.setBounds(30, 62, 75, 22);
 
         jScrollPane1.setViewportView(Sach_txtTenSach);
 
-        jScrollPane2.setViewportView(Sach_txtMaSach);
+        Sach.add(jScrollPane1);
+        jScrollPane1.setBounds(111, 22, 160, 22);
+
+        jScrollPane2.setViewportView(Sach_txtSoLuong);
+
+        Sach.add(jScrollPane2);
+        jScrollPane2.setBounds(111, 62, 160, 22);
 
         Sach_tbSach.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -173,8 +237,13 @@ public class Admin extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(Sach_tbSach);
 
+        Sach.add(jScrollPane3);
+        jScrollPane3.setBounds(30, 228, 753, 440);
+
         Sach_lbTheLoai.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Sach_lbTheLoai.setText("Thể loại:");
+        Sach.add(Sach_lbTheLoai);
+        Sach_lbTheLoai.setBounds(30, 102, 75, 22);
 
         Sach_butThem.setLabel("Thêm");
         Sach_butThem.addActionListener(new java.awt.event.ActionListener() {
@@ -182,10 +251,18 @@ public class Admin extends javax.swing.JFrame {
                 Sach_butThemActionPerformed(evt);
             }
         });
+        Sach.add(Sach_butThem);
+        Sach_butThem.setBounds(335, 21, 72, 23);
 
-        jScrollPane5.setViewportView(jTextPane1);
+        jScrollPane5.setViewportView(Sach_txtTheLoai);
+
+        Sach.add(jScrollPane5);
+        jScrollPane5.setBounds(111, 102, 160, 22);
 
         jScrollPane6.setViewportView(Sach_tfTimKiem);
+
+        Sach.add(jScrollPane6);
+        jScrollPane6.setBounds(166, 179, 285, 22);
 
         Sach_butXoa.setText("Xóa");
         Sach_butXoa.addActionListener(new java.awt.event.ActionListener() {
@@ -193,6 +270,8 @@ public class Admin extends javax.swing.JFrame {
                 Sach_butXoaActionPerformed(evt);
             }
         });
+        Sach.add(Sach_butXoa);
+        Sach_butXoa.setBounds(515, 21, 72, 23);
 
         Sach_butTimKiem.setText("Tìm kiếm");
         Sach_butTimKiem.addActionListener(new java.awt.event.ActionListener() {
@@ -200,6 +279,8 @@ public class Admin extends javax.swing.JFrame {
                 Sach_butTimKiemActionPerformed(evt);
             }
         });
+        Sach.add(Sach_butTimKiem);
+        Sach_butTimKiem.setBounds(469, 179, 79, 23);
 
         Sach_butLamMoi.setText("Làm mới");
         Sach_butLamMoi.addActionListener(new java.awt.event.ActionListener() {
@@ -207,6 +288,8 @@ public class Admin extends javax.swing.JFrame {
                 Sach_butLamMoiActionPerformed(evt);
             }
         });
+        Sach.add(Sach_butLamMoi);
+        Sach_butLamMoi.setBounds(1325, 686, 142, 32);
 
         Sach_butSua.setText("Sửa");
         Sach_butSua.addActionListener(new java.awt.event.ActionListener() {
@@ -214,102 +297,72 @@ public class Admin extends javax.swing.JFrame {
                 Sach_butSuaActionPerformed(evt);
             }
         });
+        Sach.add(Sach_butSua);
+        Sach_butSua.setBounds(425, 21, 72, 23);
 
         Sach_butHienThi.setText("Hiển thị");
+        Sach.add(Sach_butHienThi);
+        Sach_butHienThi.setBounds(1247, 179, 72, 23);
 
         Sach_cbTimTheo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tim theo tên", "Tim theo mã", "Tim theo thể loại" }));
+        Sach.add(Sach_cbTimTheo);
+        Sach_cbTimTheo.setBounds(30, 179, 124, 22);
 
         jScrollPane17.setViewportView(Sach_txtTacGia);
 
+        Sach.add(jScrollPane17);
+        jScrollPane17.setBounds(111, 136, 160, 22);
+
         Sach_lbTenSach1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Sach_lbTenSach1.setText("Tác giả:");
+        Sach.add(Sach_lbTenSach1);
+        Sach_lbTenSach1.setBounds(30, 136, 75, 22);
 
-        javax.swing.GroupLayout SachLayout = new javax.swing.GroupLayout(Sach);
-        Sach.setLayout(SachLayout);
-        SachLayout.setHorizontalGroup(
-            SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(SachLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(SachLayout.createSequentialGroup()
-                        .addComponent(Sach_lbTenSach1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(SachLayout.createSequentialGroup()
-                        .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(SachLayout.createSequentialGroup()
-                                .addComponent(Sach_lbTenSach, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(6, 6, 6)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(SachLayout.createSequentialGroup()
-                                .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(Sach_lbTheLoai, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(Sach_lbSoLuong, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE))
-                                .addGap(6, 6, 6)
-                                .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane5))))
-                        .addGap(64, 64, 64)
-                        .addComponent(Sach_butThem)
-                        .addGap(18, 18, 18)
-                        .addComponent(Sach_butSua)
-                        .addGap(18, 18, 18)
-                        .addComponent(Sach_butXoa)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(SachLayout.createSequentialGroup()
-                        .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(SachLayout.createSequentialGroup()
-                                .addComponent(Sach_cbTimTheo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(Sach_butTimKiem)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Sach_butHienThi))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 753, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-                        .addComponent(Sach_butLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33))))
-        );
-        SachLayout.setVerticalGroup(
-            SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(SachLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(SachLayout.createSequentialGroup()
-                        .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jScrollPane1)
-                                .addComponent(Sach_lbTenSach, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(Sach_butThem)
-                                .addComponent(Sach_butXoa)
-                                .addComponent(Sach_butSua)))
-                        .addGap(18, 18, 18)
-                        .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane2)
-                            .addComponent(Sach_lbSoLuong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(Sach_lbTheLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane17)
-                    .addComponent(Sach_lbTenSach1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(SachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Sach_butTimKiem)
-                        .addComponent(Sach_butHienThi))
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Sach_cbTimTheo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(Sach_butLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
+        Sach_tbTheLoai.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Tên thể loại"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(Sach_tbTheLoai);
+
+        Sach.add(jScrollPane4);
+        jScrollPane4.setBounds(820, 180, 170, 402);
+
+        jLabel8.setText("Danh sách thể loại");
+        Sach.add(jLabel8);
+        jLabel8.setBounds(830, 160, 140, 16);
+
+        jButton2.setText("Lấy thể loại");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        Sach.add(jButton2);
+        jButton2.setBounds(850, 130, 110, 23);
+
+        Sach_TxtTenTheloai.setText("Nhập tên thể loại");
+        Sach_TxtTenTheloai.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Sach_TxtTenTheloaiMouseClicked(evt);
+            }
+        });
+        Sach.add(Sach_TxtTenTheloai);
+        Sach_TxtTenTheloai.setBounds(800, 80, 190, 22);
 
         AdminCT.addTab("Sách", Sach);
         Sach.getAccessibleContext().setAccessibleName("");
@@ -352,11 +405,6 @@ public class Admin extends javax.swing.JFrame {
         });
 
         TheLoai_butHienThi.setText("Hiển thị");
-        TheLoai_butHienThi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TheLoai_butHienThiActionPerformed(evt);
-            }
-        });
 
         TheLoai_cbTimTheo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tìm theo mã", "Tìm theo tên" }));
 
@@ -820,67 +868,14 @@ public class Admin extends javax.swing.JFrame {
         AdminCT.addTab("Truy Vấn", LichSuGiaoDich);
         LichSuGiaoDich.getAccessibleContext().setAccessibleName("");
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton2.setText("Đăng Xuất");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 128)); // NOI18N
+        jButton1.setText("Đăng xuất");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Logout(evt);
             }
         });
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel8.setText("Tên tài khoản:");
-
-        info_TenTK.setEditable(false);
-        info_TenTK.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        info_TenTK.setText("jTextField1");
-
-        info_SDT.setEditable(false);
-        info_SDT.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        info_SDT.setText("jTextField1");
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel9.setText("Số điện thoại:");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(59, 59, 59)
-                                .addComponent(info_SDT))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(59, 59, 59)
-                                .addComponent(info_TenTK, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)))))
-                .addGap(88, 88, 88))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(165, 165, 165)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(info_TenTK, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(43, 43, 43)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(info_SDT, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 302, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70))
-        );
-
-        AdminCT.addTab("Thông tin tài khoản", jPanel1);
+        AdminCT.addTab("Đăng xuất", jButton1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -899,6 +894,123 @@ public class Admin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void Sach_butThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butThemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Sach_butThemActionPerformed
+
+    private void Sach_butXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butXoaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Sach_butXoaActionPerformed
+
+    private boolean SachIsEmty(){
+        if(Sach_txtTenSach.getText().equals("") || Sach_txtSoLuong.getText().equals("") || Sach_txtTheLoai.getText().equals("") || Sach_txtTacGia.getText().equals("")){
+            return true;
+        }
+        return false;
+    }
+    private void Sach_butTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butTimKiemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Sach_butTimKiemActionPerformed
+
+    private void Sach_butLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butLamMoiActionPerformed
+        // TODO add your handling code here:
+        if(SachIsEmty()){
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin sách!");
+        } else {
+            Sach_txtTenSach.setText("");
+            Sach_txtSoLuong.setText("");
+            Sach_txtTheLoai.setText("");
+            Sach_txtTacGia.setText("");
+        }
+        String tenSach = Sach_txtTenSach.getText();
+        String theLoai = Sach_txtTheLoai.getText();
+        String tacGia = Sach_txtTacGia.getText();
+        ArrayList<Sach> listSach = adminController.GetSachByTenSach(tenSach);
+        for(int i = 0; i < listSach.size(); i++){
+            if()
+        }
+    }//GEN-LAST:event_Sach_butLamMoiActionPerformed
+
+    private void Sach_butSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butSuaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Sach_butSuaActionPerformed
+
+    private void TheLoai_butThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TheLoai_butThemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TheLoai_butThemActionPerformed
+
+    private void TheLoai_butSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TheLoai_butSuaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TheLoai_butSuaActionPerformed
+
+    private void TheLoai_butXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TheLoai_butXoaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TheLoai_butXoaActionPerformed
+
+    private void TheLoai_butTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TheLoai_butTimKiemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TheLoai_butTimKiemActionPerformed
+
+    private void TaiKhoan__butThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaiKhoan__butThemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TaiKhoan__butThemActionPerformed
+
+    private void TaiKhoan__butSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaiKhoan__butSuaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TaiKhoan__butSuaActionPerformed
+
+    private void TaiKhoan__butXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaiKhoan__butXoaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TaiKhoan__butXoaActionPerformed
+
+    private void Sach_butTimKiem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butTimKiem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Sach_butTimKiem1ActionPerformed
+
+    private void Sach_butHienThi1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butHienThi1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Sach_butHienThi1ActionPerformed
+
+    private void TruyVan_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_btActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TruyVan_btActionPerformed
+
+    private void TruyVan_txtNamMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_txtNamMuonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TruyVan_txtNamMuonActionPerformed
+
+    private void TruyVan_txtNgayMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_txtNgayMuonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TruyVan_txtNgayMuonActionPerformed
+
+    private void TruyVan_txtThangMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_txtThangMuonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TruyVan_txtThangMuonActionPerformed
+
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField6ActionPerformed
+
+    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField7ActionPerformed
+
+    private void TruyVan_txtNgayTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_txtNgayTraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TruyVan_txtNgayTraActionPerformed
+
+    private void TruyVan_txtThangTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_txtThangTraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TruyVan_txtThangTraActionPerformed
+
+    private void TruyVan_txtNamTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_txtNamTraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TruyVan_txtNamTraActionPerformed
+
     private void Logout(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Logout
         // TODO add your handling code here:
         Login lg = new Login();
@@ -906,105 +1018,14 @@ public class Admin extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_Logout
 
-    private void TruyVan_txtNamTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_txtNamTraActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TruyVan_txtNamTraActionPerformed
+    }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void TruyVan_txtThangTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_txtThangTraActionPerformed
+    private void Sach_TxtTenTheloaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Sach_TxtTenTheloaiMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_TruyVan_txtThangTraActionPerformed
-
-    private void TruyVan_txtNgayTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_txtNgayTraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TruyVan_txtNgayTraActionPerformed
-
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
-
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
-
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
-
-    private void TruyVan_txtThangMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_txtThangMuonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TruyVan_txtThangMuonActionPerformed
-
-    private void TruyVan_txtNgayMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_txtNgayMuonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TruyVan_txtNgayMuonActionPerformed
-
-    private void TruyVan_txtNamMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_txtNamMuonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TruyVan_txtNamMuonActionPerformed
-
-    private void TruyVan_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_btActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TruyVan_btActionPerformed
-
-    private void Sach_butHienThi1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butHienThi1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Sach_butHienThi1ActionPerformed
-
-    private void Sach_butTimKiem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butTimKiem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Sach_butTimKiem1ActionPerformed
-
-    private void TaiKhoan__butXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaiKhoan__butXoaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TaiKhoan__butXoaActionPerformed
-
-    private void TaiKhoan__butSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaiKhoan__butSuaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TaiKhoan__butSuaActionPerformed
-
-    private void TaiKhoan__butThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaiKhoan__butThemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TaiKhoan__butThemActionPerformed
-
-    private void TheLoai_butHienThiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TheLoai_butHienThiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TheLoai_butHienThiActionPerformed
-
-    private void TheLoai_butTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TheLoai_butTimKiemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TheLoai_butTimKiemActionPerformed
-
-    private void TheLoai_butXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TheLoai_butXoaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TheLoai_butXoaActionPerformed
-
-    private void TheLoai_butSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TheLoai_butSuaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TheLoai_butSuaActionPerformed
-
-    private void TheLoai_butThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TheLoai_butThemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TheLoai_butThemActionPerformed
-
-    private void Sach_butSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butSuaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Sach_butSuaActionPerformed
-
-    private void Sach_butLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butLamMoiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Sach_butLamMoiActionPerformed
-
-    private void Sach_butTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butTimKiemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Sach_butTimKiemActionPerformed
-
-    private void Sach_butXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butXoaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Sach_butXoaActionPerformed
-
-    private void Sach_butThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butThemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Sach_butThemActionPerformed
+        Sach_txtTheLoai.setText("");
+    }//GEN-LAST:event_Sach_TxtTenTheloaiMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1035,6 +1056,7 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JTabbedPane AdminCT;
     private javax.swing.JPanel LichSuGiaoDich;
     private javax.swing.JPanel Sach;
+    private javax.swing.JTextField Sach_TxtTenTheloai;
     private javax.swing.JButton Sach_butHienThi;
     private javax.swing.JButton Sach_butHienThi1;
     private javax.swing.JButton Sach_butLamMoi;
@@ -1049,11 +1071,13 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JLabel Sach_lbTenSach1;
     private javax.swing.JLabel Sach_lbTheLoai;
     private javax.swing.JTable Sach_tbSach;
+    private javax.swing.JTable Sach_tbTheLoai;
     private javax.swing.JTextPane Sach_tfTimKiem;
     private javax.swing.JTextPane Sach_tfTimKiem1;
-    private javax.swing.JTextPane Sach_txtMaSach;
+    private javax.swing.JTextPane Sach_txtSoLuong;
     private javax.swing.JTextPane Sach_txtTacGia;
     private javax.swing.JTextPane Sach_txtTenSach;
+    private javax.swing.JTextPane Sach_txtTheLoai;
     private javax.swing.JPanel TaiKhoan;
     private javax.swing.JButton TaiKhoan__butSua;
     private javax.swing.JButton TaiKhoan__butThem;
@@ -1088,8 +1112,7 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JTextField TruyVan_txtNgayTra;
     private javax.swing.JTextField TruyVan_txtThangMuon;
     private javax.swing.JTextField TruyVan_txtThangTra;
-    private javax.swing.JTextField info_SDT;
-    private javax.swing.JTextField info_TenTK;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -1099,8 +1122,6 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
@@ -1112,6 +1133,7 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane17;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
@@ -1120,6 +1142,5 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 }
