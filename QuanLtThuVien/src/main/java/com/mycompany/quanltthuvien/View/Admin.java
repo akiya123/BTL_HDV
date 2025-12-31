@@ -24,7 +24,7 @@ public class Admin extends javax.swing.JFrame {
         setSize(1024, 768); // hoặc kích thước bạn muốn
         setLocationRelativeTo(null);
     }
-    TaiKhoan tk = new TaiKhoan(" ", " "," "," "," ");
+    TaiKhoan tk = new TaiKhoan("null ", "null ","null ","0123456789 ","null ");
     public void Get (String Username){
         TaiKhoanService taiKhoanService = new TaiKhoanService();
         try {
@@ -496,7 +496,7 @@ public class Admin extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Username", "Mật khẩu", "Số điện thoại", "Tên khách hàng"
+                "Username", "Mật khẩu", "Số điện thoại", "Vai trò"
             }
         ) {
             Class[] types = new Class [] {

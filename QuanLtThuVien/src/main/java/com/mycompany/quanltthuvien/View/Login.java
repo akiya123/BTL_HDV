@@ -117,6 +117,7 @@ public class Login extends javax.swing.JFrame {
         if(role != null){
             if(role.contains("AD")){
                 Admin ad = new Admin();
+                ad.Get(username);
                 ad.setVisible(true);
                 this.dispose();
             }else if(role.contains("MG")){

@@ -787,7 +787,7 @@
                         <Column editable="true" title="Username" type="java.lang.String"/>
                         <Column editable="true" title="M&#x1ead;t kh&#x1ea9;u" type="java.lang.String"/>
                         <Column editable="true" title="S&#x1ed1; &#x111;i&#x1ec7;n tho&#x1ea1;i" type="java.lang.String"/>
-                        <Column editable="true" title="T&#xea;n kh&#xe1;ch h&#xe0;ng" type="java.lang.String"/>
+                        <Column editable="true" title="Vai tr&#xf2;" type="java.lang.String"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

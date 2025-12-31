@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Login",
+            "request": "launch",
+            "mainClass": "com.mycompany.quanltthuvien.View.Login",
+            "projectName": "QuanLtThuVien"
+        },
+        {
+            "type": "java",
+            "name": "QuanLtThuVien",
+            "request": "launch",
+            "mainClass": "com.mycompany.quanltthuvien.QuanLtThuVien",
+            "projectName": "QuanLtThuVien"
+        },
+        {
+            "type": "java",
             "name": "Manager",
             "request": "launch",
             "mainClass": "com.mycompany.quanltthuvien.View.Manager",
