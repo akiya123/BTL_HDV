@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -233,6 +234,12 @@ public class Admin extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         TruyVan_txtNamTra = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        TruyVan_txtUsername = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        TruyVan_CheckMuon = new javax.swing.JCheckBox();
+        TruyVan_CheckMat = new javax.swing.JCheckBox();
+        TryVan_CheckHuy = new javax.swing.JCheckBox();
+        TruyVan_CheckTra = new javax.swing.JCheckBox();
         jPanel1 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
@@ -724,6 +731,7 @@ public class Admin extends javax.swing.JFrame {
         AdminCT.addTab("Quản lý tài khoản", TaiKhoan);
 
         LichSuGiaoDich.setDoubleBuffered(false);
+        LichSuGiaoDich.setLayout(null);
 
         TruyVan_Lsu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -753,6 +761,9 @@ public class Admin extends javax.swing.JFrame {
         });
         jScrollPane14.setViewportView(TruyVan_Lsu);
 
+        LichSuGiaoDich.add(jScrollPane14);
+        jScrollPane14.setBounds(47, 181, 880, 500);
+
         TruyVan_bt.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         TruyVan_bt.setText("Truy vấn");
         TruyVan_bt.addActionListener(new java.awt.event.ActionListener() {
@@ -760,129 +771,106 @@ public class Admin extends javax.swing.JFrame {
                 TruyVan_btActionPerformed(evt);
             }
         });
+        LichSuGiaoDich.add(TruyVan_bt);
+        TruyVan_bt.setBounds(766, 59, 210, 80);
 
         TruyVan_txtNamMuon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TruyVan_txtNamMuonActionPerformed(evt);
             }
         });
+        LichSuGiaoDich.add(TruyVan_txtNamMuon);
+        TruyVan_txtNamMuon.setBounds(347, 121, 70, 30);
 
         TruyVan_txtNgayMuon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TruyVan_txtNgayMuonActionPerformed(evt);
             }
         });
+        LichSuGiaoDich.add(TruyVan_txtNgayMuon);
+        TruyVan_txtNgayMuon.setBounds(187, 121, 50, 30);
 
         TruyVan_txtThangMuon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TruyVan_txtThangMuonActionPerformed(evt);
             }
         });
+        LichSuGiaoDich.add(TruyVan_txtThangMuon);
+        TruyVan_txtThangMuon.setBounds(267, 121, 50, 30);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setText("/");
+        LichSuGiaoDich.add(jLabel1);
+        jLabel1.setBounds(327, 111, 14, 40);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel3.setText("/");
+        LichSuGiaoDich.add(jLabel3);
+        jLabel3.setBounds(247, 111, 14, 40);
 
         TruyVan_txtNgayTra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TruyVan_txtNgayTraActionPerformed(evt);
             }
         });
+        LichSuGiaoDich.add(TruyVan_txtNgayTra);
+        TruyVan_txtNgayTra.setBounds(526, 121, 50, 30);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel5.setText("/");
+        LichSuGiaoDich.add(jLabel5);
+        jLabel5.setBounds(588, 111, 14, 40);
 
         TruyVan_txtThangTra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TruyVan_txtThangTraActionPerformed(evt);
             }
         });
+        LichSuGiaoDich.add(TruyVan_txtThangTra);
+        TruyVan_txtThangTra.setBounds(608, 121, 50, 30);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel6.setText("/");
+        LichSuGiaoDich.add(jLabel6);
+        jLabel6.setBounds(668, 111, 14, 40);
 
         TruyVan_txtNamTra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TruyVan_txtNamTraActionPerformed(evt);
             }
         });
+        LichSuGiaoDich.add(TruyVan_txtNamTra);
+        TruyVan_txtNamTra.setBounds(688, 121, 70, 30);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel7.setText("đến");
+        LichSuGiaoDich.add(jLabel7);
+        jLabel7.setBounds(456, 111, 90, 48);
 
-        javax.swing.GroupLayout LichSuGiaoDichLayout = new javax.swing.GroupLayout(LichSuGiaoDich);
-        LichSuGiaoDich.setLayout(LichSuGiaoDichLayout);
-        LichSuGiaoDichLayout.setHorizontalGroup(
-            LichSuGiaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LichSuGiaoDichLayout.createSequentialGroup()
-                .addGap(0, 47, Short.MAX_VALUE)
-                .addGroup(LichSuGiaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(LichSuGiaoDichLayout.createSequentialGroup()
-                        .addGap(140, 140, 140)
-                        .addComponent(TruyVan_txtNgayMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel3)
-                        .addGap(6, 6, 6)
-                        .addComponent(TruyVan_txtThangMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel1)
-                        .addGap(6, 6, 6)
-                        .addComponent(TruyVan_txtNamMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addGroup(LichSuGiaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(LichSuGiaoDichLayout.createSequentialGroup()
-                                .addGap(70, 70, 70)
-                                .addComponent(TruyVan_txtNgayTra, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel5)
-                        .addGap(6, 6, 6)
-                        .addComponent(TruyVan_txtThangTra, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel6)
-                        .addGap(6, 6, 6)
-                        .addComponent(TruyVan_txtNamTra, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)
-                        .addComponent(TruyVan_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 880, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 48, Short.MAX_VALUE))
-        );
-        LichSuGiaoDichLayout.setVerticalGroup(
-            LichSuGiaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LichSuGiaoDichLayout.createSequentialGroup()
-                .addGroup(LichSuGiaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(LichSuGiaoDichLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(TruyVan_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42))
-                    .addGroup(LichSuGiaoDichLayout.createSequentialGroup()
-                        .addGap(111, 111, 111)
-                        .addGroup(LichSuGiaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)
-                            .addGroup(LichSuGiaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(LichSuGiaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(LichSuGiaoDichLayout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addGroup(LichSuGiaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(TruyVan_txtThangTra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(TruyVan_txtNamTra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGroup(LichSuGiaoDichLayout.createSequentialGroup()
-                                    .addGap(10, 10, 10)
-                                    .addGroup(LichSuGiaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(TruyVan_txtNgayMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(TruyVan_txtThangMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(TruyVan_txtNamMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(TruyVan_txtNgayTra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(22, 22, 22)))
-                .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 52, Short.MAX_VALUE))
-        );
+        TruyVan_txtUsername.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        LichSuGiaoDich.add(TruyVan_txtUsername);
+        TruyVan_txtUsername.setBounds(230, 10, 410, 40);
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setText("Tên tài khoản:");
+        LichSuGiaoDich.add(jLabel2);
+        jLabel2.setBounds(100, 10, 150, 40);
+
+        TruyVan_CheckMuon.setText("Mượn");
+        LichSuGiaoDich.add(TruyVan_CheckMuon);
+        TruyVan_CheckMuon.setBounds(130, 70, 54, 20);
+
+        TruyVan_CheckMat.setText("Mất");
+        LichSuGiaoDich.add(TruyVan_CheckMat);
+        TruyVan_CheckMat.setBounds(320, 70, 44, 20);
+
+        TryVan_CheckHuy.setText("Hủy");
+        LichSuGiaoDich.add(TryVan_CheckHuy);
+        TryVan_CheckHuy.setBounds(420, 70, 84, 20);
+
+        TruyVan_CheckTra.setText("Trả");
+        LichSuGiaoDich.add(TruyVan_CheckTra);
+        TruyVan_CheckTra.setBounds(220, 70, 84, 20);
 
         AdminCT.addTab("Truy Vấn", LichSuGiaoDich);
         LichSuGiaoDich.getAccessibleContext().setAccessibleName("");
@@ -1197,9 +1185,29 @@ public class Admin extends javax.swing.JFrame {
     private void Sach_butHienThi1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butHienThi1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Sach_butHienThi1ActionPerformed
-
-    private void TruyVan_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_btActionPerformed
-        // TODO add your handling code here:
+    
+    String NgayTraFull = "";
+    String NgayMuonFull="";
+    
+    private boolean TruyVanIsEmty(){
+        if(TruyVan_txtNgayMuon.getText().equals("") || 
+        TruyVan_txtThangMuon.getText().equals("") || 
+        TruyVan_txtNamMuon.getText().equals("") || 
+        TruyVan_txtNgayTra.getText().equals("") || 
+        TruyVan_txtThangTra.getText().equals("") || 
+        TruyVan_txtNamTra.getText().equals("")){
+            return true;
+        }
+        return false;
+    }
+    
+    private void Get_Date(){
+        if(TruyVanIsEmty()){
+             LocalDate date = LocalDate.now();
+             NgayTraFull = date.getYear() + "/" + date.getMonthValue() + "/" + date.getDayOfMonth();
+             NgayMuonFull = (date.getYear()-3) + "/" + date.getMonthValue() + "/" + date.getDayOfMonth();
+             return;
+        }
         String NgayMuon = TruyVan_txtNgayMuon.getText();
         String ThangMuon = TruyVan_txtThangMuon.getText();
         String NamMuon = TruyVan_txtNamMuon.getText();
@@ -1208,10 +1216,67 @@ public class Admin extends javax.swing.JFrame {
         String ThangTra = TruyVan_txtThangTra.getText();
         String NamTra = TruyVan_txtNamTra.getText();
 
-        String NgayTraFull =  NamTra + "/" + ThangTra + "/" + NgayTra;
-        String NgayMuonFull =  NamMuon + "/" + ThangMuon + "/" + NgayMuon;
+        NgayTraFull =  NamTra + "/" + ThangTra + "/" + NgayTra;
+        NgayMuonFull =  NamMuon + "/" + ThangMuon + "/" + NgayMuon;
+    }
+    private void TruyVan_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_btActionPerformed
+        // TODO add your handling code here:
+        Get_Date();
+        ArrayList<LiSuGiaoDich> arr = adminController.GetLiSuGDByNgayGD(NgayTraFull,NgayMuonFull);
+        if(arr.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Không có giao dịch nào trong khoảng thời gian này");
+            return;
+        }
+        String username = TruyVan_txtUsername.getText();
+        if(!username.equals("")){
+            for (int idx = 0; idx < arr.size(); idx++) {
+                LiSuGiaoDich elem = arr.get(idx);
+                if(!elem.getUsername().trim().equals(username.trim())){
+                    arr.remove(idx);
+                    idx--;
+                }
+            }
+            if(arr.isEmpty()){
+                JOptionPane.showMessageDialog(this, "Không có giao dịch nào của người dùng này trong khoảng thời gian này");
+                return;
+            }
+        }
 
-        LoaTryVan(adminController.GetLiSuGDByNgayGD(NgayTraFull,NgayMuonFull));
+        ArrayList<LiSuGiaoDich> dsLiSu = new ArrayList<>();
+
+        if(TruyVan_CheckMuon.isSelected()){
+            for(LiSuGiaoDich elem : arr){
+                if(elem.getTrangThai().trim().toLowerCase().equals("mượn")){
+                    dsLiSu.add(elem);
+                }
+            }
+        }
+        if(TruyVan_CheckTra.isSelected()){
+            for(LiSuGiaoDich elem : arr){
+                if(elem.getTrangThai().trim().toLowerCase().equals("trả")){
+                    dsLiSu.add(elem);
+                }
+            }
+        }
+        if(TruyVan_CheckMat.isSelected()){
+            for(LiSuGiaoDich elem : arr){
+                if(elem.getTrangThai().trim().toLowerCase().equals("mất")){
+                    dsLiSu.add(elem);
+                }
+            }
+        }
+        if(TryVan_CheckHuy.isSelected()){
+            for(LiSuGiaoDich elem : arr){
+                if(elem.getTrangThai().trim().toLowerCase().equals("hủy")){
+                    dsLiSu.add(elem);
+                }
+            }
+        }
+        if(!dsLiSu.isEmpty()){
+            LoaTryVan(dsLiSu);
+        }else{
+            LoaTryVan(arr);
+        }
     }//GEN-LAST:event_TruyVan_btActionPerformed
 
     private void TruyVan_txtNamMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_txtNamMuonActionPerformed
@@ -1421,6 +1486,9 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JTable TheLoai_tbTheLoai;
     private javax.swing.JTextPane TheLoai_tfTimKiem;
     private javax.swing.JTextPane TheLoai_txtTheLoai;
+    private javax.swing.JCheckBox TruyVan_CheckMat;
+    private javax.swing.JCheckBox TruyVan_CheckMuon;
+    private javax.swing.JCheckBox TruyVan_CheckTra;
     private javax.swing.JTable TruyVan_Lsu;
     private javax.swing.JButton TruyVan_bt;
     private javax.swing.JTextField TruyVan_txtNamMuon;
@@ -1429,6 +1497,8 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JTextField TruyVan_txtNgayTra;
     private javax.swing.JTextField TruyVan_txtThangMuon;
     private javax.swing.JTextField TruyVan_txtThangTra;
+    private javax.swing.JTextField TruyVan_txtUsername;
+    private javax.swing.JCheckBox TryVan_CheckHuy;
     private javax.swing.JTextField info_SDT;
     private javax.swing.JTextField info_TenTK;
     private javax.swing.JButton jButton1;
@@ -1436,6 +1506,7 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
