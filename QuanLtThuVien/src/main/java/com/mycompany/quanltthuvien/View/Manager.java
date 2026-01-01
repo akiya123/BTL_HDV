@@ -422,7 +422,7 @@ public class Manager extends javax.swing.JFrame {
             }
         });
         Muon.add(Muon_btTimKiemSach);
-        Muon_btTimKiemSach.setBounds(750, 180, 110, 30);
+        Muon_btTimKiemSach.setBounds(750, 180, 120, 30);
 
         Muon_cbTimTheo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Muon_cbTimTheo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã Sách", "Tên Sách", "Thể Loại" }));
@@ -603,7 +603,7 @@ public class Manager extends javax.swing.JFrame {
             }
         });
         TraSach.add(TraSach_btTimKiemSach);
-        TraSach_btTimKiemSach.setBounds(790, 200, 90, 30);
+        TraSach_btTimKiemSach.setBounds(790, 200, 100, 30);
 
         Muon_lbTenSachTimKiem1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Muon_lbTenSachTimKiem1.setText("Tên sách:");
