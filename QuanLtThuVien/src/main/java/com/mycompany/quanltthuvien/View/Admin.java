@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import com.mycompany.quanltthuvien.Controller.AdminController;
+import com.mycompany.quanltthuvien.Controller.LoginController;
 import com.mycompany.quanltthuvien.Model.LiSuGiaoDich;
 import com.mycompany.quanltthuvien.Model.Sach;
 import com.mycompany.quanltthuvien.Model.TaiKhoan;
@@ -1153,7 +1154,7 @@ public class Admin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập thông tin");
             return;
         }
-        String usnername = TaiKhoan_txtTenTaiKhoan.getText();
+        String usnername = TaiKhoan_txtTenTaiKhoan.getText().trim().toLowerCase();
         if(!adminController.DeleteTaiKhoan(usnername)){
             JOptionPane.showMessageDialog(this, "Xóa tài khoản thất bại");
             TaiKhoanClear();
@@ -1166,7 +1167,7 @@ public class Admin extends javax.swing.JFrame {
 
     private void Sach_butTimKiem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butTimKiem1ActionPerformed
         // TODO add your handling code here:
-        String usnername = TaiKhoan_txtUsername.getText();
+        String usnername = TaiKhoan_txtUsername.getText().trim();
         if(usnername.equals("")){
             JOptionPane.showMessageDialog(this, "Vui lòng nhập tên đăng nhập");
             return;

@@ -77,7 +77,7 @@ namespace API_QLYTHuVien.Controllers
         [HttpDelete]
         public bool DeleteTaiKhoan(string Username)
         {
-            if (db.TaiKhoans.Any(tk => tk.Role.Contains("AD")))
+            if(Username.Contains("admin"))
             {
                 return false; // Không cho phép xóa tài khoản admin
             }

@@ -132,7 +132,7 @@ public class TaiKhoanService {
     public boolean deleteTaiKhoan(String username) throws IOException, InterruptedException {
 
         String url = baseUrl + "TaiKhoan/DeleteTaiKhoan?Username=" + URLEncoder.encode(username, StandardCharsets.UTF_8);
-        
+        System.out.println("URL DELETE: " + url);
         HttpRequest deleteRequest = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .DELETE()
