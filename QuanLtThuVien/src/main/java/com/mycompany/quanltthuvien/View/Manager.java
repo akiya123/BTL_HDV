@@ -508,7 +508,7 @@ public class Manager extends javax.swing.JFrame {
             }
         });
         TraSach.add(TraSach_bt);
-        TraSach_bt.setBounds(430, 120, 80, 27);
+        TraSach_bt.setBounds(430, 120, 90, 27);
 
         TraSach_lbMaKH.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         TraSach_lbMaKH.setText("Mã bạn đọc:");
@@ -603,7 +603,7 @@ public class Manager extends javax.swing.JFrame {
             }
         });
         TraSach.add(TraSach_btTimKiemSach);
-        TraSach_btTimKiemSach.setBounds(780, 230, 90, 30);
+        TraSach_btTimKiemSach.setBounds(790, 200, 90, 30);
 
         Muon_lbTenSachTimKiem1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Muon_lbTenSachTimKiem1.setText("Tên sách:");
@@ -648,7 +648,7 @@ public class Manager extends javax.swing.JFrame {
             }
         });
         TraSach.add(TraSach_btXacNhan);
-        TraSach_btXacNhan.setBounds(980, 260, 90, 30);
+        TraSach_btXacNhan.setBounds(970, 260, 100, 30);
 
         TraSach_btHienThi.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         TraSach_btHienThi.setText("Hiển thị");
@@ -658,7 +658,7 @@ public class Manager extends javax.swing.JFrame {
             }
         });
         TraSach.add(TraSach_btHienThi);
-        TraSach_btHienThi.setBounds(880, 260, 90, 30);
+        TraSach_btHienThi.setBounds(870, 260, 90, 30);
 
         jButton3.setText("Xác nhận trả");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -667,7 +667,7 @@ public class Manager extends javax.swing.JFrame {
             }
         });
         TraSach.add(jButton3);
-        jButton3.setBounds(330, 250, 100, 30);
+        jButton3.setBounds(330, 250, 110, 30);
 
         jButton4.setText("Hủy trả");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -685,7 +685,7 @@ public class Manager extends javax.swing.JFrame {
             }
         });
         TraSach.add(jButton5);
-        jButton5.setBounds(430, 160, 80, 30);
+        jButton5.setBounds(430, 160, 90, 30);
 
         jTabbedPane1.addTab("Trả Sách", TraSach);
 
@@ -925,7 +925,10 @@ public class Manager extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
