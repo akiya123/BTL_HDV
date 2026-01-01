@@ -1185,6 +1185,7 @@ public class Admin extends javax.swing.JFrame {
 
     private void Sach_butHienThi1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sach_butHienThi1ActionPerformed
         // TODO add your handling code here:
+        LoadTaiKhoan(adminController.GetAllTaiKhoan());
     }//GEN-LAST:event_Sach_butHienThi1ActionPerformed
     
     String NgayTraFull = "";
