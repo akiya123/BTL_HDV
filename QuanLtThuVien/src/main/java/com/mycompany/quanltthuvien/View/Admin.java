@@ -858,19 +858,19 @@ public class Admin extends javax.swing.JFrame {
 
         TruyVan_CheckMuon.setText("Mượn");
         LichSuGiaoDich.add(TruyVan_CheckMuon);
-        TruyVan_CheckMuon.setBounds(130, 70, 54, 20);
+        TruyVan_CheckMuon.setBounds(130, 70, 70, 20);
 
         TruyVan_CheckMat.setText("Mất");
         LichSuGiaoDich.add(TruyVan_CheckMat);
-        TruyVan_CheckMat.setBounds(320, 70, 44, 20);
+        TruyVan_CheckMat.setBounds(320, 70, 80, 20);
 
         TryVan_CheckHuy.setText("Hủy");
         LichSuGiaoDich.add(TryVan_CheckHuy);
-        TryVan_CheckHuy.setBounds(420, 70, 84, 20);
+        TryVan_CheckHuy.setBounds(420, 70, 90, 20);
 
         TruyVan_CheckTra.setText("Trả");
         LichSuGiaoDich.add(TruyVan_CheckTra);
-        TruyVan_CheckTra.setBounds(220, 70, 84, 20);
+        TruyVan_CheckTra.setBounds(220, 70, 90, 20);
 
         AdminCT.addTab("Truy Vấn", LichSuGiaoDich);
         LichSuGiaoDich.getAccessibleContext().setAccessibleName("");
@@ -885,12 +885,12 @@ public class Admin extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton3);
-        jButton3.setBounds(740, 440, 142, 39);
+        jButton3.setBounds(692, 440, 180, 39);
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel9.setText("Tên tài khoản:");
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(70, 160, 222, 48);
+        jLabel9.setBounds(22, 160, 270, 48);
 
         info_TenTK.setEditable(false);
         info_TenTK.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
@@ -907,7 +907,7 @@ public class Admin extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel10.setText("Số điện thoại:");
         jPanel1.add(jLabel10);
-        jLabel10.setBounds(70, 270, 217, 48);
+        jLabel10.setBounds(27, 270, 260, 48);
 
         AdminCT.addTab("Thông tin tài khoản", jPanel1);
 
