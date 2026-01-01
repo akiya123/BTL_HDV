@@ -130,6 +130,7 @@ public class Admin extends javax.swing.JFrame {
     }
 
     private void LoaTryVan(ArrayList<LiSuGiaoDich> listTV){
+        adminController.DeleteLiSuGD();
         DefaultTableModel model = (DefaultTableModel) TruyVan_Lsu.getModel();
         model.setRowCount(0);
         for(int i = 0; i < listTV.size(); i++){
@@ -343,7 +344,7 @@ public class Admin extends javax.swing.JFrame {
             }
         });
         Sach.add(Sach_butTimKiem);
-        Sach_butTimKiem.setBounds(469, 179, 79, 23);
+        Sach_butTimKiem.setBounds(469, 179, 100, 23);
 
         Sach_butSua.setText("Sửa");
         Sach_butSua.addActionListener(new java.awt.event.ActionListener() {
@@ -434,7 +435,7 @@ public class Admin extends javax.swing.JFrame {
             }
         });
         Sach.add(Sach_butLamMoi);
-        Sach_butLamMoi.setBounds(340, 130, 75, 23);
+        Sach_butLamMoi.setBounds(325, 130, 90, 23);
 
         AdminCT.addTab("Sách", Sach);
         Sach.getAccessibleContext().setAccessibleName("");
@@ -1221,6 +1222,7 @@ public class Admin extends javax.swing.JFrame {
     }
     private void TruyVan_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_btActionPerformed
         // TODO add your handling code here:
+        
         Get_Date();
         ArrayList<LiSuGiaoDich> arr = adminController.GetLiSuGDByNgayGD(NgayTraFull,NgayMuonFull);
         if(arr.isEmpty()){
