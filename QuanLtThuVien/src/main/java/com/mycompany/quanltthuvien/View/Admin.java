@@ -1224,6 +1224,7 @@ public class Admin extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         Get_Date();
+        boolean check = false;
         ArrayList<LiSuGiaoDich> arr = adminController.GetLiSuGDByNgayGD(NgayTraFull,NgayMuonFull);
         if(arr.isEmpty()){
             JOptionPane.showMessageDialog(this, "Không có giao dịch nào trong khoảng thời gian này");
@@ -1231,6 +1232,7 @@ public class Admin extends javax.swing.JFrame {
         }
         String username = TruyVan_txtUsername.getText();
         if(!username.equals("")){
+            check = true;
             for (int idx = 0; idx < arr.size(); idx++) {
                 LiSuGiaoDich elem = arr.get(idx);
                 if(!elem.getUsername().trim().equals(username.trim())){
@@ -1247,6 +1249,7 @@ public class Admin extends javax.swing.JFrame {
         ArrayList<LiSuGiaoDich> dsLiSu = new ArrayList<>();
 
         if(TruyVan_CheckMuon.isSelected()){
+            check = true;
             for(LiSuGiaoDich elem : arr){
                 if(elem.getTrangThai().trim().toLowerCase().equals("mượn")){
                     dsLiSu.add(elem);
@@ -1254,6 +1257,7 @@ public class Admin extends javax.swing.JFrame {
             }
         }
         if(TruyVan_CheckTra.isSelected()){
+            check = true;
             for(LiSuGiaoDich elem : arr){
                 if(elem.getTrangThai().trim().toLowerCase().equals("trả")){
                     dsLiSu.add(elem);
@@ -1261,6 +1265,7 @@ public class Admin extends javax.swing.JFrame {
             }
         }
         if(TruyVan_CheckMat.isSelected()){
+            check = true;
             for(LiSuGiaoDich elem : arr){
                 if(elem.getTrangThai().trim().toLowerCase().equals("mất")){
                     dsLiSu.add(elem);
@@ -1268,17 +1273,23 @@ public class Admin extends javax.swing.JFrame {
             }
         }
         if(TryVan_CheckHuy.isSelected()){
+            check = true;
             for(LiSuGiaoDich elem : arr){
                 if(elem.getTrangThai().trim().toLowerCase().equals("hủy")){
                     dsLiSu.add(elem);
                 }
             }
         }
-        if(!dsLiSu.isEmpty()){
+        if(check){
+            check = false;
+            if(dsLiSu.isEmpty()){
+                JOptionPane.showMessageDialog(this, "Không tồn tại giao dịch" );
+                return;
+            }
             LoaTryVan(dsLiSu);
-        }else{
-            LoaTryVan(arr);
+            return;
         }
+        LoaTryVan(arr);
     }//GEN-LAST:event_TruyVan_btActionPerformed
 
     private void TruyVan_txtNamMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruyVan_txtNamMuonActionPerformed
